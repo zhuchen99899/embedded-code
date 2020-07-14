@@ -1,0 +1,9 @@
+..\obj\guidemo_conf.o: ..\EMWIN\Demo\GUIDEMO_Conf.c
+..\obj\guidemo_conf.o: ..\EMWIN\STemWin\inc\GUI.h
+..\obj\guidemo_conf.o: ..\EMWIN\STemWin\inc\GUI_ConfDefaults.h
+..\obj\guidemo_conf.o: ..\EMWIN\STemWin\Config\GUIConf.h
+..\obj\guidemo_conf.o: ..\EMWIN\STemWin\inc\GUI_Type.h
+..\obj\guidemo_conf.o: ..\EMWIN\STemWin\inc\LCD.h
+..\obj\guidemo_conf.o: ..\EMWIN\STemWin\inc\Global.h
+..\obj\guidemo_conf.o: ..\EMWIN\STemWin\inc\GUI_Version.h
+..\obj\guidemo_conf.o: ..\EMWIN\Demo\GUIDEMO.h

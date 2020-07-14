@@ -1,0 +1,53 @@
+..\obj\iconvdesk.o: ..\EMWIN\Demo\iconvdesk.c
+..\obj\iconvdesk.o: ..\EMWIN\Demo\iconvdesk.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\DIALOG.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\WM.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\GUI_ConfDefaults.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\Config\GUIConf.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\GUI_Type.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\LCD.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\Global.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\WM_GUI.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\GUI.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\GUI_Version.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\BUTTON.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\DIALOG_Intern.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\WIDGET.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\WM_Intern.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\GUI_Private.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\LCD_Protected.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\GUI_Debug.h
+..\obj\iconvdesk.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\SCROLLBAR.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\WIDGET.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\CALENDAR.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\CHECKBOX.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\CHOOSECOLOR.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\CHOOSEFILE.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\DROPDOWN.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\LISTBOX.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\EDIT.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\FRAMEWIN.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\GRAPH.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\HEADER.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\ICONVIEW.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\IMAGE.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\LISTVIEW.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\LISTWHEEL.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\MENU.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\MULTIEDIT.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\MULTIPAGE.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\DIALOG.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\PROGBAR.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\RADIO.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\SLIDER.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\SPINBOX.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\TEXT.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\TREEVIEW.h
+..\obj\iconvdesk.o: ..\EMWIN\STemWin\inc\KNOB.h
+..\obj\iconvdesk.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\iconvdesk.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\iconvdesk.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\iconvdesk.o: ..\EMWIN\Demo\ButtonController.h
+..\obj\iconvdesk.o: ..\EMWIN\Demo\setdialog.h
+..\obj\iconvdesk.o: ..\EMWIN\Demo\adcgui.h
