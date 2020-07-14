@@ -12,7 +12,7 @@
 #define ID_BUTTON_0   (GUI_ID_USER + 21)
 #define ID_BUTTON_1   (GUI_ID_USER + 22)
 
-
+#define ID_BUTTON_3   (GUI_ID_USER + 23)
 
 
 

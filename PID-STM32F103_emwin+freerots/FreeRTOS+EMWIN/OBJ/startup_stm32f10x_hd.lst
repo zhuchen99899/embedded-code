@@ -564,12 +564,12 @@ ARM Macro Assembler    Page 9
               00000200 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=..\obj\startup_stm32f10x_hd.d -o..\obj\startup_stm32f10x_hd.o -I"D
-:\CODE\embedded\stm32f103zet6\freertos+emwin\tasks7_13\FreeRTSO实验19-1 FreeRTO
-S+EMWIN移植实验\USER\RTE" -I"D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_D
-FP\1.0.5\Device\Include" -I"D:\tools\code tools\keil\ARM\CMSIS\Include" --prede
-fine="__UVISION_VERSION SETA 514" --predefine="STM32F10X_HD SETA 1" --list=..\o
-bj\startup_stm32f10x_hd.lst ..\CORE\startup_stm32f10x_hd.s
+ork --depend=..\obj\startup_stm32f10x_hd.d -o..\obj\startup_stm32f10x_hd.o -ID:
+\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRT
+OS+EMWIN\USER\RTE -I"D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5
+\Device\Include" -I"D:\tools\code tools\keil\ARM\CMSIS\Include" --predefine="__
+UVISION_VERSION SETA 514" --predefine="STM32F10X_HD SETA 1" --list=..\obj\start
+up_stm32f10x_hd.lst ..\CORE\startup_stm32f10x_hd.s
 
 
 
