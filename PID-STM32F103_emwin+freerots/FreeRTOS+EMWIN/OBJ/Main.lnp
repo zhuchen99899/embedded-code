@@ -19,6 +19,7 @@
 "..\obj\touch.o"
 "..\obj\timer.o"
 "..\obj\adc.o"
+"..\obj\stmflash.o"
 "..\obj\delay.o"
 "..\obj\sys.o"
 "..\obj\usart.o"
@@ -34,6 +35,7 @@
 "..\obj\stm32f10x_exti.o"
 "..\obj\stm32f10x_spi.o"
 "..\obj\stm32f10x_adc.o"
+"..\obj\stm32f10x_flash.o"
 "..\obj\malloc.o"
 "..\obj\croutine.o"
 "..\obj\event_groups.o"
@@ -54,6 +56,9 @@
 "..\obj\iconvdesk.o"
 "..\obj\buttoncontroller.o"
 "..\obj\adcgui.o"
+"..\obj\setbmp.o"
+"..\obj\returnbmp.o"
+"..\obj\bkjpeg.o"
 --strict --scatter "..\OBJ\Main.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

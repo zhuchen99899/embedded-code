@@ -31,8 +31,6 @@ QueueHandle_t Adc_Queue;
 					任务函数声明
 ************************************************************/
 
-
-
 void start_task(void *pvParameters);		//Start任务
 void touch_task(void *pvParameters);		//TOUCH任务
 void UserIf_task(void *pvParameters);		//接口消息任务

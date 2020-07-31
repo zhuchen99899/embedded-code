@@ -122,6 +122,10 @@ static void _adcguicallback(WM_MESSAGE * pMsg) {
 	  /*创建数据对象*/
 		ahData = GRAPH_DATA_YT_Create(GUI_GREEN, 750, 0,0);
 
+		/*从左至右显示*/
+		GRAPH_DATA_YT_SetAlign(ahData, GRAPH_ALIGN_LEFT);
+		GRAPH_DATA_YT_MirrorX (ahData, 1);
+
 		/*数据对象添加到图形控件*/
 		GRAPH_AttachData(hItem, ahData);
 

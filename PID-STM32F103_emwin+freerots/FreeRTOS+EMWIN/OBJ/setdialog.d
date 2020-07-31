@@ -47,3 +47,48 @@
 ..\obj\setdialog.o: ..\EMWIN\STemWin\inc\KNOB.h
 ..\obj\setdialog.o: ..\EMWIN\Demo\adcgui.h
 ..\obj\setdialog.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\string.h
+..\obj\setdialog.o: ..\EMWIN\STemWin_Addons\ST_GUI_Addons.h
+..\obj\setdialog.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\setdialog.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\setdialog.o: ..\HARDWARE\STMFLASH\stmflash.h
+..\obj\setdialog.o: ..\SYSTEM\sys\sys.h
+..\obj\setdialog.o: ..\USER\stm32f10x.h
+..\obj\setdialog.o: ..\CORE\core_cm3.h
+..\obj\setdialog.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\setdialog.o: ..\USER\system_stm32f10x.h
+..\obj\setdialog.o: ..\USER\stm32f10x_conf.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
+..\obj\setdialog.o: ..\USER\stm32f10x.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_bkp.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_can.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_cec.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_crc.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_dac.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_flash.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_fsmc.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_i2c.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_iwdg.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_pwr.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_rtc.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_sdio.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_spi.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
+..\obj\setdialog.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\setdialog.o: ..\FreeRTOS\include\FreeRTOS.h
+..\obj\setdialog.o: ..\FreeRTOS\include\FreeRTOSConfig.h
+..\obj\setdialog.o: ..\SYSTEM\usart\usart.h
+..\obj\setdialog.o: ..\HARDWARE\TIMER\timer.h
+..\obj\setdialog.o: ..\FreeRTOS\include\projdefs.h
+..\obj\setdialog.o: ..\FreeRTOS\include\portable.h
+..\obj\setdialog.o: ..\FreeRTOS\include\deprecated_definitions.h
+..\obj\setdialog.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+..\obj\setdialog.o: ..\FreeRTOS\include\mpu_wrappers.h
+..\obj\setdialog.o: ..\FreeRTOS\include\task.h
+..\obj\setdialog.o: ..\FreeRTOS\include\list.h
