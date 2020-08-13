@@ -12,6 +12,7 @@
 #include "queue.h"
 #include <stdlib.h>
 #include <Numpad.h>
+#include <stdio.h>
 extern GUI_CONST_STORAGE GUI_BITMAP bmReturn;
 extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 
@@ -36,6 +37,11 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 #define ID_TEXT_12        (GUI_ID_USER + 10)
 #define ID_TEXT_13       (GUI_ID_USER + 11)
 #define ID_TEXT_14      (GUI_ID_USER + 12)
+
+/**********测试显示控件****************/
+//测试使用
+#define ID_TEXT_15      (GUI_ID_USER + 28)
+#define ID_TEXT_16      (GUI_ID_USER + 29)
 
 //第二个multipage 控件
 #define ID_Window_2         (GUI_ID_USER + 13)
@@ -123,6 +129,9 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreateWindowPage1[] = {
 	{ TEXT_CreateIndirect, "TEXT", ID_TEXT_0,  50, 70, 150, 150, 0, 0x0, 0},
 	{ TEXT_CreateIndirect, "TEXT", ID_TEXT_1, 5, 70, 150, 150, 0, 0x0, 0 },
 	{ TEXT_CreateIndirect, "TEXT", ID_TEXT_6, 0, 120, 150, 150, 0, 0x0, 0 },
+	{ TEXT_CreateIndirect, "0", ID_TEXT_7, 100, 120, 150, 150, 0, 0x0, 0 },
+//	{ TEXT_CreateIndirect, "0", ID_TEXT_14, 300, 100, 150, 150, 0, 0x0, 0 },
+	//{ TEXT_CreateIndirect, "duty", ID_TEXT_16, 580, 70, 150, 150, 0, 0x0, 0 },
 	{ TEXT_CreateIndirect, "TEXT", ID_TEXT_8, 50, 300, 150, 150, 0, 0x0, 0 },
 	{ TEXT_CreateIndirect, "TEXT", ID_TEXT_9, 300, 300, 150, 150, 0, 0x0, 0 },
 	{ TEXT_CreateIndirect, "TEXT", ID_TEXT_10, 550, 300, 150, 150, 0, 0x0, 0 },
@@ -135,23 +144,19 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreateWindowPage1[] = {
 static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 {
 
-/********消息队列参数*************/
-float SetP;
-float SetI;
-float SetD;
-float SetTem;
-extern QueueHandle_t SetP_Queue;
-extern QueueHandle_t SetI_Queue;
-extern QueueHandle_t SetD_Queue;
-extern QueueHandle_t Settem_Queue;
+
 /*********窗口********************/	
 	WM_HWIN hWin = pMsg->hWin;
-
+	WM_HTIMER hTimer;
 	// USER START (Optionally insert additional variables)
 	// USER END
-	
-	//把edit文字缓冲区清空，防止未输入就按set后出现乱码。
 
+	float adcmsg;
+	char adcstring[20];
+	extern QueueHandle_t Adc_Queue;
+
+
+	
 	switch (pMsg->MsgId) {
 	case WM_INIT_DIALOG:
 		//
@@ -206,17 +211,13 @@ extern QueueHandle_t Settem_Queue;
 	STMFLASH_Read(FLASH_SAVE_ADDR_D,(u16*)datatempD,SIZE);
 	TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_13), (char *)datatempD);
 
-/*****************消息队列发送消息***********************/
 
-//    SetP=(float)atof((char *)datatempP);
-//    SetI=(float)atof((char *)datatempI);
-//    SetD=(float)atof((char *)datatempD);
-//    SetTem=(float)atof((char *)datatempTem);
 
-//		xQueueSend(SetP_Queue,&SetP,portMAX_DELAY);		
-//		xQueueSend(SetI_Queue,&SetI,portMAX_DELAY);		
-//		xQueueSend(SetD_Queue,&SetD,portMAX_DELAY);		
-//		xQueueSend(Settem_Queue,&SetTem,portMAX_DELAY);		
+
+/******************创建窗口定时器***********************/
+	hTimer= WM_CreateTimer(WM_GetClientWindow(hWin),1, 1000, 0);//创建定时器 1s刷新
+(void)hTimer;//防止警告
+
 		break;//init
 
 
@@ -289,16 +290,26 @@ extern QueueHandle_t Settem_Queue;
 		
 		
 		
-		break;
+		break;//wm_paint
 	
+		case WM_TIMER:
+			
+		WM_RestartTimer(pMsg->Data.v,1000); //窗口定时器重装填
 
-	
+		/*************获取ADC任务消息队列*********************/
+		xQueueReceive(Adc_Queue,&adcmsg,portMAX_DELAY);
+		sprintf(adcstring,"%f",adcmsg);
+		TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_7), adcstring);
+		
+
+
 
 		
+		break;//wm_timer
 	case WM_NOTIFY_PARENT:
 
 
-		break;
+		break;//wm_notify_parent
 		
 		// USER START (Optionally insert additional message handling)
 		// USER END
@@ -351,6 +362,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreateWindowPage2[] = {
 
 static void _cbMULTIPAGE2(WM_MESSAGE * pMsg)
 {
+
 float SetP;
 float SetI;
 float SetD;
@@ -377,7 +389,17 @@ extern QueueHandle_t Settem_Queue;
 		//
 		// Initialization of 'Framewin'
 		//
+	STMFLASH_Read(FLASH_SAVE_ADDR_TEM,(u16*)datatempTem,SIZE);
+  EDIT_SetText(WM_GetDialogItem(pMsg->hWin, ID_EDIT_0),(char *)datatempTem);
+		
+	STMFLASH_Read(FLASH_SAVE_ADDR_P,(u16*)datatempP,SIZE);
+	EDIT_SetText(WM_GetDialogItem(pMsg->hWin, ID_EDIT_1),(char *)datatempP);
 
+	STMFLASH_Read(FLASH_SAVE_ADDR_I,(u16*)datatempI,SIZE);
+	EDIT_SetText(WM_GetDialogItem(pMsg->hWin, ID_EDIT_2),(char *)datatempI);
+	
+	STMFLASH_Read(FLASH_SAVE_ADDR_D,(u16*)datatempD,SIZE);
+	EDIT_SetText(WM_GetDialogItem(pMsg->hWin, ID_EDIT_3),(char *)datatempD);
 
 
 		break;
@@ -561,10 +583,10 @@ extern QueueHandle_t Settem_Queue;
 					ShowText1=1;
 					saveText1=1;
 				}
-		/************消息队列发送***************/
-//	  SetTem=(float)atof(DisPlayTem);
-//		xQueueSend(Settem_Queue,&SetTem,portMAX_DELAY);			
-//							
+		/************温度设置消息队列发送***************/
+	  SetTem=(float)atof(DisPlayTem);
+		xQueueSend(Settem_Queue,&SetTem,portMAX_DELAY);			
+							
 
 
 			break;
@@ -595,14 +617,14 @@ extern QueueHandle_t Settem_Queue;
 			
 				ShowText2=1;
 			  saveText2=1;
-				/************消息队列发送***************/
-//	  SetP=(float)atof(DisPlayP);
-//		SetI=(float)atof(DisPlayP);
-//		SetD=(float)atof(DisPlayP);
-//			
-//		xQueueSend(SetP_Queue,&SetP,portMAX_DELAY);			
-//		xQueueSend(SetI_Queue,&SetI,portMAX_DELAY);		
-//		xQueueSend(SetD_Queue,&SetD,portMAX_DELAY);		
+				/************PID设置消息队列发送***************/
+	  SetP=(float)atof(DisPlayP);
+		SetI=(float)atof(aBufferI);
+		SetD=(float)atof(aBufferD);
+			
+		xQueueSend(SetP_Queue,&SetP,portMAX_DELAY);			
+		xQueueSend(SetI_Queue,&SetI,portMAX_DELAY);		
+		xQueueSend(SetD_Queue,&SetD,portMAX_DELAY);		
 		
 			 break;
 		}

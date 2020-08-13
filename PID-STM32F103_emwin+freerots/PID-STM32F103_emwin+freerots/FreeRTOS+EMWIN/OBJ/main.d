@@ -107,3 +107,4 @@
 ..\obj\main.o: ..\EMWIN\STemWin\inc\KNOB.h
 ..\obj\main.o: ..\FreeRTOS\include\queue.h
 ..\obj\main.o: QueueCreate.h
+..\obj\main.o: ..\HARDWARE\STMFLASH\stmflash.h

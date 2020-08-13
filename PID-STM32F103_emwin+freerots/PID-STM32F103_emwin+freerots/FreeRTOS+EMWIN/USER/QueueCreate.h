@@ -12,6 +12,8 @@ void Settem_QueueCreat(void);
 void SetP_QueueCreat(void);
 void SetI_QueueCreat(void);
 void SetD_QueueCreat(void);
+void Queue_Creat(void);
+
 #endif
 
 

@@ -22,10 +22,13 @@
 #include "GUIDEMO.h"
 #include "queue.h"
 #include "QueueCreate.h"
+#include "stmflash.h"
 
 /***********************************************************
 						变量定义
 ************************************************************/
+
+
 //消息队列全局变量
 QueueHandle_t Key_Queue;
 QueueHandle_t Adc_Queue;
@@ -33,6 +36,21 @@ QueueHandle_t Settem_Queue;
 QueueHandle_t SetP_Queue;
 QueueHandle_t SetI_Queue;
 QueueHandle_t SetD_Queue;
+
+//flash读取地址及变量
+
+#define TEXT_MAXLEN 8	//数组长度
+#define SIZE TEXT_MAXLEN		//数组长度
+	static u8 datatempTem[TEXT_MAXLEN];
+	static u8 datatempP[TEXT_MAXLEN];
+	static u8 datatempI[TEXT_MAXLEN];
+	static u8 datatempD[TEXT_MAXLEN];
+//设置FLASH 保存地址(必须为偶数，且其值要大于本代码所占用FLASH的大小+0X08000000)
+#define FLASH_SAVE_ADDR_TEM  0x0807FE60	
+#define FLASH_SAVE_ADDR_P    0x0807FE50	
+#define FLASH_SAVE_ADDR_I  	 0x0807FF60 
+#define FLASH_SAVE_ADDR_D    0x0807FF50
+
 /***********************************************************
 					任务函数声明
 ************************************************************/
@@ -68,13 +86,13 @@ TaskHandle_t PWM_task_Handler;		//PWM任务
 /***********************************************************
 						 任务优先级(数值越小优先级越低)
 ************************************************************/
-#define START_TASK_PRIO			1		//Start任务
-#define TOUCH_TASK_PRIO			0		//TOUCH任务
+#define START_TASK_PRIO			4		//Start任务
+#define TOUCH_TASK_PRIO			1		//TOUCH任务
 #define USERIF_TASK_PRIO 		1	    //接口消息任务
-#define EMWINDEMO_TASK_PRIO		0		//emwin任务
-#define LED_TASK_PRIO		2		//LED任务
-#define ADC_TASK_PRIO		0		//ADC任务
-#define PWM_TASK_PRIO		0		//PWM任务
+#define EMWINDEMO_TASK_PRIO		2		//emwin任务
+#define LED_TASK_PRIO		1		//LED任务
+#define ADC_TASK_PRIO		3		//ADC任务
+#define PWM_TASK_PRIO		3		//PWM任务
 
 /***********************************************************
 						 主函数入口
@@ -102,9 +120,12 @@ int main(void)
 	FSMC_SRAM_Init();					//初始化SRAM
 	TP_Init();							//触摸屏初始化
 	TIM3_PWM_Init(1439,0);//1439+1=1440,不分频，频率为72000000/1440=50khz
-	TIM4_Int_Init(1799,0);
+	TIM4_Int_Init(1799,0);//PWM初始化
 	my_mem_init(SRAMIN);            	//初始化内部内存池
 	my_mem_init(SRAMEX);				//初始化外部内存池
+	
+	
+
 	
 	//创建开始任务
     xTaskCreate((TaskFunction_t )start_task,            //任务函数
@@ -129,25 +150,34 @@ int main(void)
 //开始任务任务函数
 void start_task(void *pvParameters)
 {
+	float Kp,Ki,Kd,settem;
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC,ENABLE);//开启CRC时钟
 
 	GUI_Init();  					//STemWin初始化
-	WM_SetCreateFlags(WM_CF_MEMDEV);
+	WM_SetCreateFlags(WM_CF_MEMDEV);//ewmin设置使存储设备创建控件与窗口
+	
+	
     taskENTER_CRITICAL();           //进入临界区
 	
-	//创建按键消息队列
-	Key_QueueCreat();
-	//创建ADC消息队列
-	ADC_QueueCreat();
-	//创建温度设置消息队列
-	Settem_QueueCreat();
-	//创建P设置消息队列
-	SetP_QueueCreat();
-	//创建I设置消息队列
-	SetI_QueueCreat();
-	//创建D设置消息队列
-	SetD_QueueCreat();
+	/***********开机时读取flash中PID参数以及设置温度**************/
+	STMFLASH_Read(FLASH_SAVE_ADDR_TEM,(u16*)datatempTem,SIZE);
+	STMFLASH_Read(FLASH_SAVE_ADDR_P,(u16*)datatempP,SIZE);
+	STMFLASH_Read(FLASH_SAVE_ADDR_I,(u16*)datatempI,SIZE);
+	STMFLASH_Read(FLASH_SAVE_ADDR_D,(u16*)datatempD,SIZE);
+	Kp=(float)atof((char *)datatempP);
+  Ki=(float)atof((char *)datatempI);
+  Kd=(float)atof((char *)datatempD);
+  settem=(float)atof((char *)datatempTem);
+
+
+	//创建消息队列
+	Queue_Creat();
 	
+	//消息队列发送flash内存中的PID参数
+		xQueueSend(SetP_Queue,&Kp,portMAX_DELAY);			
+		xQueueSend(SetI_Queue,&Ki,portMAX_DELAY);		
+		xQueueSend(SetD_Queue,&Kd,portMAX_DELAY);	
+		xQueueSend(Settem_Queue,&settem,portMAX_DELAY);
 	/**********************************任务创建******************************/
 	
 	//创建触摸任务

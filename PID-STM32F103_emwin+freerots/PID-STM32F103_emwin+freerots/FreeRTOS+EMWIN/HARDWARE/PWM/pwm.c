@@ -108,81 +108,83 @@ struct pid {
 float ADC1_tem;
 //全局变量定义
 
-
-
+	
 void PWM_task(void *pvParameters)
 {
+
 	u16 led0pwmval;
-	
 	/***消息队列参数定义***/
 	//温度设置消息队列参数
-	int Settem;
-  BaseType_t err_settem;
+	float Settem;
 	extern QueueHandle_t Settem_Queue;
+	BaseType_t err_settem;
 	//P设置消息队列参数
-	int SetP;
-  //BaseType_t err_setp;
+	float SetP;
 	extern QueueHandle_t SetP_Queue;
-	
+	BaseType_t err_setp;
 	//I设置消息队列参数
-	int SetI;
-  //BaseType_t err_seti;
+	float SetI;
 	extern QueueHandle_t SetI_Queue;
-	
+BaseType_t err_seti;
 	//D设置消息队列参数
-	int SetD;
-  //BaseType_t err_setd;
+	float SetD;
 	extern QueueHandle_t SetD_Queue;
-	
-	int adc1;
-	//BaseType_t err_adc;
+	BaseType_t err_setd;
+	//ADC消息队列参数
 	extern QueueHandle_t Adc_Queue;
+
+	float adc1;
+	
+	
 	while(1)
 	{
+		
+		
+		
+		
 		/************************************************
 		消息队列传参Settem
-		来源:EMWIN任务set界面，emwin初始化后flash读取，WIFI任务
+		来源:EMWIN任务set界面，WIFI任务
 		************************************************/
 
-//		err_settem=xQueueReceive(Settem_Queue,&Settem,100);
-//		      if(err_settem!=NULL)   	//设置温度消息队列接受成功
-//			{
+				xQueueReceive(Settem_Queue,&Settem,10);
 
-//						/************************************************
-//						消息队列传参Setp\SetI\SetD
-//						来源:EMWIN任务set界面，emwin初始化后flash读取，WIFI任务
-//						************************************************/
-//				
-//									xQueueReceive(SetP_Queue,&SetP,100);
-//									xQueueReceive(SetI_Queue,&SetI,100);
-//									xQueueReceive(SetD_Queue,&SetD,100);
+		
 
-//						/************************************************
-//						消息队列传参adc
-//						来源:ADC任务
-//						************************************************/
+						/************************************************
+						消息队列传参Setp\SetI\SetD
+						来源:EMWIN任务set界面，emwin初始化后flash读取，WIFI任务
+						************************************************/
+				
+									xQueueReceive(SetP_Queue,&SetP,10);
+									xQueueReceive(SetI_Queue,&SetI,10);
+									xQueueReceive(SetD_Queue,&SetD,10);
 
-//						xQueueReceive(Adc_Queue,&adc1,100);
-//				
-//				
-//				/*************全局赋值******************/
-//				pid.Kp=SetP;
-//				pid.Ki=SetI;
-//				pid.Kd=SetD;
-//				ADC1_tem=adc1;
-//				
-//				/*****************PWM改变*****************/
-//				led0pwmval=pid_realize(Settem);
-//				
-//			}
-//		
+						/************************************************
+						消息队列传参adc
+						来源:ADC任务
+						************************************************/
 
-//		TIM_SetCompare2(TIM3,led0pwmval);//PWM输出
-//		
-//			
-//			
-			
-     vTaskDelay(10);                           //延时10ms，也就是10个时钟节拍	
+							xQueueReceive(Adc_Queue,&adc1,portMAX_DELAY);
+				
+				
+				/*************PID结构体全局赋值******************/
+				pid.Kp=SetP;
+				pid.Ki=SetI;
+				pid.Kd=SetD;
+				ADC1_tem=adc1;
+				
+
+				
+
+		
+		/*****************PWM改变*****************/
+		led0pwmval=pid_realize(Settem);
+			printf("PWM寄存器=%d \r\n,ADC1_tem=%f \r\n,kp=%f\r\n,ki=%f \r\n,kd=%f\r\n",led0pwmval,adc1,SetP,SetI,SetD);
+
+		TIM_SetCompare2(TIM3,led0pwmval);//PWM输出
+
+     vTaskDelay(500);                          
 
 }
 

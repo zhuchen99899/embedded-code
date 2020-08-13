@@ -167,9 +167,9 @@ void ADC_task(void *pvParameters)
 {
 	 BaseType_t err;
 	extern QueueHandle_t Adc_Queue;
-		float adcmsg=0;
-	//消息队列参数
 
+	//消息队列参数
+		float adcmsg=0;
 	u16 adcx=0;		
 	float adctemp; //转换成STM32 12bitADC
 	float res;
@@ -180,6 +180,7 @@ void ADC_task(void *pvParameters)
 			res=((adctemp/10.0)/0.909)*1000.0;//转换电阻
 			adcmsg=(float)get_tem(res);  //查表转换为温度
 			err=xQueueSend(Adc_Queue,&adcmsg,portMAX_DELAY);		
+		/*
 			if(Adc_Queue!=NULL)   	//消息adc_Queue发送成功
 				{
 				 printf("ADC消息发送成功\r\n");
@@ -191,9 +192,9 @@ void ADC_task(void *pvParameters)
 				{
 					printf("ADC消息发送失败 :%ld" ,err);
 				}
+				*/
 				
-				
-				  vTaskDelay(10);                           //延时10ms，也就是10个时钟节拍	
+				  vTaskDelay(500);                           //延时10ms，也就是10个时钟节拍	
 	}
 
       

@@ -14,12 +14,22 @@
 #define SETPMESSAGE_Q_NUM   4   	//发送数据的消息队列的数量 
 #define SETIMESSAGE_Q_NUM   4   	//发送数据的消息队列的数量 
 #define SETDMESSAGE_Q_NUM   4   	//发送数据的消息队列的数量 
+
+/************测试用消息队列*********************/
+#define pwm_register_MESSAGE_Q_NUM 4 //PWM寄存器消息队列
+#define duty_cycle_MESSAGE_Q_NUM 4 //
+
+
 //static QueueHandle_t Key_Queue;   		//按键值消息队列句柄
 //static QueueHandle_t Adc_Queue;	//ADC消息队列句柄
 //static QueueHandle_t Settem_Queue;	//温度设置息队列句柄
 //static QueueHandle_t SetP_Queue;   		//p设置消息队列句柄
 //static QueueHandle_t SetI_Queue;	//I设置消息队列句柄
 //static QueueHandle_t SetD_Queue;	//D设置消息队列句柄
+
+
+
+
 //按键消息队列
 void Key_QueueCreat(void)
 {
@@ -56,7 +66,7 @@ void ADC_QueueCreat(void)
 void Settem_QueueCreat(void)
 {
 	extern QueueHandle_t Settem_Queue;
-	Settem_Queue = xQueueCreate(ADCMESSAGE_Q_NUM,sizeof(int));
+	Settem_Queue = xQueueCreate(SETTEMMESSAGE_Q_NUM,sizeof(int));
 	if (Settem_Queue==0)
 	{
 	/*消息创建失败处理机制*/
@@ -71,7 +81,7 @@ void Settem_QueueCreat(void)
 void SetP_QueueCreat(void)
 {
 	extern QueueHandle_t SetP_Queue;
-	SetP_Queue = xQueueCreate(ADCMESSAGE_Q_NUM,sizeof(int));
+	SetP_Queue = xQueueCreate(SETPMESSAGE_Q_NUM,sizeof(int));
 	if (SetP_Queue==0)
 	{
 	/*消息创建失败处理机制*/
@@ -86,7 +96,7 @@ void SetP_QueueCreat(void)
 void SetI_QueueCreat(void)
 {
 	extern QueueHandle_t SetI_Queue;
-	SetI_Queue = xQueueCreate(ADCMESSAGE_Q_NUM,sizeof(int));
+	SetI_Queue = xQueueCreate(SETIMESSAGE_Q_NUM,sizeof(int));
 	if (SetI_Queue==0)
 	{
 	/*消息创建失败处理机制*/
@@ -101,7 +111,7 @@ void SetI_QueueCreat(void)
 void SetD_QueueCreat(void)
 {
 	extern QueueHandle_t SetD_Queue;
-	SetD_Queue = xQueueCreate(ADCMESSAGE_Q_NUM,sizeof(int));
+	SetD_Queue = xQueueCreate(SETDMESSAGE_Q_NUM,sizeof(int));
 	if (SetD_Queue==0)
 	{
 	/*消息创建失败处理机制*/
@@ -112,5 +122,20 @@ void SetD_QueueCreat(void)
 	printf("d设置消息队列创建成功");
 	}
 }
+
+
+void Queue_Creat(void)
+{
+	/******消息队列创建**********/
+Key_QueueCreat();
+ADC_QueueCreat();
+Settem_QueueCreat();
+SetP_QueueCreat();
+SetI_QueueCreat();
+SetD_QueueCreat();
+
+
+}
+
 
 

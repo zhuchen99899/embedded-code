@@ -111,7 +111,7 @@ static void _adcguicallback(WM_MESSAGE * pMsg) {
 		BUTTON_SetText(hItem, "Stop");
 
 		
-		hTimer= WM_CreateTimer(WM_GetClientWindow(hWin),1, 300, 0);//创建定时器
+		hTimer= WM_CreateTimer(WM_GetClientWindow(hWin),1, 500,0);//创建定时器
 	
 		(void)hTimer;//防止警告
 		//
@@ -169,21 +169,20 @@ static void _adcguicallback(WM_MESSAGE * pMsg) {
 		
 		case WM_TIMER:
 			
-		WM_RestartTimer(pMsg->Data.v,300); //窗口定时器重装填
+		WM_RestartTimer(pMsg->Data.v,500); //窗口定时器重装填
 		
 		if (stop_flag!=true)
 			{
 			
 			err=xQueueReceive(Adc_Queue,&adcmsg,portMAX_DELAY);
-		
-				if(err!=NULL)   	//消息禔dc_Queue创建成功
-				{
-				printf("消息接收成功\r\n");
-				GRAPH_DATA_YT_AddValue(ahData, adcmsg);
-				printf("the graph data is%f\r\n",adcmsg);
-				}
+		if (err!=false)
+		{
+				//printf("消息接收成功\r\n");
+				GRAPH_DATA_YT_AddValue(ahData,adcmsg);
+				//printf("the graph data is%f\r\n",adcmsg);
+
 			
-			
+		}
 			//GRAPH_DATA_YT_AddValue(ahData, rand() % 100); //测试
 				
 			}

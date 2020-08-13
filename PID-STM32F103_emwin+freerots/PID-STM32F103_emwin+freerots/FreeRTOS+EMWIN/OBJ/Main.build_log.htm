@@ -47,23 +47,20 @@ compiling ott2001a.c...
 compiling touch.c...
 compiling timer.c...
 compiling adc.c...
+..\HARDWARE\ADC\adc.c(168): warning:  #550-D: variable "err" was set but never used
+         BaseType_t err;
+..\HARDWARE\ADC\adc.c: 1 warning, 0 errors
 compiling stmflash.c...
 compiling pwm.c...
-..\HARDWARE\PWM\pwm.c(115): warning:  #177-D: variable "led0pwmval" was declared but never referenced
-        u16 led0pwmval;
-..\HARDWARE\PWM\pwm.c(119): warning:  #177-D: variable "Settem" was declared but never referenced
-        int Settem;
 ..\HARDWARE\PWM\pwm.c(120): warning:  #177-D: variable "err_settem" was declared but never referenced
-    BaseType_t err_settem;
-..\HARDWARE\PWM\pwm.c(123): warning:  #177-D: variable "SetP" was declared but never referenced
-        int SetP;
-..\HARDWARE\PWM\pwm.c(128): warning:  #177-D: variable "SetI" was declared but never referenced
-        int SetI;
-..\HARDWARE\PWM\pwm.c(133): warning:  #177-D: variable "SetD" was declared but never referenced
-        int SetD;
-..\HARDWARE\PWM\pwm.c(137): warning:  #177-D: variable "adc1" was declared but never referenced
-        int adc1;
-..\HARDWARE\PWM\pwm.c: 7 warnings, 0 errors
+        BaseType_t err_settem;
+..\HARDWARE\PWM\pwm.c(124): warning:  #177-D: variable "err_setp" was declared but never referenced
+        BaseType_t err_setp;
+..\HARDWARE\PWM\pwm.c(128): warning:  #177-D: variable "err_seti" was declared but never referenced
+  BaseType_t err_seti;
+..\HARDWARE\PWM\pwm.c(132): warning:  #177-D: variable "err_setd" was declared but never referenced
+        BaseType_t err_setd;
+..\HARDWARE\PWM\pwm.c: 4 warnings, 0 errors
 compiling delay.c...
 compiling sys.c...
 compiling usart.c...
@@ -96,23 +93,6 @@ compiling GUI_X_Touch_Analog.c...
 compiling LCDConf_FlexColor_Template.c...
 compiling GUIDEMO.c...
 compiling setdialog.c...
-..\EMWIN\Demo\setdialog.c(139): warning:  #177-D: variable "SetP" was declared but never referenced
-  float SetP;
-..\EMWIN\Demo\setdialog.c(140): warning:  #177-D: variable "SetI" was declared but never referenced
-  float SetI;
-..\EMWIN\Demo\setdialog.c(141): warning:  #177-D: variable "SetD" was declared but never referenced
-  float SetD;
-..\EMWIN\Demo\setdialog.c(142): warning:  #177-D: variable "SetTem" was declared but never referenced
-  float SetTem;
-..\EMWIN\Demo\setdialog.c(354): warning:  #177-D: variable "SetP" was declared but never referenced
-  float SetP;
-..\EMWIN\Demo\setdialog.c(355): warning:  #177-D: variable "SetI" was declared but never referenced
-  float SetI;
-..\EMWIN\Demo\setdialog.c(356): warning:  #177-D: variable "SetD" was declared but never referenced
-  float SetD;
-..\EMWIN\Demo\setdialog.c(357): warning:  #177-D: variable "SetTem" was declared but never referenced
-  float SetTem;
-..\EMWIN\Demo\setdialog.c: 8 warnings, 0 errors
 compiling iconvdesk.c...
 compiling ButtonController.c...
 compiling adcgui.c...
@@ -121,9 +101,9 @@ compiling returnbmp.c...
 compiling bkjpeg.c...
 compiling Numpad.c...
 linking...
-Program Size: Code=150048 RO-data=358676 RW-data=2032 ZI-data=1092192  
+Program Size: Code=154472 RO-data=358712 RW-data=2068 ZI-data=1092220  
 FromELF: creating hex file...
-"..\OBJ\Main.axf" - 0 Error(s), 15 Warning(s).
+"..\OBJ\Main.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE
