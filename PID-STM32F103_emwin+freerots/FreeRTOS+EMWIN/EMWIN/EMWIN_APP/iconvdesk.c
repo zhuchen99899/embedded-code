@@ -461,8 +461,8 @@ void MainTask(void)
 	//CreateStatusDlg();
 	while (1)
 	{
+GUI_Delay(10);
 
-		GUI_Delay(10);
 	}
 
 

@@ -1,7 +1,7 @@
 #include "freertos.h"
 #include "queue.h"
 #include "QueueCreate.h"
-
+#include "semphr.h"
 
 /***********************************************************
 						 创建消息队列
@@ -13,26 +13,28 @@
 #define SETMESSAGE_Q_NUM   1   	//发送数据的消息队列的数量 
 #define SETTEMMESSAGE_Q_NUM   1   	//发送数据的消息队列的数量 
 #define WIFIMESSAGE_buffer_Q_NUM   1   	//发送数据的消息队列的数量 
-#define WIFIMESSAGE_lenth_Q_NUM   1   	//发送数据的消息队列的数量 
+
+
+typedef struct SETMSG
+	{
+		float Kp;
+		float Ki;
+		float Kd;
+		
+	}SETMSG;
 
 
 
-//static QueueHandle_t Key_Queue;   		//按键值消息队列句柄
-//static QueueHandle_t Adc_Queue;	//ADC消息队列句柄
-//static QueueHandle_t Settem_Queue;	//温度设置息队列句柄
-//static QueueHandle_t SetP_Queue;   		//p设置消息队列句柄
-//static QueueHandle_t SetI_Queue;	//I设置消息队列句柄
-//static QueueHandle_t SetD_Queue;	//D设置消息队列句柄
+typedef struct WIFIMSG
+{
 
-	//结构体保存变量 用于消息队列
-//extern	struct SETMSG
-//	{
-//		float Kp,Ki,Kd;
-//		
-//	}SETMSG;
+char  address[256];
+u32 length;
 
+} WIFIMSG;
+	
 
-
+extern SemaphoreHandle_t BinarySemaphore;	//二值信号量句柄
 
 //按键消息队列
 void Key_QueueCreat(void)
@@ -101,34 +103,20 @@ void Settem_QueueCreat(void)
 void WIFI_buffer_QueueCreat(void)
 {
 	extern QueueHandle_t Wifi_buffer_Queue;
-	Wifi_buffer_Queue =xQueueCreate(WIFIMESSAGE_buffer_Q_NUM,sizeof(uint8_t));
+	Wifi_buffer_Queue =xQueueCreate(WIFIMESSAGE_buffer_Q_NUM,sizeof(struct WIFIMSG *));
 	
-//	if (Key_Queue==0)
-//	{
-//	/*消息创建失败处理机制*/
-//	printf("WIFI消息队列创建失败");
-//	}
-//	else 
-//	{
-//	printf("WIFI消息队列创建成功");
-//	}
+	if (Wifi_buffer_Queue==0)
+	{
+	/*消息创建失败处理机制*/
+	printf("MQTT接收消息队列创建失败");
+	}
+	else 
+	{
+	printf("MQTT接收消息队列创建成功");
+	}
 }
 
-void WIFI_lenth_QueueCreat(void)
-{
-	extern QueueHandle_t Wifi_lenth_Queue;
-	Wifi_lenth_Queue =xQueueCreate(WIFIMESSAGE_lenth_Q_NUM,sizeof(uint8_t));
-	
-//	if (Key_Queue==0)
-//	{
-//	/*消息创建失败处理机制*/
-//	printf("WIFI消息队列创建失败");
-//	}
-//	else 
-//	{
-//	printf("WIFI消息队列创建成功");
-//	}
-}
+
 
 void Queue_Creat(void)
 {
@@ -138,7 +126,9 @@ ADC_QueueCreat();
 Set_QueueCreat();
 Settem_QueueCreat();
 WIFI_buffer_QueueCreat();
-WIFI_lenth_QueueCreat();
+
+
+
 }
 
 

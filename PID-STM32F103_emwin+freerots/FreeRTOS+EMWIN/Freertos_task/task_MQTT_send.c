@@ -6,15 +6,96 @@
 #include "stdio.h"
 #include "string.h"
 #include "wifi.h"
+/*
 
+void hexdump(unsigned char *buf, unsigned int buf_len) {
+
+	int i, j, mod = buf_len % 16;
+
+	int n = 16 - mod;
+
+	for (i = 0; i < buf_len; i++)
+
+	{
+
+		if (i % 16 == 0 && i != 0)
+
+		{
+
+			printf("\n");
+
+		}
+
+		printf("%02X ", buf[i]);
+
+		if ((i + 1) % 16 == 0)
+
+		{
+
+			printf("\t");
+
+			for (j = i - 15; j <= i; j++)
+
+			{
+
+				if (j == i - 8)
+
+					printf(" ");
+
+				if (buf[j] >= 32 && buf[j] < 127)
+
+					printf("%c", buf[j]);
+
+				else
+
+					printf(".");
+
+			}
+
+		}
+
+	}
+
+	for (i = 0; i < n; i++)
+
+		printf("   ");
+
+	printf("\t");
+
+	for (i = buf_len - mod; i < buf_len; i++)
+
+	{
+
+		if (i == buf_len - mod + 8)
+
+			printf(" ");
+
+		if (buf[i] >= 32 && buf[i] < 127)
+
+			printf("%c", buf[i]);
+
+		else
+
+			printf(".");
+
+	}
+
+	printf("\n");
+
+}
+
+*/
 
 extern QueueHandle_t Adc_Queue;
 /********************WIFI发送任务*****************/
-
-void WIFI_task(void *pvParameters)
+ u8 temp_buff[100];
+ int i;
+ u8 *j;
+void MQTT_send_task(void *pvParameters)
 {
 float adcmsg;
 char adcmsgstring[10] ;
+
 	/****消息队列参数**************/
 //	extern QueueHandle_t Wifi_buffer_Queue;
 //	extern QueueHandle_t Wifi_lenth_Queue;
@@ -22,20 +103,67 @@ char adcmsgstring[10] ;
 //	u8 showbuffer[256];
 	
 
+temp_buff[0]=0x10;
+temp_buff[1]=0x4A;		
+temp_buff[2]=0x00;
+temp_buff[3]=0x06;
+temp_buff[4]=0x4D;
+temp_buff[5]=0x51;
+temp_buff[6]=0x49;
+temp_buff[7]=	0x73;
+temp_buff[8]=0x64;
+temp_buff[9]=0x70;
+temp_buff[10]=0x03;
+temp_buff[11]=0xC6;
+temp_buff[12]=0x00;
+temp_buff[13]=0x28;
+temp_buff[14]=0x00;
+temp_buff[15]=0x0E;
+memcpy(&temp_buff[16],"dMQTTClient657",14);
+temp_buff[30]=0x00;
+temp_buff[31]=0x03;
+memcpy(&temp_buff[32],"lwt",3);
+temp_buff[35]=0x00;
+temp_buff[36]=0x13;
+memcpy(&temp_buff[37],"dMQTTClient657 died",19);
+temp_buff[56]=0x00;
+temp_buff[57]=0x05;
+memcpy(&temp_buff[58],"admin",5);
+temp_buff[63]=0x00;
+temp_buff[64]=0x0B;
+memcpy(&temp_buff[65],"oksn_123456",11);
+
+vTaskDelay(20000);
 	while(1)
 {	
-	xQueuePeek(Adc_Queue,&adcmsg,portMAX_DELAY);
-	printf("WIFI任务正在运行\r\n ");
-	sprintf((char*)adcmsgstring,"%f",adcmsg);
-	WIFI_send((u8*)adcmsgstring,sizeof(adcmsgstring));
-		
-	/*
-	
+	//xQueuePeek(Adc_Queue,&adcmsg,portMAX_DELAY);
 
-	printf("接收:%s",showbuffer[256]);
-	*/
+// sprintf((char*)adcmsgstring,"%f",adcmsg);
+		//printf("WIFI任务正在运行\r\n");
+
+	//WIFI_send((u8*)adcmsgstring,sizeof(adcmsgstring));
+
+
+	WIFI_send(temp_buff,76);
+
+
+	/*
+for (i=0;i<76;i++)
+	{
+	printf("%02x",temp_buff[i]);
 	
-      vTaskDelay(5000);                           //延时3000ms
+	}
+*/
+//hexdump(temp_buff,44);
+	/*
+	for(i=0,i<44,i++)
+	{
+printf(temp_buff[]);
+{;	
+*/	
+
+	
+      vTaskDelay(15000);                           //延时3000ms
 
 }
 

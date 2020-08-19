@@ -5,14 +5,14 @@
 ************************************************************/
 
 
-//消息队列全局变量
+//消息队列句柄
 QueueHandle_t Key_Queue;
 QueueHandle_t Adc_Queue;
 QueueHandle_t Set_Queue;
 QueueHandle_t Settem_Queue;
 QueueHandle_t Wifi_buffer_Queue;
-QueueHandle_t Wifi_lenth_Queue;
-
+//二值信号量句柄
+SemaphoreHandle_t BinarySemaphore;	//二值信号量句柄
 
 //开机内部flash读取相关
 #define TEXT_MAXLEN 8	//数组长度
@@ -50,7 +50,8 @@ void emwindemo_task(void *pvParameters); 	//emwin任务
 void LED_task(void *pvParameters);       // LED任务
 void ADC_task(void *pvParameters);       // ADC任务
 void PWM_task(void *pvParameters);       // PWM任务
-void WIFI_task(void *pvParameters);       // WIFI任务
+void MQTT_send_task(void *pvParameters);       // MQTT发送任务
+void MQTT_rec_task(void *pvParameters);				// MQTT接收任务
 /***********************************************************
 						任务函数句柄
 ************************************************************/
@@ -62,7 +63,8 @@ TaskHandle_t EmwindemoTask_Handler;		//emwin任务
 TaskHandle_t LedTask_Handler;		//LED任务
 TaskHandle_t Adc_task_Handler;		//ADC任务
 TaskHandle_t PWM_task_Handler;		//PWM任务
-TaskHandle_t WIFI_task_Handler;		//WIFI任务
+TaskHandle_t MQTT_Send_task_Handler;		  // MQTT发送任务
+TaskHandle_t MQTT_Rec_task_Handler;		  // MQTT接收任务
 /***********************************************************
 						任务堆栈大小
 ************************************************************/
@@ -73,18 +75,20 @@ TaskHandle_t WIFI_task_Handler;		//WIFI任务
 #define LED_STK_SIZE		128	//LED任务
 #define ADC_STK_SIZE		512	//ADC任务
 #define PWM_STK_SIZE		128	//PWM任务
-#define WIFI_STK_SIZE		512	//WIFI任务
+#define MQTT_Send_STK_SIZE		512	// MQTT发送任务
+#define MQTT_Rec_STK_SIZE		512	// MQTT接收任务
 /***********************************************************
 						 任务优先级(数值越小优先级越低)
 ************************************************************/
 #define START_TASK_PRIO			4		//Start任务
-#define TOUCH_TASK_PRIO			2	//TOUCH任务
-#define USERIF_TASK_PRIO 		1	    //接口消息任务
-#define EMWINDEMO_TASK_PRIO		2		//emwin任务
+#define TOUCH_TASK_PRIO			0	//TOUCH任务
+#define USERIF_TASK_PRIO 		0	    //接口消息任务
+#define EMWINDEMO_TASK_PRIO		0		//emwin任务
 #define LED_TASK_PRIO		1		//LED任务
 #define ADC_TASK_PRIO		3		//ADC任务
 #define PWM_TASK_PRIO		3		//PWM任务
-#define WIFI_TASK_PRIO		3		//WIFI任务
+#define MQTT_Send_TASK_PRIO		3		// MQTT发送任务
+#define MQTT_Rec_TASK_PRIO		3		// MQTT接收任务
 /***********************************************************
 						 主函数入口
 ************************************************************/
@@ -169,6 +173,8 @@ float settem;
 
 	//创建消息队列
 	Queue_Creat();
+		//二值信号创建
+	BinarySemaphore=xSemaphoreCreateBinary();	
 	
 	//消息队列发送flash内存中的设置参数
 		xQueueOverwrite(Set_Queue,(void *)&Flashdata);			
@@ -224,13 +230,21 @@ float settem;
                 (UBaseType_t    )PWM_TASK_PRIO,//
                 (TaskHandle_t*  )&PWM_task_Handler);
 		
-		//创建WIFI任务			
-		   xTaskCreate((TaskFunction_t )WIFI_task,             
-                (const char*    )"WIFI_task",           
-                (uint16_t       )WIFI_STK_SIZE,        
+		//创建MQTT发送任务			
+		   xTaskCreate((TaskFunction_t )MQTT_send_task,             
+                (const char*    )"MQTT_Send_Task",           
+                (uint16_t       )MQTT_Send_STK_SIZE,        
                 (void*          )NULL,                  
-                (UBaseType_t    )WIFI_TASK_PRIO,//
-                (TaskHandle_t*  )&WIFI_task_Handler);
+                (UBaseType_t    )MQTT_Send_TASK_PRIO,//
+                (TaskHandle_t*  )&MQTT_Send_task_Handler);
+				
+			//创建MQTT接收任务			
+		   xTaskCreate((TaskFunction_t )MQTT_rec_task,             
+                (const char*    )"MQTT_Rec_Task",           
+                (uint16_t       )MQTT_Rec_STK_SIZE,        
+                (void*          )NULL,                  
+                (UBaseType_t    )MQTT_Rec_TASK_PRIO,//
+                (TaskHandle_t*  )&MQTT_Rec_task_Handler);
 				
     vTaskDelete(StartTask_Handler); //删除开始任务
     taskEXIT_CRITICAL();            //退出临界区

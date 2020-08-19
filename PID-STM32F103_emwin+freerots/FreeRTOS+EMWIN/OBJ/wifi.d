@@ -45,3 +45,4 @@
 ..\obj\wifi.o: ..\FreeRTOS\include\task.h
 ..\obj\wifi.o: ..\FreeRTOS\include\list.h
 ..\obj\wifi.o: ..\FreeRTOS\include\queue.h
+..\obj\wifi.o: ..\FreeRTOS\include\semphr.h

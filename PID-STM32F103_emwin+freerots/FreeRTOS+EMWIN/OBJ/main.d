@@ -67,6 +67,7 @@
 ..\obj\main.o: ..\FreeRTOS\include\list.h
 ..\obj\main.o: ..\FreeRTOS\include\queue.h
 ..\obj\main.o: QueueCreate.h
+..\obj\main.o: ..\FreeRTOS\include\semphr.h
 ..\obj\main.o: ..\EMWIN\STemWin\inc\GUI.h
 ..\obj\main.o: ..\EMWIN\STemWin\inc\GUI_ConfDefaults.h
 ..\obj\main.o: ..\EMWIN\STemWin\Config\GUIConf.h
@@ -116,4 +117,5 @@
 ..\obj\main.o: ..\EMWIN\STemWin\inc\TREEVIEW.h
 ..\obj\main.o: ..\EMWIN\STemWin\inc\KNOB.h
 ..\obj\main.o: ..\Freertos_task\task_MQTT_send.h
+..\obj\main.o: ..\Freertos_task\task_MQTT_rec.h
 ..\obj\main.o: ..\Freertos_task\task_userif.h

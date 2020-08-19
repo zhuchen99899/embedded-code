@@ -7,7 +7,7 @@
 #include "queue.h"
 #include "stdio.h"
 
-
+#include "semphr.h"
 /*´®¿Ú2Á¬½ÓÓÑÈËWIFIÄ£¿é RXD->PA3 TXD->PA2
 ²¨ÌØÂÊÍÆ¼ö96000
 */
@@ -17,6 +17,7 @@
 #define DMA_Rec_Len   256    //½ÓÊÕÊý¾Ý³¤¶È
 static u8 DMA_Send_Buf[DMA_Send_Len];	//·¢ËÍÊý¾Ý»º³åÇø
 static u8 DMA_Receive_Buf[DMA_Rec_Len];	//½ÓÊÕÊý¾Ý»º³åÇø
+
 
 
 void usart2_init(u32 bound)
@@ -160,7 +161,7 @@ DMA_Cmd(DMA1_Channel7, DISABLE);//¹Ø±Õ·¢ËÍÍ¨µÀ ¡¾×¢Òâ¡¿ ·¢ËÍÊ±ÔÙ¿ªÆô£¬·ÀÖ¹DMA½ÓÊ
   DMA_Init(DMA1_Channel6, &DMA_InitStructure);  //DMAÍ¨µÀ6½á¹¹Ìå¸³Öµ
 
 //ÖÐ¶ÏÅäÉè
-DMA_ITConfig(DMA1_Channel6, DMA_IT_TC, ENABLE);//Ê¹ÄÜ´«ÊäÍê³ÉÖÐ¶Ï
+DMA_ITConfig(DMA1_Channel6, DMA_IT_TC, ENABLE);//Ê¹ÄÜ´«Êä»º³åÒç³öÖÐ¶Ï
 
 DMA_ITConfig(DMA1_Channel6, DMA_IT_TE, ENABLE); //Ê¹ÄÜ´«Êä´íÎóÖÐ¶Ï
 
@@ -195,7 +196,7 @@ void NVIC_cofig_Init(void)
 	/********USART2 NVICÖÐ¶Ï³õÊ¼»¯***********/
 	NVIC_InitStructure.NVIC_IRQChannel=USART2_IRQn;				//ÖÐ¶ÏÍ¨µÀÎª´®¿Ú2ÖÐ¶Ï
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;				//Í¨µÀÊ¹ÄÜ
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=14;    //ÇÀÕ¼ÓÅÏÈ¼¶Îª2
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=13;    //ÇÀÕ¼ÓÅÏÈ¼¶Îª2
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority=0;			//ÏìÓ¦ÓÅÏÈ¼¶Îª0
 	//NVIC³õÊ¼»¯½á¹¹Ìå³ÉÔ±±äÁ¿¸³Öµ
 	NVIC_Init(&NVIC_InitStructure);
@@ -247,46 +248,63 @@ NVIC_cofig_Init();
 ´®¿Ú2ÖÐ¶Ï·þÎñº¯Êý
 *********************/
 
+typedef struct wifibuff
+{
+u32 wifi_lenth;
+u8 wifi_buffer[256];
+}wifibuff;
+
+wifibuff wifi_tMsg;
 
 void USART2_IRQHandler(void)  
 {
-	u16 wifi_lenth;
-	u8 wifi_buffer[256];
+
 	extern QueueHandle_t Wifi_buffer_Queue;
-	extern QueueHandle_t Wifi_lenth_Queue;
-	
-	
+	extern SemaphoreHandle_t BinarySemaphore;	//¶þÖµÐÅºÅÁ¿¾ä±ú
+	wifibuff *receivebuff;
+	BaseType_t xHigherPriorityTaskWoken;
 	int16_t 	DATA_LEN;
 	u16 i;
-	
-	
 	DMA_Channel_TypeDef *DMA1_CH6 = DMA1_Channel6;
 	USART_TypeDef *uart2 = USART2;
-	BaseType_t xHigherPriorityTaskWoken;
+	
+	//receivebuff=&wifi_tMsg;//ÏûÏ¢½á¹¹Ìå³õÊ¼»¯
+	
 
 	DMA_Cmd(DMA1_Channel6,DISABLE); //¹Ø±ÕDMA £¬DMA·ÀÖ¹ÖÐ¶Ï´¦ÀíÆÚ¼äÓÐÊý¾Ý
-	
+	printf("±ê¼Ç1");
 	if(USART_GetITStatus(USART2, USART_IT_IDLE) != RESET)//Èç¹ûÎª´®¿Ú2¿ÕÏÐÖÐ¶Ï
 	{
-		DMA_ClearFlag(DMA1_FLAG_GL6 | DMA1_FLAG_TC6 | DMA1_FLAG_TE6 | DMA1_FLAG_HT6);//Çå³þ±êÖ¾Î»
-	
+		DMA_ClearFlag(DMA1_FLAG_GL6 | DMA1_FLAG_TC6 | DMA1_FLAG_TE6 | DMA1_FLAG_HT6);//Çå³ý±êÖ¾Î»
+	 printf("±ê¼Ç2");
 	
 			DATA_LEN = 256 - DMA_GetCurrDataCounter(DMA1_Channel6); 
 			if(DATA_LEN > 0 && DATA_LEN <= 256)
 			{	 
-			//DMA_Cmd(DMA1_Channel6, DISABLE); //¸Ä±äÍ¨µÀdatasizeÇ°Òª½ûÖ¹Í¨µÀ¹¤×÷
+				printf("±ê¼Ç3");
+			 DMA_Cmd(DMA1_Channel6, DISABLE); //¸Ä±äÍ¨µÀdatasizeÇ°Òª½ûÖ¹Í¨µÀ¹¤×÷
 		   DMA1_CH6->CNDTR = 256; //ÐÞ¸ÄDMA1Êý¾Ý´«ÊäÁ¿
 
 			//´«ÊäÏûÏ¢¶ÓÁÐ
-				wifi_lenth=DATA_LEN;
-				memcpy(wifi_buffer,DMA_Receive_Buf,wifi_lenth);
-				xQueueOverwriteFromISR(Wifi_buffer_Queue,&wifi_buffer,&xHigherPriorityTaskWoken);		
-  			xQueueOverwriteFromISR(Wifi_lenth_Queue,&wifi_lenth,&xHigherPriorityTaskWoken);		
+					printf("±ê¼Ç4");
+				receivebuff->wifi_lenth=DATA_LEN;
+					printf("±ê¼Ç5");
+				
+				memcpy(receivebuff->wifi_buffer,DMA_Receive_Buf,256);
+				xQueueOverwriteFromISR(Wifi_buffer_Queue,(void *)&receivebuff,&xHigherPriorityTaskWoken);		
+				
+					printf("±ê¼Ç6");
+				xSemaphoreGiveFromISR(BinarySemaphore,&xHigherPriorityTaskWoken);	//ÊÍ·Å¶þÖµÐÅºÅÁ¿
+				
 //			uart_to_keyboard_msg.address = DMA_Receive_Buf;
 //			uart_to_keyboard_msg.length = DATA_LEN;
 //			total_rx++;
 //			xQueueSendToBackFromISR(Keyboard_Queue,(void*)&uart_to_keyboard_msg,&xHigherPriorityTaskWoken);
 			//xSemaphoreGiveFromISR(BinarySemaphore,&xHigherPriorityTaskWoken);
+				
+
+		 	printf("±ê¼Ç7");
+
 			portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 				//ÍË³öÖÐ¶ÏÇÐ»»
 			}//Êý¾ÝÎÞÒç³ö	
@@ -296,31 +314,39 @@ void USART2_IRQHandler(void)
      i = uart2->SR;
      i = uart2->DR;
 	   i = i;
-		
+				 	printf("±ê¼Ç8");
 	}//¿ÕÏÐÖÐ¶ÏÅÐ¶Ï
 		
 	else if(USART_GetITStatus(USART2, USART_IT_PE | USART_IT_FE | USART_IT_NE|USART_IT_ORE) != RESET)//³ö´í
 	{
 		USART_ClearITPendingBit(USART2, USART_IT_PE | USART_IT_FE | USART_IT_NE|USART_IT_ORE);//Çå³ýÖÐ¶Ï
 		//´íÎóÀàÐÍ¼ÆÊýtotal_err2++;
+		printf("³ö´í err2");
 		i = uart2->SR;
 		i = uart2->DR;
+		
 	}
 	else
 	{
 		//´íÎóÀàÐÍ¼ÆÊýtotal_err2++;
 		//funcCode.all[FUNCCODE_P11_15] = total_err2;
+		printf("³ö´í err3");
 		i = uart2->SR;
 		i = uart2->DR;
+			
 	}
+			 	printf("±ê¼Ç9");
+	
 	DMA_Cmd(DMA1_Channel6, DISABLE);//¹Ø±ÕDMA
 	DMA1_CH6->CNDTR = 256;//ÖØ×°Ìî
 	DMA_Cmd(DMA1_Channel6, ENABLE);//´¦ÀíÍê³É£¬ÖØÆôDMA
-
+		 	printf("±ê¼Ç10");
+	
 	//Çå³ý¿ÕÏÐ±êÖ¾ ¡¾×¢¡¿³ýÁË¿âº¯ÊýÇå³ý±êÖ¾Ò»¶¨ÒªÓÐÉÏÃæ²½Öè ¶ÁÈ¡SR DR¼Ä´æÆ÷Öµ
 	USART_ClearITPendingBit(USART1, USART_IT_TC);
 	USART_ClearITPendingBit(USART1, USART_IT_IDLE);
-		
+				 	printf("±ê¼Ç11");
+			
 }
 
 
@@ -341,8 +367,9 @@ void DMA1_Channel7_IRQHandler(void)
  
 void DMA1_Channel6_IRQHandler(void)
 {
+		
 	DMA_Channel_TypeDef *DMA1_CH6 = DMA1_Channel6;
-	
+	 	printf("±ê¼Ç12");
 	DMA_ClearITPendingBit(DMA1_IT_TC6);
 
 	DMA_ClearITPendingBit(DMA1_IT_TE6); //Çå³ý¿ÕÏÐÖÐ¶Ï
@@ -352,7 +379,7 @@ void DMA1_Channel6_IRQHandler(void)
 	DMA1_CH6->CNDTR = 256;//ÖØÐÂ×°ÌîÊý¾Ý´óÐ¡
 
 	DMA_Cmd(DMA1_Channel6, ENABLE);//DMA½ÓÊÕ¿ªÆô
-
+		 	printf("±ê¼Ç13");
 }
 
 
@@ -367,12 +394,16 @@ void WIFI_send(u8 * buffer,u32 len)
 {
 
 
-	DMA_Channel_TypeDef *DMA_CHx = DMA1_Channel7;
-
+	
+	memset(DMA_Send_Buf, 0x00, sizeof(DMA_Send_Buf));//»º³åÇå0
+	
 	memcpy(DMA_Send_Buf,buffer,len);
+	
+	
 	USART_DMACmd(USART2,USART_DMAReq_Tx,ENABLE); //Ê¹ÄÜ´®¿Ú1µÄDMA·¢ËÍ      
+	
 	DMA_Cmd(DMA1_Channel7, DISABLE);//DMA ¹Ø±Õ
-	DMA_CHx->CNDTR=len; 		//DMA´«ÊäÊý¾ÝÁ¿
+	DMA_SetCurrDataCounter(DMA1_Channel7,len);//DMAÍ¨µÀµÄDMA»º´æµÄ´óÐ¡
 	DMA_Cmd(DMA1_Channel7, ENABLE);        //DMA¿ªÆô
 
 	//total_tx++;

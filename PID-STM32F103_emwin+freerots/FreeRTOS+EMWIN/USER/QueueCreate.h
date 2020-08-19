@@ -11,7 +11,6 @@ void ADC_QueueCreat(void);
 void Set_QueueCreat(void);
 void Settem_QueueCreat(void);
 void WIFI_buffer_QueueCreat(void);
-void WIFI_lenth_QueueCreat(void);
 void Queue_Creat(void);
 
 #endif

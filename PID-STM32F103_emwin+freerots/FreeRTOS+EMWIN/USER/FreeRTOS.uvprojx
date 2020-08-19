@@ -529,14 +529,14 @@
               <FilePath>..\HARDWARE\STMFLASH\stmflash.c</FilePath>
             </File>
             <File>
-              <FileName>pwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\PWM\pwm.c</FilePath>
-            </File>
-            <File>
               <FileName>wifi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\WIFI\wifi.c</FilePath>
+            </File>
+            <File>
+              <FileName>pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PWM\pwm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -827,6 +827,11 @@
               <FileName>task_MQTT_send.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Freertos_task\task_MQTT_send.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_MQTT_rec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_MQTT_rec.c</FilePath>
             </File>
             <File>
               <FileName>task_emwin.c</FileName>
