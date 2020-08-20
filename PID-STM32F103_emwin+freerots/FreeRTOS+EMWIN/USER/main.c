@@ -85,10 +85,10 @@ TaskHandle_t MQTT_Rec_task_Handler;		  // MQTT接收任务
 #define USERIF_TASK_PRIO 		0	    //接口消息任务
 #define EMWINDEMO_TASK_PRIO		0		//emwin任务
 #define LED_TASK_PRIO		1		//LED任务
-#define ADC_TASK_PRIO		3		//ADC任务
-#define PWM_TASK_PRIO		3		//PWM任务
-#define MQTT_Send_TASK_PRIO		3		// MQTT发送任务
-#define MQTT_Rec_TASK_PRIO		3		// MQTT接收任务
+#define ADC_TASK_PRIO		2		//ADC任务
+#define PWM_TASK_PRIO		2		//PWM任务
+#define MQTT_Send_TASK_PRIO		2		// MQTT发送任务
+#define MQTT_Rec_TASK_PRIO		2		// MQTT接收任务
 /***********************************************************
 						 主函数入口
 ************************************************************/

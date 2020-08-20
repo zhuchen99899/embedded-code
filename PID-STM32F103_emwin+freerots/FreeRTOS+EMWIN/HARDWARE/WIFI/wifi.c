@@ -196,7 +196,7 @@ void NVIC_cofig_Init(void)
 	/********USART2 NVIC中断初始化***********/
 	NVIC_InitStructure.NVIC_IRQChannel=USART2_IRQn;				//中断通道为串口2中断
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;				//通道使能
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=13;    //抢占优先级为2
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=13;    //抢占优先级为13
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority=0;			//响应优先级为0
 	//NVIC初始化结构体成员变量赋值
 	NVIC_Init(&NVIC_InitStructure);
@@ -268,32 +268,36 @@ void USART2_IRQHandler(void)
 	DMA_Channel_TypeDef *DMA1_CH6 = DMA1_Channel6;
 	USART_TypeDef *uart2 = USART2;
 	
-	//receivebuff=&wifi_tMsg;//消息结构体初始化
+
 	
 
 	DMA_Cmd(DMA1_Channel6,DISABLE); //关闭DMA ，DMA防止中断处理期间有数据
-	printf("标记1");
+	//printf("标记1");
 	if(USART_GetITStatus(USART2, USART_IT_IDLE) != RESET)//如果为串口2空闲中断
 	{
 		DMA_ClearFlag(DMA1_FLAG_GL6 | DMA1_FLAG_TC6 | DMA1_FLAG_TE6 | DMA1_FLAG_HT6);//清除标志位
-	 printf("标记2");
-	
+	 //printf("标记2");
+
 			DATA_LEN = 256 - DMA_GetCurrDataCounter(DMA1_Channel6); 
 			if(DATA_LEN > 0 && DATA_LEN <= 256)
 			{	 
-				printf("标记3");
+				//printf("标记3");
 			 DMA_Cmd(DMA1_Channel6, DISABLE); //改变通道datasize前要禁止通道工作
 		   DMA1_CH6->CNDTR = 256; //修改DMA1数据传输量
 
+				
+			receivebuff=&wifi_tMsg;//消息结构体初始化
+			receivebuff->wifi_lenth=0;//消息结构体初始化
+			memset(receivebuff->wifi_buffer,0x00,sizeof(receivebuff->wifi_buffer));
 			//传输消息队列
-					printf("标记4");
+					//printf("标记4");
 				receivebuff->wifi_lenth=DATA_LEN;
-					printf("标记5");
+					//printf("标记5");
 				
 				memcpy(receivebuff->wifi_buffer,DMA_Receive_Buf,256);
 				xQueueOverwriteFromISR(Wifi_buffer_Queue,(void *)&receivebuff,&xHigherPriorityTaskWoken);		
 				
-					printf("标记6");
+					//printf("标记6");
 				xSemaphoreGiveFromISR(BinarySemaphore,&xHigherPriorityTaskWoken);	//释放二值信号量
 				
 //			uart_to_keyboard_msg.address = DMA_Receive_Buf;
@@ -303,7 +307,7 @@ void USART2_IRQHandler(void)
 			//xSemaphoreGiveFromISR(BinarySemaphore,&xHigherPriorityTaskWoken);
 				
 
-		 	printf("标记7");
+		 	//printf("标记7");
 
 			portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 				//退出中断切换
@@ -314,14 +318,14 @@ void USART2_IRQHandler(void)
      i = uart2->SR;
      i = uart2->DR;
 	   i = i;
-				 	printf("标记8");
+				 	//printf("标记8");
 	}//空闲中断判断
 		
 	else if(USART_GetITStatus(USART2, USART_IT_PE | USART_IT_FE | USART_IT_NE|USART_IT_ORE) != RESET)//出错
 	{
 		USART_ClearITPendingBit(USART2, USART_IT_PE | USART_IT_FE | USART_IT_NE|USART_IT_ORE);//清除中断
 		//错误类型计数total_err2++;
-		printf("出错 err2");
+		//printf("出错 err2");
 		i = uart2->SR;
 		i = uart2->DR;
 		
@@ -330,22 +334,22 @@ void USART2_IRQHandler(void)
 	{
 		//错误类型计数total_err2++;
 		//funcCode.all[FUNCCODE_P11_15] = total_err2;
-		printf("出错 err3");
+		//printf("出错 err3");
 		i = uart2->SR;
 		i = uart2->DR;
 			
 	}
-			 	printf("标记9");
+			 	//printf("标记9");
 	
 	DMA_Cmd(DMA1_Channel6, DISABLE);//关闭DMA
 	DMA1_CH6->CNDTR = 256;//重装填
 	DMA_Cmd(DMA1_Channel6, ENABLE);//处理完成，重启DMA
-		 	printf("标记10");
+		 	//printf("标记10");
 	
 	//清除空闲标志 【注】除了库函数清除标志一定要有上面步骤 读取SR DR寄存器值
 	USART_ClearITPendingBit(USART1, USART_IT_TC);
 	USART_ClearITPendingBit(USART1, USART_IT_IDLE);
-				 	printf("标记11");
+				 //	printf("标记11");
 			
 }
 

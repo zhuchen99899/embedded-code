@@ -104,34 +104,32 @@ char adcmsgstring[10] ;
 	
 
 temp_buff[0]=0x10;
-temp_buff[1]=0x4A;		
+temp_buff[1]=0x48;		
 temp_buff[2]=0x00;
-temp_buff[3]=0x06;
+temp_buff[3]=0x04;
 temp_buff[4]=0x4D;
 temp_buff[5]=0x51;
-temp_buff[6]=0x49;
-temp_buff[7]=	0x73;
-temp_buff[8]=0x64;
-temp_buff[9]=0x70;
-temp_buff[10]=0x03;
-temp_buff[11]=0xC6;
+temp_buff[6]=0x54;
+temp_buff[7]=	0x54;
+temp_buff[8]=0x04;
+temp_buff[9]=0xC6;
+temp_buff[10]=0x00;
+temp_buff[11]=0x28;
 temp_buff[12]=0x00;
-temp_buff[13]=0x28;
-temp_buff[14]=0x00;
-temp_buff[15]=0x0E;
-memcpy(&temp_buff[16],"dMQTTClient657",14);
-temp_buff[30]=0x00;
-temp_buff[31]=0x03;
-memcpy(&temp_buff[32],"lwt",3);
-temp_buff[35]=0x00;
-temp_buff[36]=0x13;
-memcpy(&temp_buff[37],"dMQTTClient657 died",19);
-temp_buff[56]=0x00;
-temp_buff[57]=0x05;
-memcpy(&temp_buff[58],"admin",5);
-temp_buff[63]=0x00;
-temp_buff[64]=0x0B;
-memcpy(&temp_buff[65],"oksn_123456",11);
+temp_buff[13]=0x0E;
+memcpy(&temp_buff[14],"dMQTTClient657",14);
+temp_buff[28]=0x00;
+temp_buff[29]=0x03;
+memcpy(&temp_buff[30],"lwt",3);
+temp_buff[33]=0x00;
+temp_buff[34]=0x13;
+memcpy(&temp_buff[35],"dMQTTClient657 died",19);
+temp_buff[54]=0x00;
+temp_buff[55]=0x05;
+memcpy(&temp_buff[56],"admin",5);
+temp_buff[61]=0x00;
+temp_buff[62]=0x0B;
+memcpy(&temp_buff[63],"oksn_123456",11);
 
 vTaskDelay(20000);
 	while(1)
@@ -144,7 +142,7 @@ vTaskDelay(20000);
 	//WIFI_send((u8*)adcmsgstring,sizeof(adcmsgstring));
 
 
-	WIFI_send(temp_buff,76);
+	WIFI_send(temp_buff,74);
 
 
 	/*
