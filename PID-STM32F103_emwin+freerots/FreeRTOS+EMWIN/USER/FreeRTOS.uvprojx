@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\MALLOC;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\HARDWARE\LED;..\HARDWARE\TIMER;..\HARDWARE\LCD;..\HARDWARE\SPI;..\HARDWARE\KEY;..\HARDWARE\IIC;..\HARDWARE\24CXX;..\HARDWARE\SRAM;..\HARDWARE\TOUCH;..\HARDWARE\W25QXX;..\EMWIN\EMWIN_APP;..\EMWIN\STemWin\inc;..\EMWIN\STemWin\Config;..\HARDWARE\ADC;..\EMWIN\STemWin_Addons;..\HARDWARE\STMFLASH;..\HARDWARE\PWM;..\HARDWARE\WIFI;..\Freertos_task</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\MALLOC;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\HARDWARE\LED;..\HARDWARE\TIMER;..\HARDWARE\LCD;..\HARDWARE\SPI;..\HARDWARE\KEY;..\HARDWARE\IIC;..\HARDWARE\24CXX;..\HARDWARE\SRAM;..\HARDWARE\TOUCH;..\HARDWARE\W25QXX;..\EMWIN\EMWIN_APP;..\EMWIN\STemWin\inc;..\EMWIN\STemWin\Config;..\HARDWARE\ADC;..\EMWIN\STemWin_Addons;..\HARDWARE\STMFLASH;..\HARDWARE\PWM;..\HARDWARE\WIFI;..\Freertos_task;..\MQTT</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -442,6 +442,11 @@
               <FileName>includes.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\includes.h</FilePath>
+            </File>
+            <File>
+              <FileName>SemaphoreCreat.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SemaphoreCreat.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -706,6 +711,51 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>FreeRtos_task</GroupName>
+          <Files>
+            <File>
+              <FileName>task_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_MQTT_connect.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_MQTT_connect.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_MQTT_pingreq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_MQTT_pingreq.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_MQTT_rec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_MQTT_rec.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_emwin.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_emwin.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_userif.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_userif.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>EMWIN_LIB</GroupName>
           <Files>
             <File>
@@ -796,52 +846,47 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>MQTT</GroupName>
+          <Files>
+            <File>
+              <FileName>MQTTconnect.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MQTT\MQTTconnect.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTpingreq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MQTT\MQTTpingreq.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTpacket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MQTT\MQTTpacket.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTT.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\MQTT\MQTT.h</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\MQTT\MQTTConfig.h</FilePath>
+            </File>
+            <File>
+              <FileName>MQTT_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MQTT\MQTT_init.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>README</GroupName>
           <Files>
             <File>
               <FileName>README.TXT</FileName>
               <FileType>5</FileType>
               <FilePath>..\README.TXT</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRtos_task</GroupName>
-          <Files>
-            <File>
-              <FileName>task_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Freertos_task\task_led.c</FilePath>
-            </File>
-            <File>
-              <FileName>task_pwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Freertos_task\task_pwm.c</FilePath>
-            </File>
-            <File>
-              <FileName>task_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Freertos_task\task_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>task_MQTT_send.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Freertos_task\task_MQTT_send.c</FilePath>
-            </File>
-            <File>
-              <FileName>task_MQTT_rec.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Freertos_task\task_MQTT_rec.c</FilePath>
-            </File>
-            <File>
-              <FileName>task_emwin.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Freertos_task\task_emwin.c</FilePath>
-            </File>
-            <File>
-              <FileName>task_userif.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Freertos_task\task_userif.c</FilePath>
             </File>
           </Files>
         </Group>

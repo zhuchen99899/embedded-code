@@ -46,3 +46,8 @@
 ..\obj\task_mqtt_send.o: ..\FreeRTOS\include\queue.h
 ..\obj\task_mqtt_send.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\task_mqtt_send.o: ..\HARDWARE\WIFI\wifi.h
+..\obj\task_mqtt_send.o: ..\MQTT\MQTT.h
+..\obj\task_mqtt_send.o: ..\MQTT\MQTTConfig.h
+..\obj\task_mqtt_send.o: ..\MQTT\MQTT_init.h
+..\obj\task_mqtt_send.o: ..\MQTT\MQTTconnect.h
+..\obj\task_mqtt_send.o: ..\MQTT\MQTTpacket.h

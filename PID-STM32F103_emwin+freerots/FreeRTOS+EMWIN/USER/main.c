@@ -1,5 +1,12 @@
 #include "includes.h"
-
+/**********************************************
+现有问题：
+1.USART2串口空闲中断中必须加入printf函数输出，否则会卡死中断中，
+怀疑       ①  xHigherPriorityTaskWoken 问题 或者信号量与队列同时使用问题
+					 ②  中断中memcopy或者结构体指针赋值问题
+					 
+解决方法 ：注释 printf 注释 队列，信号量 以及结构体指针传参 多次实验
+***************************************************/
 /***********************************************************
 						变量定义
 ************************************************************/
@@ -11,9 +18,10 @@ QueueHandle_t Adc_Queue;
 QueueHandle_t Set_Queue;
 QueueHandle_t Settem_Queue;
 QueueHandle_t Wifi_buffer_Queue;
+QueueHandle_t PINGREQ_Queue;
 //二值信号量句柄
-SemaphoreHandle_t BinarySemaphore;	//二值信号量句柄
-
+SemaphoreHandle_t BinarySemaphore_USART2ISR;	//USART2空闲中断二值信号量句柄
+SemaphoreHandle_t BinarySemaphore_MQTTconnect;//MQTT CONNCET报文二值信号量句柄
 //开机内部flash读取相关
 #define TEXT_MAXLEN 8	//数组长度
 #define SIZE TEXT_MAXLEN		//数组长度
@@ -50,8 +58,9 @@ void emwindemo_task(void *pvParameters); 	//emwin任务
 void LED_task(void *pvParameters);       // LED任务
 void ADC_task(void *pvParameters);       // ADC任务
 void PWM_task(void *pvParameters);       // PWM任务
-void MQTT_send_task(void *pvParameters);       // MQTT发送任务
+void MQTT_Connect_task(void *pvParameters);       // MQTTconnect任务
 void MQTT_rec_task(void *pvParameters);				// MQTT接收任务
+void MQTT_Pingreq_task(void *pvParameters);				// MQTTPINGREQ任务
 /***********************************************************
 						任务函数句柄
 ************************************************************/
@@ -63,8 +72,9 @@ TaskHandle_t EmwindemoTask_Handler;		//emwin任务
 TaskHandle_t LedTask_Handler;		//LED任务
 TaskHandle_t Adc_task_Handler;		//ADC任务
 TaskHandle_t PWM_task_Handler;		//PWM任务
-TaskHandle_t MQTT_Send_task_Handler;		  // MQTT发送任务
+TaskHandle_t MQTT_Connect_task_Handler;		  // MQTTconnect任务
 TaskHandle_t MQTT_Rec_task_Handler;		  // MQTT接收任务
+TaskHandle_t MQTT_PINGREQ_task_Handler;		  // MQTTPINGREQ任务
 /***********************************************************
 						任务堆栈大小
 ************************************************************/
@@ -75,8 +85,9 @@ TaskHandle_t MQTT_Rec_task_Handler;		  // MQTT接收任务
 #define LED_STK_SIZE		128	//LED任务
 #define ADC_STK_SIZE		512	//ADC任务
 #define PWM_STK_SIZE		128	//PWM任务
-#define MQTT_Send_STK_SIZE		512	// MQTT发送任务
+#define MQTT_Connect_STK_SIZE		512	// MQTTconnect任务
 #define MQTT_Rec_STK_SIZE		512	// MQTT接收任务
+#define MQTT_PINGREQ_STK_SIZE		128	// MQTTPINGREQ任务
 /***********************************************************
 						 任务优先级(数值越小优先级越低)
 ************************************************************/
@@ -87,8 +98,9 @@ TaskHandle_t MQTT_Rec_task_Handler;		  // MQTT接收任务
 #define LED_TASK_PRIO		1		//LED任务
 #define ADC_TASK_PRIO		2		//ADC任务
 #define PWM_TASK_PRIO		2		//PWM任务
-#define MQTT_Send_TASK_PRIO		2		// MQTT发送任务
-#define MQTT_Rec_TASK_PRIO		2		// MQTT接收任务
+#define MQTT_Connect_TASK_PRIO		2		// MQTTCONNCET任务
+#define MQTT_Rec_TASK_PRIO		3		// MQTT接收任务
+#define MQTT_PINGREQ_TASK_PRIO		2		// MQTTPINGREQ任务
 /***********************************************************
 						 主函数入口
 ************************************************************/
@@ -173,13 +185,15 @@ float settem;
 
 	//创建消息队列
 	Queue_Creat();
-		//二值信号创建
-	BinarySemaphore=xSemaphoreCreateBinary();	
+		//信号量创建
+SempaphoreCreate();
 	
 	//消息队列发送flash内存中的设置参数
 		xQueueOverwrite(Set_Queue,(void *)&Flashdata);			
 		xQueueOverwrite(Settem_Queue,&settem);			
 
+//发送MQTT任务信号量
+	xSemaphoreGive(BinarySemaphore_MQTTconnect);//发送MQTT Connack报文信号
 	/**********************************任务创建******************************/
 	
 	//创建触摸任务
@@ -231,12 +245,12 @@ float settem;
                 (TaskHandle_t*  )&PWM_task_Handler);
 		
 		//创建MQTT发送任务			
-		   xTaskCreate((TaskFunction_t )MQTT_send_task,             
-                (const char*    )"MQTT_Send_Task",           
-                (uint16_t       )MQTT_Send_STK_SIZE,        
+		   xTaskCreate((TaskFunction_t )MQTT_Connect_task,             
+                (const char*    )"MQTT_Connect_Task",           
+                (uint16_t       )MQTT_Connect_STK_SIZE,        
                 (void*          )NULL,                  
-                (UBaseType_t    )MQTT_Send_TASK_PRIO,//
-                (TaskHandle_t*  )&MQTT_Send_task_Handler);
+                (UBaseType_t    )MQTT_Connect_TASK_PRIO,//
+                (TaskHandle_t*  )&MQTT_Connect_task_Handler);
 				
 			//创建MQTT接收任务			
 		   xTaskCreate((TaskFunction_t )MQTT_rec_task,             
@@ -245,7 +259,15 @@ float settem;
                 (void*          )NULL,                  
                 (UBaseType_t    )MQTT_Rec_TASK_PRIO,//
                 (TaskHandle_t*  )&MQTT_Rec_task_Handler);
+			 //创建MQTT PINGREQ任务			
+		   xTaskCreate((TaskFunction_t )MQTT_Pingreq_task,             
+                (const char*    )"MQTT_PINGREQ_Task",           
+                (uint16_t       )MQTT_PINGREQ_STK_SIZE,        
+                (void*          )NULL,                  
+                (UBaseType_t    )MQTT_PINGREQ_TASK_PRIO,//
+                (TaskHandle_t*  )&MQTT_PINGREQ_task_Handler);
 				
+								
     vTaskDelete(StartTask_Handler); //删除开始任务
     taskEXIT_CRITICAL();            //退出临界区
 }

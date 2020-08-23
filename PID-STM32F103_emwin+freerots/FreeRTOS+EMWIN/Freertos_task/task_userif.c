@@ -2,12 +2,18 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "key.h"
+#include "semphr.h"
+
+
 
 //统计任务（空闲任务）
 void UserIf_task(void *p_arg)
 {
 	uint8_t ucKeyCode;
 	uint8_t pcWriteBuffer[500];
+	
+	
+
 		while(1)
 		{
 		ucKeyCode = KEY_Scan(1);

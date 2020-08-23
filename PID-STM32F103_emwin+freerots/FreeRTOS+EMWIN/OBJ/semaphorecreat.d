@@ -1,0 +1,45 @@
+..\obj\semaphorecreat.o: SemaphoreCreat.c
+..\obj\semaphorecreat.o: SemaphoreCreat.h
+..\obj\semaphorecreat.o: ..\FreeRTOS\include\freertos.h
+..\obj\semaphorecreat.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\obj\semaphorecreat.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\semaphorecreat.o: ..\FreeRTOS\include\FreeRTOSConfig.h
+..\obj\semaphorecreat.o: ..\SYSTEM\sys\sys.h
+..\obj\semaphorecreat.o: ..\USER\stm32f10x.h
+..\obj\semaphorecreat.o: ..\CORE\core_cm3.h
+..\obj\semaphorecreat.o: ..\USER\system_stm32f10x.h
+..\obj\semaphorecreat.o: ..\USER\stm32f10x_conf.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
+..\obj\semaphorecreat.o: ..\USER\stm32f10x.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_bkp.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_can.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_cec.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_crc.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_dac.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_flash.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_fsmc.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_i2c.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_iwdg.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_pwr.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_rtc.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_sdio.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_spi.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
+..\obj\semaphorecreat.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\semaphorecreat.o: ..\SYSTEM\usart\usart.h
+..\obj\semaphorecreat.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\semaphorecreat.o: ..\HARDWARE\TIMER\timer.h
+..\obj\semaphorecreat.o: ..\FreeRTOS\include\projdefs.h
+..\obj\semaphorecreat.o: ..\FreeRTOS\include\portable.h
+..\obj\semaphorecreat.o: ..\FreeRTOS\include\deprecated_definitions.h
+..\obj\semaphorecreat.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+..\obj\semaphorecreat.o: ..\FreeRTOS\include\mpu_wrappers.h
+..\obj\semaphorecreat.o: ..\FreeRTOS\include\semphr.h
+..\obj\semaphorecreat.o: ..\FreeRTOS\include\queue.h

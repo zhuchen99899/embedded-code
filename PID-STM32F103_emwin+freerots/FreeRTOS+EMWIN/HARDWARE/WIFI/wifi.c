@@ -260,7 +260,7 @@ void USART2_IRQHandler(void)
 {
 
 	extern QueueHandle_t Wifi_buffer_Queue;
-	extern SemaphoreHandle_t BinarySemaphore;	//二值信号量句柄
+	extern SemaphoreHandle_t BinarySemaphore_USART2ISR;	//二值信号量句柄
 	wifibuff *receivebuff;
 	BaseType_t xHigherPriorityTaskWoken;
 	int16_t 	DATA_LEN;
@@ -268,7 +268,8 @@ void USART2_IRQHandler(void)
 	DMA_Channel_TypeDef *DMA1_CH6 = DMA1_Channel6;
 	USART_TypeDef *uart2 = USART2;
 	
-
+			receivebuff=&wifi_tMsg;//消息结构体初始化
+			receivebuff->wifi_lenth=0;//消息结构体初始化
 	
 
 	DMA_Cmd(DMA1_Channel6,DISABLE); //关闭DMA ，DMA防止中断处理期间有数据
@@ -286,11 +287,11 @@ void USART2_IRQHandler(void)
 		   DMA1_CH6->CNDTR = 256; //修改DMA1数据传输量
 
 				
-			receivebuff=&wifi_tMsg;//消息结构体初始化
-			receivebuff->wifi_lenth=0;//消息结构体初始化
+
 			memset(receivebuff->wifi_buffer,0x00,sizeof(receivebuff->wifi_buffer));
 			//传输消息队列
 					//printf("标记4");
+				printf("WIFI模组接收到数据\r\n");
 				receivebuff->wifi_lenth=DATA_LEN;
 					//printf("标记5");
 				
@@ -298,7 +299,7 @@ void USART2_IRQHandler(void)
 				xQueueOverwriteFromISR(Wifi_buffer_Queue,(void *)&receivebuff,&xHigherPriorityTaskWoken);		
 				
 					//printf("标记6");
-				xSemaphoreGiveFromISR(BinarySemaphore,&xHigherPriorityTaskWoken);	//释放二值信号量
+				xSemaphoreGiveFromISR(BinarySemaphore_USART2ISR,&xHigherPriorityTaskWoken);	//释放二值信号量
 				
 //			uart_to_keyboard_msg.address = DMA_Receive_Buf;
 //			uart_to_keyboard_msg.length = DATA_LEN;
@@ -318,7 +319,7 @@ void USART2_IRQHandler(void)
      i = uart2->SR;
      i = uart2->DR;
 	   i = i;
-				 	//printf("标记8");
+				 //	printf("标记8");
 	}//空闲中断判断
 		
 	else if(USART_GetITStatus(USART2, USART_IT_PE | USART_IT_FE | USART_IT_NE|USART_IT_ORE) != RESET)//出错
@@ -344,12 +345,12 @@ void USART2_IRQHandler(void)
 	DMA_Cmd(DMA1_Channel6, DISABLE);//关闭DMA
 	DMA1_CH6->CNDTR = 256;//重装填
 	DMA_Cmd(DMA1_Channel6, ENABLE);//处理完成，重启DMA
-		 	//printf("标记10");
+		 //	printf("标记10");
 	
 	//清除空闲标志 【注】除了库函数清除标志一定要有上面步骤 读取SR DR寄存器值
 	USART_ClearITPendingBit(USART1, USART_IT_TC);
 	USART_ClearITPendingBit(USART1, USART_IT_IDLE);
-				 //	printf("标记11");
+				// printf("标记11");
 			
 }
 
@@ -368,12 +369,12 @@ void DMA1_Channel7_IRQHandler(void)
 }
 
  /****DMA1 通道6  接收完成中断*********/
- 
+ //数据缓冲溢出产生
 void DMA1_Channel6_IRQHandler(void)
 {
 		
 	DMA_Channel_TypeDef *DMA1_CH6 = DMA1_Channel6;
-	 	printf("标记12");
+	 	//printf("标记12");
 	DMA_ClearITPendingBit(DMA1_IT_TC6);
 
 	DMA_ClearITPendingBit(DMA1_IT_TE6); //清除空闲中断
@@ -383,7 +384,7 @@ void DMA1_Channel6_IRQHandler(void)
 	DMA1_CH6->CNDTR = 256;//重新装填数据大小
 
 	DMA_Cmd(DMA1_Channel6, ENABLE);//DMA接收开启
-		 	printf("标记13");
+		 	//printf("标记13");
 }
 
 

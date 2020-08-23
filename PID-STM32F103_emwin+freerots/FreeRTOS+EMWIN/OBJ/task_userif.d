@@ -44,3 +44,5 @@
 ..\obj\task_userif.o: ..\FreeRTOS\include\task.h
 ..\obj\task_userif.o: ..\FreeRTOS\include\list.h
 ..\obj\task_userif.o: ..\HARDWARE\KEY\key.h
+..\obj\task_userif.o: ..\FreeRTOS\include\semphr.h
+..\obj\task_userif.o: ..\FreeRTOS\include\queue.h

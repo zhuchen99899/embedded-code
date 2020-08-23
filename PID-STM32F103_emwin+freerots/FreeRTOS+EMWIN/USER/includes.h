@@ -35,6 +35,7 @@
 #include "task.h"
 #include "queue.h"
 #include "QueueCreate.h"
+#include "SemaphoreCreat.h"
 #include "semphr.h"
 /***************GUIœ‡πÿ*****************************/
 #include "GUI.h"
@@ -45,7 +46,8 @@
 #include "task_pwm.h"
 #include "task_adc.h"
 #include "task_emwin.h"
-#include "task_MQTT_send.h"
+#include "task_MQTT_connect.h"
+#include "task_MQTT_pingreq.h"
 #include "task_MQTT_rec.h"
 #include "task_userif.h"
 #endif

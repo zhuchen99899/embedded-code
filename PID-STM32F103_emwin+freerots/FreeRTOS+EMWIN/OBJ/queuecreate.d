@@ -42,4 +42,3 @@
 ..\obj\queuecreate.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\obj\queuecreate.o: ..\FreeRTOS\include\queue.h
 ..\obj\queuecreate.o: QueueCreate.h
-..\obj\queuecreate.o: ..\FreeRTOS\include\semphr.h

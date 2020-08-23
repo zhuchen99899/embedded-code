@@ -45,7 +45,7 @@ void PWM_task(void *pvParameters)
 	u16 led0pwmval;
 	/***消息队列参数定义***/
 	//温度设置消息队列参数
-	float settemdisplay;
+	//float settemdisplay;
 	float Settem;
 	extern QueueHandle_t Settem_Queue;
 	extern QueueHandle_t Set_Queue;
@@ -85,7 +85,7 @@ void PWM_task(void *pvParameters)
 			pid.Kd=PIDMSG->Kd;
 				ADC1_tem=adc1;
 				
-				settemdisplay=Settem;
+				//settemdisplay=Settem;
 				
 
 		
