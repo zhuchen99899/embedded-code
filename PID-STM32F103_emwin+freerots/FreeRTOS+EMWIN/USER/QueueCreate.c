@@ -14,7 +14,7 @@
 #define SETTEMMESSAGE_Q_NUM   1   	//设置PID消息队列的数量 
 #define WIFIMESSAGE_buffer_Q_NUM   1   	//wifi接收数据的消息队列的数量 
 #define PINGREQ_Q_NUM   1   	//PINGREQ的消息队列的数量  
-
+#define PUBLISH_Q_NUM   1			//PUBLISH的消息队列的数量  
 typedef struct SETMSG
 	{
 		float Kp;
@@ -121,7 +121,7 @@ void WIFI_buffer_QueueCreat(void)
 void PINGREQ_QueueCreat(void)
 {
 	extern QueueHandle_t PINGREQ_Queue;
-	PINGREQ_Queue =xQueueCreate(KEYMSG_Q_NUM,sizeof(uint8_t));
+	PINGREQ_Queue =xQueueCreate(PINGREQ_Q_NUM,sizeof(uint8_t));
 	
 	if (PINGREQ_Queue==0)
 	{
@@ -134,6 +134,24 @@ void PINGREQ_QueueCreat(void)
 	}
 }
 
+
+void PUBLISH_QueueCreat(void)
+{
+	extern QueueHandle_t PUBLISH_Queue;
+	PUBLISH_Queue =xQueueCreate(PUBLISH_Q_NUM,sizeof(uint8_t));
+	
+	if (PUBLISH_Queue==0)
+	{
+	/*消息创建失败处理机制*/
+	printf("PUBLISH消息队列创建失败");
+	}
+	else 
+	{
+	printf("PUBLISH消息队列创建成功");
+	}
+}
+
+
 void Queue_Creat(void)
 {
 	/******消息队列创建**********/
@@ -143,7 +161,7 @@ Set_QueueCreat();
 Settem_QueueCreat();
 WIFI_buffer_QueueCreat();
 PINGREQ_QueueCreat();
-
+PUBLISH_QueueCreat();
 
 }
 

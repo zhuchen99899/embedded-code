@@ -3,10 +3,10 @@
 
 /********************************************************
 函数: MQTT_Connect_lenth
-功能：计算MQTT CONNECT报文总长度
+功能：计算MQTT CONNECT报文长度
 参数：temp_buff[256]  //MQTT发送报文缓冲
 			options         //MQTTconnect配设结构体
-返回值：报文总字节数 (除固定头部)
+返回值： len   报文总字节数 (除固定头部)
 ********************************************************/
 
 
@@ -44,6 +44,14 @@ int MQTT_Connect_lenth(MQTTPacket_connectData* options)
 };
 
 
+/********************************************************
+函数: MQTT_Connect
+功能：MQTT CONNECT 报文拆包
+参数：MQTT_buf  报文发送缓冲区
+			buflen 缓冲区长度         
+			options         //MQTTconnect配设结构体
+返回值 rc  (报文长度)
+********************************************************/
 
 
 
@@ -55,15 +63,14 @@ unsigned char *ptr = MQTT_buf;
 	int rc = -1;
 	MQTTHeader header = {0};//固定头部 所有位置0
 	MQTTConnectFlags flags = {0}; //连接标志所有位置0
-
-/****************选择剩余字节 字节数   最低1byte，最高4字节*******************************************/
+	
+	/****************若剩余字节数超出缓冲区*******************************************/
 	if (MQTTPacket_len(len = MQTT_Connect_lenth(options)) > buflen)
 	{
 		rc = MQTTPACKET_BUFFER_TOO_SHORT;
-
+		goto exit;
 	}
-	
-	
+
 	
 	/******写入固定头部*********/
 	header.byte = 0;
@@ -121,7 +128,11 @@ unsigned char *ptr = MQTT_buf;
 	
 	//包长度
 
-rc = ptr - MQTT_buf;
+	rc = ptr - MQTT_buf;
+	
+
+	exit:
+	FUNC_EXIT_RC(rc);
 	return rc; //返回长度
 };
 

@@ -1,6 +1,6 @@
 #include "MQTTpacket.h"
 #include "string.h"
-
+/********************MQTT打包相关函数********************/
 
 /***************
 函数：MQTTstrlen
@@ -67,9 +67,13 @@ int MQTTPacket_encode(unsigned char* buf, int length)
 	return rc;
 };
 
+
+
+
+
 /***********************
 函数:writeChar
-功能:写入标志数据(如:版本号\连接标志)至MQTT报文缓冲区
+功能:写入一个字节(如:版本号\连接标志)至MQTT报文缓冲区
 参数:MQTT	缓冲区指针pprt，数据
 ***********************/
 void writeChar(unsigned char** pptr, char c)
@@ -124,7 +128,6 @@ void writeMQTTString(unsigned char** pptr, MQTTString mqttstring)
 	else
 		writeInt(pptr, 0);
 }
-
 
 
 

@@ -739,6 +739,16 @@
               <FilePath>..\Freertos_task\task_MQTT_pingreq.c</FilePath>
             </File>
             <File>
+              <FileName>task_MQTT_subscribe.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_MQTT_subscribe.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_MQTT_publish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_MQTT_publish.c</FilePath>
+            </File>
+            <File>
               <FileName>task_MQTT_rec.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Freertos_task\task_MQTT_rec.c</FilePath>
@@ -859,9 +869,24 @@
               <FilePath>..\MQTT\MQTTpingreq.c</FilePath>
             </File>
             <File>
+              <FileName>MQTTsubscribe.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MQTT\MQTTsubscribe.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTpublish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MQTT\MQTTpublish.c</FilePath>
+            </File>
+            <File>
               <FileName>MQTTpacket.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\MQTT\MQTTpacket.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTunpacket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MQTT\MQTTunpacket.c</FilePath>
             </File>
             <File>
               <FileName>MQTT.h</FileName>

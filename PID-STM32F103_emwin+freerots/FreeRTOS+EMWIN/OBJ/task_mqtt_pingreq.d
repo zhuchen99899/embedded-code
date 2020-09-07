@@ -51,4 +51,7 @@
 ..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTT_init.h
 ..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTconnect.h
 ..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTpacket.h
+..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTunpacket.h
 ..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTpingreq.h
+..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTsubscribe.h
+..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTpublish.h

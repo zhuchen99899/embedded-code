@@ -1,7 +1,8 @@
 #ifndef _MQTTPACKET_H_
 #define _MQTTPACKET_H_
 
-
+/*******MQTT发包错误退出******/
+#define FUNC_EXIT_RC(x)
 /***********MQTT报文返回码************/
 enum errors
 {
@@ -15,14 +16,14 @@ enum msgTypes
 {
 	CONNECT = 1, CONNACK, PUBLISH, PUBACK, PUBREC, PUBREL,
 	PUBCOMP, SUBSCRIBE, SUBACK, UNSUBSCRIBE, UNSUBACK,
-	PINGREQ=12, PINGRESP=13, DISCONNECT
+	PINGREQ, PINGRESP, DISCONNECT
 };
 
 /**********MQTT字符（字符+字节长度）*************/
 typedef struct
 {
-	char* string;
 	int len;
+	char* string;
 } MQTTString;
 
 
@@ -52,5 +53,6 @@ void writeChar(unsigned char** pptr, char c);
 void writeInt(unsigned char** pptr, int anInt);
 void writeString(unsigned char** pptr, const char* string);
 void writeMQTTString(unsigned char** pptr, MQTTString mqttstring);
+
 #endif
 

@@ -2,7 +2,13 @@
 - 来源于网络资料整理
 - 之前简单了解了MQTT报文数据包的构成，现在就可以了解每种报文的具体形式。
 ## <font size =8>CONNECT报文</font>
-- 客户端到服务端的网络连接建立后，客户端发送给服务端的第一个报文必须是CONNECT,连接服务器报文。
+- 客户端到服务端的网络连接建立后，客户端发送给服务端的第一个报文必须是CONNECT,连接服务器报文。MQTT的CONNECT具体流程如下：
+
+```mermaid
+graph LR
+Cilent--CONNECT-->Broker;
+Broker--CONNACT-->Cilent;
+```
 - 在一个网络连接上，客户端只能发送一次CONNECT报文。服务端必须将客户端发送的第二个CONNECT报文当作协议违规处理并断开客户端的连接。
 - 服务端可以检查CONNECT报文的内容是不是满足任何进一步的限制，可以执行身份验证和授权检查。如果任何一项检查没通过，它应该发送一个适当的、返回码非零的CONNACK响应，并且必须关闭这个网络连接。
 - 客户端连接服务器的CONNECT报文由<b>固定头</b>，<b>剩余长度</b>，<b>可变报头</b>以及<b>有效载荷</b>组成。以下将简介报文数据包具体内容。（十六进制）
@@ -344,7 +350,7 @@ CONNACK报文可变报头由以下部分组成
   <td align="center">0</td>
  </tr>
  <tr>
-  <td>连接确认标志</td>
+  <td align="center">连接确认标志</td>
   <td colspan="7" align="center">Reserved保留位</td>
   <td align="center">SP</td>
  </tr>
@@ -482,3 +488,4 @@ CONNACK报文可变报头由以下部分组成
 服务端再收到DISCONNECT报文后：
 - 必须丢弃任何与当前连接关联的未发布的遗嘱
 - 应该关闭网络连接，如果客户端还没有这么做
+

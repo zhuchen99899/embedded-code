@@ -119,5 +119,7 @@
 ..\obj\main.o: ..\EMWIN\STemWin\inc\KNOB.h
 ..\obj\main.o: ..\Freertos_task\task_MQTT_connect.h
 ..\obj\main.o: ..\Freertos_task\task_MQTT_pingreq.h
+..\obj\main.o: ..\Freertos_task\task_MQTT_subscribe.h
+..\obj\main.o: ..\Freertos_task\task_MQTT_publish.h
 ..\obj\main.o: ..\Freertos_task\task_MQTT_rec.h
 ..\obj\main.o: ..\Freertos_task\task_userif.h

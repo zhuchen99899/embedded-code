@@ -1,8 +1,8 @@
 #include "MQTT.h"
 
 
-
-extern MQTTPacket_connectData SETCONNECT;
+//conncet封包配设
+extern MQTTPacket_connectData SETCONNECT;  //Connect封包结构体
 
 void conncect_init()
 {
@@ -29,11 +29,35 @@ SETCONNECT.password.string=MQTT_password;
 SETCONNECT.password.len=strlen(MQTT_password);
 };
 
+//SUBSCRITBE 封包配设
+extern MQTTString SETSUBSCRIBE[subscribe_count];
+extern int QoSs[subscribe_count];	
+void subscribe_init()
+{
+/****订阅主题1***********/
 
+SETSUBSCRIBE[subscribe_count-2].string=subscrible1_topicFilters1;
+	
+SETSUBSCRIBE[subscribe_count-2].len=strlen(subscrible1_topicFilters1);
+	
+QoSs[subscribe_count-2]=subscribe1_qos1;    
 
 	
+SETSUBSCRIBE[subscribe_count-1].string=subscrible1_topicFilters2;
+	
+SETSUBSCRIBE[subscribe_count-1].len=strlen(subscrible1_topicFilters2);
+	
+QoSs[subscribe_count-1]=subscribe1_qos2;    
 
 
+};
 
+extern MQTTString SETPUBLISH;
 
+void publish_init()
+{
+SETPUBLISH.string=publish1_topicname;
+SETPUBLISH.len=strlen(publish1_topicname);
+
+};
 

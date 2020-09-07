@@ -48,6 +48,8 @@
 #include "task_emwin.h"
 #include "task_MQTT_connect.h"
 #include "task_MQTT_pingreq.h"
+#include "task_MQTT_subscribe.h"
+#include "task_MQTT_publish.h"
 #include "task_MQTT_rec.h"
 #include "task_userif.h"
 #endif

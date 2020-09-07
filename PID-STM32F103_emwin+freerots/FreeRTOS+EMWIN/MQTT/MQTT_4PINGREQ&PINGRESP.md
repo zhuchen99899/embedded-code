@@ -1,6 +1,12 @@
-# <font size =11>MQTT协议(三)PINGREQ&PINGRESP报文</font>
+# <font size =11>MQTT协议(四)PINGREQ&PINGRESP报文</font>
 ## <font size =8>PINGREQ报文</font>
-- PINGREQ为心跳请求报文，由客户端发向服务器
+- PINGREQ为心跳请求报文，由客户端发向服务器：PINGREQ具体流程如下:
+
+```mermaid
+graph LR
+Cilent--PINGREQ-->Broker;
+Broker--PINGRESP-->Cilent;
+```
 - PINGREQ只有<b>固定报头</b>，没有可变报头和消息体
 - 即PINGREQ报文只有两个字节：0xC0,0x00
 <table border="0" align="center">
@@ -81,7 +87,7 @@
   <td align="center">1</td>
   <td  align="center">1</td>
   <td  align="center">0</td>
-  <td  align="center">0</td>
+  <td  align="center">1</td>
   <td  align="center">0</td>
   <td  align="center">0</td>
   <td  align="center">0</td>
@@ -99,7 +105,7 @@
   <td align="center">0</td>
   <td align="center">0</td>
   <td align="center">0</td>
-  <td align="center">1</td>
+  <td align="center">0</td>
   <td align="center">0</td>
  </tr>
 </table>

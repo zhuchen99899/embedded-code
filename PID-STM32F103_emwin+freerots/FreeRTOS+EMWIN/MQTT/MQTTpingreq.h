@@ -1,5 +1,5 @@
-#ifndef  __MQTT_PINGREQ_H__
-#define  __MQTT_PINGREQ_H__
+#ifndef  __MQTTPINGREQ_H__
+#define  __MQTTPINGREQ_H__
 
 
 int MQTT_pingreq(unsigned char* MQTT_buf);

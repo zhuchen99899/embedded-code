@@ -43,7 +43,6 @@
 ..\obj\task_mqtt_connect.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\obj\task_mqtt_connect.o: ..\FreeRTOS\include\task.h
 ..\obj\task_mqtt_connect.o: ..\FreeRTOS\include\list.h
-..\obj\task_mqtt_connect.o: ..\FreeRTOS\include\queue.h
 ..\obj\task_mqtt_connect.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\task_mqtt_connect.o: ..\HARDWARE\WIFI\wifi.h
 ..\obj\task_mqtt_connect.o: ..\MQTT\MQTT.h
@@ -51,5 +50,9 @@
 ..\obj\task_mqtt_connect.o: ..\MQTT\MQTT_init.h
 ..\obj\task_mqtt_connect.o: ..\MQTT\MQTTconnect.h
 ..\obj\task_mqtt_connect.o: ..\MQTT\MQTTpacket.h
+..\obj\task_mqtt_connect.o: ..\MQTT\MQTTunpacket.h
 ..\obj\task_mqtt_connect.o: ..\MQTT\MQTTpingreq.h
+..\obj\task_mqtt_connect.o: ..\MQTT\MQTTsubscribe.h
+..\obj\task_mqtt_connect.o: ..\MQTT\MQTTpublish.h
 ..\obj\task_mqtt_connect.o: ..\FreeRTOS\include\semphr.h
+..\obj\task_mqtt_connect.o: ..\FreeRTOS\include\queue.h

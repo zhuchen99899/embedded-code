@@ -47,3 +47,12 @@
 ..\obj\task_mqtt_rec.o: ..\FreeRTOS\include\semphr.h
 ..\obj\task_mqtt_rec.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\task_mqtt_rec.o: ..\HARDWARE\WIFI\wifi.h
+..\obj\task_mqtt_rec.o: ..\MQTT\MQTT.h
+..\obj\task_mqtt_rec.o: ..\MQTT\MQTTConfig.h
+..\obj\task_mqtt_rec.o: ..\MQTT\MQTT_init.h
+..\obj\task_mqtt_rec.o: ..\MQTT\MQTTconnect.h
+..\obj\task_mqtt_rec.o: ..\MQTT\MQTTpacket.h
+..\obj\task_mqtt_rec.o: ..\MQTT\MQTTunpacket.h
+..\obj\task_mqtt_rec.o: ..\MQTT\MQTTpingreq.h
+..\obj\task_mqtt_rec.o: ..\MQTT\MQTTsubscribe.h
+..\obj\task_mqtt_rec.o: ..\MQTT\MQTTpublish.h

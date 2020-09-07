@@ -5,7 +5,22 @@
 怀疑       ①  xHigherPriorityTaskWoken 问题 或者信号量与队列同时使用问题
 					 ②  中断中memcopy或者结构体指针赋值问题
 					 
-解决方法 ：注释 printf 注释 队列，信号量 以及结构体指针传参 多次实验
+解决方法 ：①注释 printf 注释 队列，信号量 以及结构体指针传参 
+					 ②taskENTER_CRITICAL()以及taskEXIT_CRITICAL()保护dma中断
+					 ③调度锁vTaskSuspendAll  保护
+					 
+					 调度锁vTaskSuspendAll()禁止调度器，临界区taskENTER_CRITICAL()把freertos系统时基也关闭了
+多次实验
+
+
+
+已解决问题：
+在CONNECT报文后 会同时启用pingreq,subscribe报文，以及publish报文，在发送过程中，可能存在ping或publish报文进入发送缓冲，
+从而使正在发送的subscribe报文不完整导致CONNCET断开连接。
+解决方法：①对DMA缓冲进行双缓冲区管理
+					②DMA发送函数wifi_send中首先关闭DMA通道防止打断
+					③对报文发送任务SUBSCRIBE，PINGREQ,PUBLISH 任务发送之后进行打印或者其他动作，防止在同一时刻（CONNECT报文发送之后）同时开启调度，导致DMA发送产生竞争
+					④调整报文发送任务优先级 SUBSCRIBE
 ***************************************************/
 /***********************************************************
 						变量定义
@@ -19,9 +34,11 @@ QueueHandle_t Set_Queue;
 QueueHandle_t Settem_Queue;
 QueueHandle_t Wifi_buffer_Queue;
 QueueHandle_t PINGREQ_Queue;
+QueueHandle_t PUBLISH_Queue;
 //二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_USART2ISR;	//USART2空闲中断二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_MQTTconnect;//MQTT CONNCET报文二值信号量句柄
+SemaphoreHandle_t BinarySemaphore_MQTTsubscribe;//MQTT SUBSCRIBE报文二值信号量句柄
 //开机内部flash读取相关
 #define TEXT_MAXLEN 8	//数组长度
 #define SIZE TEXT_MAXLEN		//数组长度
@@ -53,7 +70,7 @@ SETMSG g_tMsg;
 
 void start_task(void *pvParameters);		//Start任务
 void touch_task(void *pvParameters);		//TOUCH任务
-void UserIf_task(void *pvParameters);		//接口消息任务
+void UserIf_task(void *pvParameters);		//UserIf空闲任务
 void emwindemo_task(void *pvParameters); 	//emwin任务
 void LED_task(void *pvParameters);       // LED任务
 void ADC_task(void *pvParameters);       // ADC任务
@@ -61,13 +78,15 @@ void PWM_task(void *pvParameters);       // PWM任务
 void MQTT_Connect_task(void *pvParameters);       // MQTTconnect任务
 void MQTT_rec_task(void *pvParameters);				// MQTT接收任务
 void MQTT_Pingreq_task(void *pvParameters);				// MQTTPINGREQ任务
+void MQTT_Subscribe_task(void *pvParameters);				// MQTTSUBSCRIBE任务
+void MQTT_Publish_task(void *pvParameters);				// MQTTPUBLISH任务
 /***********************************************************
 						任务函数句柄
 ************************************************************/
 //任务函数句柄
 TaskHandle_t StartTask_Handler;			//Start任务
 TaskHandle_t TouchTask_Handler;			//TOUCH任务
-TaskHandle_t UserIfTask_Handler;		//接口消息任务
+TaskHandle_t UserIfTask_Handler;		//UserIf空闲任务
 TaskHandle_t EmwindemoTask_Handler;		//emwin任务
 TaskHandle_t LedTask_Handler;		//LED任务
 TaskHandle_t Adc_task_Handler;		//ADC任务
@@ -75,32 +94,38 @@ TaskHandle_t PWM_task_Handler;		//PWM任务
 TaskHandle_t MQTT_Connect_task_Handler;		  // MQTTconnect任务
 TaskHandle_t MQTT_Rec_task_Handler;		  // MQTT接收任务
 TaskHandle_t MQTT_PINGREQ_task_Handler;		  // MQTTPINGREQ任务
+TaskHandle_t MQTT_SUBSCRIBE_task_Handler;				// MQTTSUBSCRIBE任务
+TaskHandle_t MQTT_Publish_task_Handler;				// MQTTPUBLISH任务
 /***********************************************************
 						任务堆栈大小
 ************************************************************/
 #define START_STK_SIZE 			256  	//Start任务
 #define TOUCH_STK_SIZE			128		//TOUCH任务
-#define USERIF_STK_SIZE			512		//接口消息任务
+#define USERIF_STK_SIZE			512		//UserIf空闲任务
 #define EMWINDEMO_STK_SIZE		512		//emwin任务
 #define LED_STK_SIZE		128	//LED任务
 #define ADC_STK_SIZE		512	//ADC任务
 #define PWM_STK_SIZE		128	//PWM任务
-#define MQTT_Connect_STK_SIZE		512	// MQTTconnect任务
+#define MQTT_Connect_STK_SIZE		128	// MQTTconnect任务
 #define MQTT_Rec_STK_SIZE		512	// MQTT接收任务
-#define MQTT_PINGREQ_STK_SIZE		128	// MQTTPINGREQ任务
+#define MQTT_PINGREQ_STK_SIZE		256	// MQTTPINGREQ任务
+#define MQTT_SUBSCRIBE_STK_SIZE		128		// MQTTSUBSCRIBE任务
+#define MQTT_Publish_STK_SIZE			256// MQTTPUBLISH任务
 /***********************************************************
 						 任务优先级(数值越小优先级越低)
 ************************************************************/
 #define START_TASK_PRIO			4		//Start任务
 #define TOUCH_TASK_PRIO			0	//TOUCH任务
-#define USERIF_TASK_PRIO 		0	    //接口消息任务
+#define USERIF_TASK_PRIO 		0	   //UserIf空闲任务
 #define EMWINDEMO_TASK_PRIO		0		//emwin任务
 #define LED_TASK_PRIO		1		//LED任务
 #define ADC_TASK_PRIO		2		//ADC任务
 #define PWM_TASK_PRIO		2		//PWM任务
-#define MQTT_Connect_TASK_PRIO		2		// MQTTCONNCET任务
-#define MQTT_Rec_TASK_PRIO		3		// MQTT接收任务
+#define MQTT_Connect_TASK_PRIO		3		// MQTTCONNCET任务
+#define MQTT_Rec_TASK_PRIO		2		// MQTT接收任务
 #define MQTT_PINGREQ_TASK_PRIO		2		// MQTTPINGREQ任务
+#define MQTT_SUBSCRIBE_TASK_PRIO		3		// MQTTSUBSCRIBE任务
+#define MQTT_Publish_TASK_PRIO			2	// MQTTPUBLISH任务
 /***********************************************************
 						 主函数入口
 ************************************************************/
@@ -203,7 +228,7 @@ SempaphoreCreate();
                 (void*          )NULL,                  
                 (UBaseType_t    )TOUCH_TASK_PRIO,        
                 (TaskHandle_t*  )&TouchTask_Handler);   	
-    //创建UserIf串口打印任务
+    //创建UserIf空闲任务
     xTaskCreate((TaskFunction_t )UserIf_task,             
                 (const char*    )"UserIf",           
                 (uint16_t       )USERIF_STK_SIZE,        
@@ -267,7 +292,23 @@ SempaphoreCreate();
                 (UBaseType_t    )MQTT_PINGREQ_TASK_PRIO,//
                 (TaskHandle_t*  )&MQTT_PINGREQ_task_Handler);
 				
-								
+				//创建MQTT SUBSCRIBE任务			
+		   xTaskCreate((TaskFunction_t )MQTT_Subscribe_task,             
+                (const char*    )"MQTT_SUBSCRIBE_Task",           
+                (uint16_t       )MQTT_SUBSCRIBE_STK_SIZE,        
+                (void*          )NULL,                  
+                (UBaseType_t    )MQTT_SUBSCRIBE_TASK_PRIO,//
+                (TaskHandle_t*  )&MQTT_SUBSCRIBE_task_Handler);
+				
+				//创建MQTT PUBLISH任务			
+			 xTaskCreate((TaskFunction_t )MQTT_Publish_task,             
+                (const char*    )"MQTT_PUBLISH_Task",           
+                (uint16_t       )MQTT_Publish_STK_SIZE,        
+                (void*          )NULL,                  
+                (UBaseType_t    )MQTT_Publish_TASK_PRIO,//
+                (TaskHandle_t*  )&MQTT_Publish_task_Handler);
+				
+														
     vTaskDelete(StartTask_Handler); //删除开始任务
     taskEXIT_CRITICAL();            //退出临界区
 }

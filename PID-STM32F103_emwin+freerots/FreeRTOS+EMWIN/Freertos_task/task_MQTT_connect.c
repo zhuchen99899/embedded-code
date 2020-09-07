@@ -2,7 +2,6 @@
 
 #include "freertos.h"
 #include "task.h"
-#include "queue.h"
 #include "stdio.h"
 #include "string.h"
 #include "wifi.h"
@@ -24,6 +23,7 @@ void MQTT_Connect_task(void *pvParameters)
 BaseType_t err=pdFALSE;
  u8 temp_buff[256];
 int len;
+int i;
 vTaskDelay(20000);
 conncect_init(); //MQTTconncet 报头初始化设置
 	while(1)
@@ -37,19 +37,19 @@ conncect_init(); //MQTTconncet 报头初始化设置
 			WIFI_send(temp_buff,len);
 
 					/*******打印wifi发送*******/
-		/*
+		
 		for (i=0;i<len;i++)
 		{
 		printf("%02x",temp_buff[i]);
 	
 		}
-	*/
-			}
-
-
-
-
 	
+			
+		printf("CONNECT报文发送完成\r\n");
+
+
+
+			}
 
 	
       vTaskDelay(15000);                           //延时15s

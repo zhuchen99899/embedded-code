@@ -36,7 +36,6 @@ static void _cbCallbackButton_Controller_1(WM_MESSAGE * pMsg) {
 
 	u8 key=0;
   extern QueueHandle_t Key_Queue;
-	BaseType_t Key_Result;
 	// USER END
 
 	switch (pMsg->MsgId) {
@@ -79,20 +78,8 @@ static void _cbCallbackButton_Controller_1(WM_MESSAGE * pMsg) {
 			case WM_NOTIFICATION_RELEASED:
 				// USER START (Optionally insert code for reacting on notification message)
 					key=1;
-					Key_Result=xQueueSend(Key_Queue,&key,10);
+					xQueueSend(Key_Queue,&key,10);
 					key=0;
-			   if(Key_Queue!=NULL)   	//消息队列Key_Queue发送成功
-				 {
-				 printf("按键消息发送成功");
-					 
-				 }
-					
-				 else
-				{
-					printf("按键消息发送失败 :%ld" ,Key_Result);
-				}
-			  //(void)Key_Result;
-		
 			
 				// USER END
 				break;
