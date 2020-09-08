@@ -9,3 +9,5 @@
 ..\obj\mqtt_init.o: ..\MQTT\MQTTpingreq.h
 ..\obj\mqtt_init.o: ..\MQTT\MQTTsubscribe.h
 ..\obj\mqtt_init.o: ..\MQTT\MQTTpublish.h
+..\obj\mqtt_init.o: ..\CJSON\cJSON.h
+..\obj\mqtt_init.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stddef.h

@@ -123,3 +123,13 @@
 ..\obj\main.o: ..\Freertos_task\task_MQTT_publish.h
 ..\obj\main.o: ..\Freertos_task\task_MQTT_rec.h
 ..\obj\main.o: ..\Freertos_task\task_userif.h
+..\obj\main.o: ..\MQTT\MQTT.h
+..\obj\main.o: ..\MQTT\MQTTConfig.h
+..\obj\main.o: ..\MQTT\MQTT_init.h
+..\obj\main.o: ..\MQTT\MQTTconnect.h
+..\obj\main.o: ..\MQTT\MQTTpacket.h
+..\obj\main.o: ..\MQTT\MQTTunpacket.h
+..\obj\main.o: ..\MQTT\MQTTpingreq.h
+..\obj\main.o: ..\MQTT\MQTTsubscribe.h
+..\obj\main.o: ..\MQTT\MQTTpublish.h
+..\obj\main.o: ..\CJSON\cJSON.h

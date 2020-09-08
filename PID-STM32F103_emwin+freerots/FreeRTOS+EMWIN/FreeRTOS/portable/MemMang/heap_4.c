@@ -75,6 +75,7 @@
  * See heap_1.c, heap_2.c and heap_3.c for alternative implementations, and the
  * memory management pages of http://www.FreeRTOS.org for more information.
  */
+#include <string.h>
 #include <stdlib.h>
 
 /* Defining MPU_WRAPPERS_INCLUDED_FROM_API_FILE prevents task.h from redefining
@@ -475,4 +476,5 @@ uint8_t *puc;
 		mtCOVERAGE_TEST_MARKER();
 	}
 }
+
 

@@ -83,7 +83,7 @@ void PWM_task(void *pvParameters)
 			pid.Kp=PIDMSG->Kp;
 			pid.Ki=PIDMSG->Ki;
 			pid.Kd=PIDMSG->Kd;
-				ADC1_tem=adc1;
+			ADC1_tem=adc1;
 				
 				//settemdisplay=Settem;
 				

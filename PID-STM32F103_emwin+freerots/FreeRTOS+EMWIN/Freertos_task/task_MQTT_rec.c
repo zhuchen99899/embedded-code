@@ -28,6 +28,8 @@ u8 wifi_buffer[256];
 /*************************WIFI接收任务函数******************/
 void MQTT_rec_task(void *pvParameters)
 {
+
+
 	/**********************PUBLISH解包参数*********************/
 		unsigned char DeserializePublish_dup;
 		int DeserializePublish_qos;
@@ -37,16 +39,13 @@ void MQTT_rec_task(void *pvParameters)
 		unsigned char* DeserializePublish_payload;
 		int DeserializePublish_payloadlen;
 	
-	//PUBLISH主题判断
-		char * topic1=subscrible1_topicFilters1;
+	//topic / payload负载判断		
 	
-	
-									char topic[256];
-									char data[256];									
-									
-	
+	//申请动态内存指针
+	char *topic1;
+	char *payload1;
 /********************变量****************************/
-	int i;
+
 
 	/***************信号量参数************/
 	BaseType_t err=pdFALSE;
@@ -185,55 +184,43 @@ xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 									
 									
 									
+			/*************主题/负载判断****************/						
 									
-									
-									
-									
-									
-								//	memcpy(topic,DeserializePublish_topicName.string,DeserializePublish_topicName.len);
-									memcpy(data,DeserializePublish_payload,DeserializePublish_payloadlen);
-		
-									printf("DUP:%d\r\n",DeserializePublish_dup);
-										printf("qps:%d\r\n",DeserializePublish_qos);
-										printf("retained:%d\r\n",DeserializePublish_retained);
-							
-									
-									
-									
-									
-									
-		for (i=0;i<DeserializePublish_topicName.len;i++)
-		{
-		printf("%c",DeserializePublish_topicName.string[i]);
-	
-		}
-		printf("topic接收完成\r\n");
-			
-			
-		for (i=0;i<DeserializePublish_payloadlen;i++)
-		{
-		printf("%c",data[i]);
-	
-		}
-		printf("payload接收完成\r\n");
-		
-	
-		for (i=0;i<wifireceive->wifi_lenth;i++)
-		{
-		printf("%02x",wifireceive->wifi_buffer[i]);
-	
-		}
-			
-		
-		
-			/*										
-			if(DeserializePublish_topicName.string==topic1)
+					printf("DUP:%d\r\n",DeserializePublish_dup);
+					printf("qps:%d\r\n",DeserializePublish_qos);
+					printf("retained:%d\r\n",DeserializePublish_retained);
+
+//申请动态内存保存主题和负载							
+topic1=pvPortMalloc(DeserializePublish_topicName.len);
+payload1=pvPortMalloc(DeserializePublish_payloadlen);
+memcpy(payload1,DeserializePublish_payload,DeserializePublish_payloadlen);
+memcpy(topic1,DeserializePublish_topicName.string,DeserializePublish_topicName.len);
+//清零字符串最后一位，防止乱码
+payload1[DeserializePublish_payloadlen]=0;
+topic1[DeserializePublish_topicName.len]=0;		
+
+			if((strcmp(topic1,topic1_compare_monolayer)==0)||(strcmp(topic1,topic1_compare_Universal))==0||(strcmp(topic1,subscrible1_topicFilters1))==0)
 			{
-				printf("主题为按键主题\r\n");
+				printf("主题为按键主题\r\n");							
+				printf("主题为%s\r\n",topic1);	
+				printf("负载为%s\r\n",payload1);
 			}//主题确认
-			*/
+			else
+			{
+			
+			printf("非按键主题\r\n");
+			}
 		
-			printf("主题判断完成\r\n");
+							
+	vPortFree(payload1);	
+	vPortFree(topic1);	
+
+		
+			
+		
+		
+													
+
 			
 		};//else if publish报文
 		

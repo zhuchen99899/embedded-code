@@ -20,7 +20,6 @@ void touch_task(void *pvParameters)
 
 void emwindemo_task(void *pvParameters)
 {
-	
 
 		
 	

@@ -55,3 +55,4 @@
 ..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTpingreq.h
 ..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTsubscribe.h
 ..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTpublish.h
+..\obj\task_mqtt_pingreq.o: ..\CJSON\cJSON.h

@@ -54,5 +54,6 @@
 ..\obj\task_mqtt_publish.o: ..\MQTT\MQTTpingreq.h
 ..\obj\task_mqtt_publish.o: ..\MQTT\MQTTsubscribe.h
 ..\obj\task_mqtt_publish.o: ..\MQTT\MQTTpublish.h
+..\obj\task_mqtt_publish.o: ..\CJSON\cJSON.h
 ..\obj\task_mqtt_publish.o: ..\FreeRTOS\include\semphr.h
 ..\obj\task_mqtt_publish.o: ..\FreeRTOS\include\queue.h

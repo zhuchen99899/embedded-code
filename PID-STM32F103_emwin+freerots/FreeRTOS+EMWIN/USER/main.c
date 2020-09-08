@@ -110,7 +110,7 @@ TaskHandle_t MQTT_Publish_task_Handler;				// MQTTPUBLISH任务
 #define MQTT_Rec_STK_SIZE		512	// MQTT接收任务
 #define MQTT_PINGREQ_STK_SIZE		256	// MQTTPINGREQ任务
 #define MQTT_SUBSCRIBE_STK_SIZE		128		// MQTTSUBSCRIBE任务
-#define MQTT_Publish_STK_SIZE			256// MQTTPUBLISH任务
+#define MQTT_Publish_STK_SIZE			512// MQTTPUBLISH任务
 /***********************************************************
 						 任务优先级(数值越小优先级越低)
 ************************************************************/
@@ -220,7 +220,7 @@ SempaphoreCreate();
 //发送MQTT任务信号量
 	xSemaphoreGive(BinarySemaphore_MQTTconnect);//发送MQTT Connack报文信号
 	/**********************************任务创建******************************/
-	
+	CJSON_INIT();
 	//创建触摸任务
     xTaskCreate((TaskFunction_t )touch_task,             
                 (const char*    )"touch_task",           

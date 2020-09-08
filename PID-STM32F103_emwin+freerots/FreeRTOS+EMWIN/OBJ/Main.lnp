@@ -17,10 +17,10 @@
 "..\obj\ctiic.o"
 "..\obj\ft5206.o"
 "..\obj\gt9147.o"
-"..\obj\ott2001a.o"
+"..\obj\adc.o"
 "..\obj\touch.o"
 "..\obj\timer.o"
-"..\obj\adc.o"
+"..\obj\ott2001a.o"
 "..\obj\stmflash.o"
 "..\obj\wifi.o"
 "..\obj\pwm.o"
@@ -81,7 +81,8 @@
 "..\obj\mqttpacket.o"
 "..\obj\mqttunpacket.o"
 "..\obj\mqtt_init.o"
---strict --scatter "..\OBJ\Main.sct"
+"..\obj\cjson.o"
+--library_type=microlib --strict --scatter "..\OBJ\Main.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "..\OBJ\Main.map" -o ..\OBJ\Main.axf

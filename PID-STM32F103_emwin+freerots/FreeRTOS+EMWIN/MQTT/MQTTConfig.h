@@ -46,10 +46,22 @@ Subscribe 订阅报文配设
 
 /*******订阅报文1*******/
 #define subscribe_packetid   1   // 报文标识符
+
+
+
+//主题1
 #define subscrible1_topicFilters1   "STM32F103ZET6/KEY"  //主题1
 #define subscribe1_qos1        1   //主题1订阅等级
 
 
+
+//主题1通配查找
+#define topic1_compare_monolayer      "STM32F103ZET6/+"    
+#define topic1_compare_Universal      "STM32F103ZET6/#"
+
+
+
+//主题2
 #define subscrible1_topicFilters2	 "STM32F103ZET6/PID"  //主题2
 #define subscribe1_qos2				1		 //主题2订阅等级
 
@@ -67,6 +79,10 @@ Publish 报文配设
 #define publish1_retained   0  //是否保留消息
 #define publish1_packetid   2  //报文标识符 message id 
 #define publish1_topicname   "STM32F103ZET6/temperature"  //主题名
+
+
+
+
 
 #endif
 

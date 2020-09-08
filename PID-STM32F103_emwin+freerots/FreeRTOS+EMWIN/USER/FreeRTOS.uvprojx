@@ -224,7 +224,7 @@
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <RoSelD>3</RoSelD>
@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\MALLOC;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\HARDWARE\LED;..\HARDWARE\TIMER;..\HARDWARE\LCD;..\HARDWARE\SPI;..\HARDWARE\KEY;..\HARDWARE\IIC;..\HARDWARE\24CXX;..\HARDWARE\SRAM;..\HARDWARE\TOUCH;..\HARDWARE\W25QXX;..\EMWIN\EMWIN_APP;..\EMWIN\STemWin\inc;..\EMWIN\STemWin\Config;..\HARDWARE\ADC;..\EMWIN\STemWin_Addons;..\HARDWARE\STMFLASH;..\HARDWARE\PWM;..\HARDWARE\WIFI;..\Freertos_task;..\MQTT</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\MALLOC;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\HARDWARE\LED;..\HARDWARE\TIMER;..\HARDWARE\LCD;..\HARDWARE\SPI;..\HARDWARE\KEY;..\HARDWARE\IIC;..\HARDWARE\24CXX;..\HARDWARE\SRAM;..\HARDWARE\TOUCH;..\HARDWARE\W25QXX;..\EMWIN\EMWIN_APP;..\EMWIN\STemWin\inc;..\EMWIN\STemWin\Config;..\HARDWARE\ADC;..\EMWIN\STemWin_Addons;..\HARDWARE\STMFLASH;..\HARDWARE\PWM;..\HARDWARE\WIFI;..\Freertos_task;..\MQTT;..\CJSON</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -509,9 +509,9 @@
               <FilePath>..\HARDWARE\TOUCH\gt9147.c</FilePath>
             </File>
             <File>
-              <FileName>ott2001a.c</FileName>
+              <FileName>adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\TOUCH\ott2001a.c</FilePath>
+              <FilePath>..\HARDWARE\ADC\adc.c</FilePath>
             </File>
             <File>
               <FileName>touch.c</FileName>
@@ -524,9 +524,9 @@
               <FilePath>..\HARDWARE\TIMER\timer.c</FilePath>
             </File>
             <File>
-              <FileName>adc.c</FileName>
+              <FileName>ott2001a.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\ADC\adc.c</FilePath>
+              <FilePath>..\HARDWARE\TOUCH\ott2001a.c</FilePath>
             </File>
             <File>
               <FileName>stmflash.c</FileName>
@@ -912,6 +912,16 @@
               <FileName>README.TXT</FileName>
               <FileType>5</FileType>
               <FilePath>..\README.TXT</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>CJSON</GroupName>
+          <Files>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CJSON\cJSON.c</FilePath>
             </File>
           </Files>
         </Group>
