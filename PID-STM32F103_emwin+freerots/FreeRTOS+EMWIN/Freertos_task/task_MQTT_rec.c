@@ -28,8 +28,6 @@ u8 wifi_buffer[256];
 /*************************WIFI接收任务函数******************/
 void MQTT_rec_task(void *pvParameters)
 {
-
-
 	/**********************PUBLISH解包参数*********************/
 		unsigned char DeserializePublish_dup;
 		int DeserializePublish_qos;
@@ -39,11 +37,13 @@ void MQTT_rec_task(void *pvParameters)
 		unsigned char* DeserializePublish_payload;
 		int DeserializePublish_payloadlen;
 	
-	//topic / payload负载判断		
-	
-	//申请动态内存指针
+
+							
+									
+		//申请动态内存指针
 	char *topic1;
 	char *payload1;
+	
 /********************变量****************************/
 
 
@@ -181,15 +181,15 @@ xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 									&DeserializePublish_payloadlen,(unsigned char*)(wifireceive->wifi_buffer),
 									(int)(wifireceive->wifi_lenth));	
 
-									
-									
-									
-			/*************主题/负载判断****************/						
+				/*************主题/负载判断****************/						
 									
 					printf("DUP:%d\r\n",DeserializePublish_dup);
 					printf("qps:%d\r\n",DeserializePublish_qos);
 					printf("retained:%d\r\n",DeserializePublish_retained);
-
+		
+							
+									
+									
 //申请动态内存保存主题和负载							
 topic1=pvPortMalloc(DeserializePublish_topicName.len);
 payload1=pvPortMalloc(DeserializePublish_payloadlen);
@@ -216,10 +216,6 @@ topic1[DeserializePublish_topicName.len]=0;
 	vPortFree(topic1);	
 
 		
-			
-		
-		
-													
 
 			
 		};//else if publish报文

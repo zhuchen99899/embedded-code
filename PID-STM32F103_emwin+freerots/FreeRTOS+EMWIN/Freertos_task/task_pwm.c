@@ -83,16 +83,16 @@ void PWM_task(void *pvParameters)
 			pid.Kp=PIDMSG->Kp;
 			pid.Ki=PIDMSG->Ki;
 			pid.Kd=PIDMSG->Kd;
-			ADC1_tem=adc1;
+				ADC1_tem=adc1;
 				
-				//settemdisplay=Settem;
+			//	settemdisplay=Settem;
 				
 
 		
 		/*****************PWM¸Ä±ä*****************/
 		led0pwmval=pid_realize(Settem);
 
-		//printf("PWM¼Ä´æÆ÷=%d \r\n,ADC1_tem=%f \r\n,kp=%f\r\n,ki=%f \r\n,kd=%f\r\n,settem=%f \r\n",led0pwmval,adc1,pid.Kp,pid.Ki,pid.Kd,settemdisplay);
+	//	printf("PWM¼Ä´æÆ÷=%d \r\n,ADC1_tem=%f \r\n,kp=%f\r\n,ki=%f \r\n,kd=%f\r\n,settem=%f \r\n",led0pwmval,adc1,pid.Kp,pid.Ki,pid.Kd,settemdisplay);
 
 		TIM_SetCompare2(TIM3,led0pwmval);//PWMÊä³ö
 

@@ -22,8 +22,11 @@
 
 /* cJSON */
 /* JSON parser in C. */
-#include "freertos.h"
+
 /* disable warnings about old C89 functions in MSVC */
+
+#include "freertos.h"
+
 #if !defined(_CRT_SECURE_NO_DEPRECATE) && defined(_MSC_VER)
 #define _CRT_SECURE_NO_DEPRECATE
 #endif
@@ -143,12 +146,12 @@ static void CJSON_CDECL internal_free(void *pointer)
 }
 static void * CJSON_CDECL internal_realloc(void *pointer, size_t size)
 {
-    return realloc(pointer, size);
+    return pvPortRealloc(pointer, size);
 }
 #else
-#define internal_malloc  pvPortMalloc
+#define internal_malloc pvPortMalloc
 #define internal_free vPortFree
-#define internal_realloc realloc
+#define internal_realloc pvPortRealloc
 #endif
 
 /* strlen of character literals resolved at compile time */
@@ -182,19 +185,19 @@ CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks)
     if (hooks == NULL)
     {
         /* Reset hooks */
-        global_hooks.allocate = malloc;
-        global_hooks.deallocate = free;
-        global_hooks.reallocate = realloc;
+        global_hooks.allocate = pvPortMalloc;
+        global_hooks.deallocate = vPortFree;
+        global_hooks.reallocate = pvPortRealloc;
         return;
     }
 
-    global_hooks.allocate = malloc;
+    global_hooks.allocate = pvPortMalloc;
     if (hooks->malloc_fn != NULL)
     {
         global_hooks.allocate = hooks->malloc_fn;
     }
 
-    global_hooks.deallocate = free;
+    global_hooks.deallocate = vPortFree;
     if (hooks->free_fn != NULL)
     {
         global_hooks.deallocate = hooks->free_fn;
@@ -202,9 +205,9 @@ CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks)
 
     /* use realloc only if both free and malloc are used */
     global_hooks.reallocate = NULL;
-    if ((global_hooks.allocate == malloc) && (global_hooks.deallocate == free))
+    if ((global_hooks.allocate == pvPortMalloc) && (global_hooks.deallocate == vPortFree))
     {
-        global_hooks.reallocate = realloc;
+        global_hooks.reallocate = pvPortRealloc;
     }
 }
 
@@ -2980,15 +2983,20 @@ CJSON_PUBLIC(void) cJSON_free(void *object)
 
 
 
-
-void CJSON_INIT()
+void CJSON_init()
 {
-
     cJSON_Hooks hooks;
     hooks.malloc_fn = pvPortMalloc;
     hooks.free_fn = vPortFree;
+
     cJSON_InitHooks(&hooks);
 
+
+	
+	
 };
+
+
+
 
 

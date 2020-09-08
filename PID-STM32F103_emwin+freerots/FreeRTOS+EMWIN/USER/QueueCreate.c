@@ -89,7 +89,7 @@ void Set_QueueCreat(void)
 void Settem_QueueCreat(void)
 {
 	extern QueueHandle_t Settem_Queue;
-	Settem_Queue = xQueueCreate(SETTEMMESSAGE_Q_NUM,sizeof(int));
+	Settem_Queue = xQueueCreate(SETTEMMESSAGE_Q_NUM,sizeof(float));
 	if (Settem_Queue==0)
 	{
 	/*消息创建失败处理机制*/

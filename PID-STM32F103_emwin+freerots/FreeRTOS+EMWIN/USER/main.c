@@ -53,7 +53,7 @@ SemaphoreHandle_t BinarySemaphore_MQTTsubscribe;//MQTT SUBSCRIBE报文二值信号量句
 #define FLASH_SAVE_ADDR_I  	 0x0807FF60 
 #define FLASH_SAVE_ADDR_D    0x0807FF50
 
- 	//结构体保存变量 用于消息队列
+ //结构体保存变量 用于消息队列
 typedef struct SETMSG
 	{
 		float Kp;
@@ -110,7 +110,7 @@ TaskHandle_t MQTT_Publish_task_Handler;				// MQTTPUBLISH任务
 #define MQTT_Rec_STK_SIZE		512	// MQTT接收任务
 #define MQTT_PINGREQ_STK_SIZE		256	// MQTTPINGREQ任务
 #define MQTT_SUBSCRIBE_STK_SIZE		128		// MQTTSUBSCRIBE任务
-#define MQTT_Publish_STK_SIZE			512// MQTTPUBLISH任务
+#define MQTT_Publish_STK_SIZE			256// MQTTPUBLISH任务
 /***********************************************************
 						 任务优先级(数值越小优先级越低)
 ************************************************************/
@@ -119,8 +119,8 @@ TaskHandle_t MQTT_Publish_task_Handler;				// MQTTPUBLISH任务
 #define USERIF_TASK_PRIO 		0	   //UserIf空闲任务
 #define EMWINDEMO_TASK_PRIO		0		//emwin任务
 #define LED_TASK_PRIO		1		//LED任务
-#define ADC_TASK_PRIO		2		//ADC任务
-#define PWM_TASK_PRIO		2		//PWM任务
+#define ADC_TASK_PRIO		4		//ADC任务
+#define PWM_TASK_PRIO		4		//PWM任务
 #define MQTT_Connect_TASK_PRIO		3		// MQTTCONNCET任务
 #define MQTT_Rec_TASK_PRIO		2		// MQTT接收任务
 #define MQTT_PINGREQ_TASK_PRIO		2		// MQTTPINGREQ任务
@@ -192,7 +192,7 @@ float settem;
 	
 	
     taskENTER_CRITICAL();           //进入临界区
-	
+               //设置Cjson使用freertos malloc free 函数
 	/***********开机时读取flash中PID参数以及设置温度**************/
 	Flashdata= &g_tMsg; //结构体指针初始化
 	Flashdata->Kp=0;
@@ -217,10 +217,16 @@ SempaphoreCreate();
 		xQueueOverwrite(Set_Queue,(void *)&Flashdata);			
 		xQueueOverwrite(Settem_Queue,&settem);			
 
+
+
 //发送MQTT任务信号量
 	xSemaphoreGive(BinarySemaphore_MQTTconnect);//发送MQTT Connack报文信号
+	
+	CJSON_init();
 	/**********************************任务创建******************************/
-	CJSON_INIT();
+	
+	
+	
 	//创建触摸任务
     xTaskCreate((TaskFunction_t )touch_task,             
                 (const char*    )"touch_task",           

@@ -283,9 +283,7 @@ CJSON_PUBLIC(cJSON*) cJSON_AddObjectToObject(cJSON * const object, const char * 
 CJSON_PUBLIC(cJSON*) cJSON_AddArrayToObject(cJSON * const object, const char * const name);
 
 
-
-
-void CJSON_INIT(void);
+void CJSON_init(void);
 
 
 
