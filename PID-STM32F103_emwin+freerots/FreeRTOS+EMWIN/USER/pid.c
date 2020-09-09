@@ -45,7 +45,7 @@ float Abs(float val)    //取绝对值
 
 float pid_realize(float tem)
 { 
-u8 index=0;       //积分分离选择
+	u8 index=0;       //积分分离选择
 	
 	pid.SetTem=tem;
 	pid.ActualTem=(float)ADC1_tem;

@@ -44,6 +44,16 @@ void MQTT_rec_task(void *pvParameters)
 	char *topic1;
 	char *payload1;
 	
+	
+	/* 创建JSON结构体指针*/
+	cJSON *json = NULL;
+	cJSON *node = NULL;
+	cJSON *tnode = NULL;
+	cJSON *tnode2 = NULL;
+	char *json_data = NULL;
+	int i, j, size, size2;	
+	
+	
 /********************变量****************************/
 
 
@@ -204,18 +214,43 @@ topic1[DeserializePublish_topicName.len]=0;
 				printf("主题为按键主题\r\n");							
 				printf("主题为%s\r\n",topic1);	
 				printf("负载为%s\r\n",payload1);
+				
+				
+								/****************有效载荷Cjson解包******************/
+			
+			
+									/**********	完整输出一个JSON对象结构************/
+								json = cJSON_Parse(payload1);                         //从数据缓冲区解析JASON对象结构
+								json_data = cJSON_Print(json);                    //将传入的JASON对象转化为JASON字符串
+								printf("data: %s\n", json_data);                  //输出JASON结构
+								vPortFree(json_data);                                  //释放JASON结构
+
+									/****************JASON树中键值对解析***************/
+									//根据键名再JASON中查找子节点，查找出UnderControl对象
+									node = cJSON_GetObjectItem(json, "serialNumber");
+									if (node == NULL)
+									{
+									printf("serialNumber: no\n");
+									
+									}	
+									else
+									{
+									printf("serialNumber: ok\n");
+									}
+			
+	cJSON_Delete(json);
+				
 			}//主题确认
 			else
 			{
 			
 			printf("非按键主题\r\n");
-			}
+			}//主题确认
 		
-							
+			//释放解包所申请的空间
 	vPortFree(payload1);	
 	vPortFree(topic1);	
-
-		
+printf(" 接收任务内存剩余量= %d\r\n", xPortGetFreeHeapSize());
 
 			
 		};//else if publish报文

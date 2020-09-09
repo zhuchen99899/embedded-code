@@ -1,0 +1,7 @@
+{	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		  {
+		                      "name":"ethernet0/0/1",
+			            "switch" : "0"
+	                   }	 ]
+}

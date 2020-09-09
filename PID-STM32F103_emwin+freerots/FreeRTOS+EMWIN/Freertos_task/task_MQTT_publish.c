@@ -73,7 +73,7 @@ publish_init();
 		printf("PUBLISH报文发送完成");
 			*/
 	
-printf(" 申请后内存剩余量 = %d\r\n", xPortGetFreeHeapSize());
+printf(" 发布任务申请后内存剩余量 = %d\r\n", xPortGetFreeHeapSize());
 	
 	
 printf("%s",json_buf);

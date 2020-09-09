@@ -2134,4 +2134,1840 @@
 	"float number":	[{
 			"tempreture":	"32.720184"
 		}]
+}
+[2020/9/9 9:34:42 884]  通信猫调试软件    2020/9/9
+[2020/9/9 9:34:42 893]  http://tongxinmao.com
+[2020/9/9 9:34:43 427]  
+
+[2020/9/9 9:34:53 766]  正在连接MQTT服务器...
+[2020/9/9 9:34:53 791]  MQTT连接成功
+[2020/9/9 9:34:54 375]  MQTT主题订阅成功
+[2020/9/9 9:41:58 114]  DeviceChange
+[2020/9/9 9:41:58 360]  DeviceChange
+[2020/9/9 9:41:58 703]  DeviceChange
+[2020/9/9 9:42:20 760]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:42:20 766]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:43:02 466]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:43:02 472]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:43:04 983]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：131字节：
+[2020/9/9 9:43:04 994]  {
+    "Control":"LED0",
+       "ControlInfo":[
+                               {"key0":"on"}
+                             ]
+}
+
+[2020/9/9 9:43:17 481]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:43:17 487]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:43:32 509]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:43:32 515]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:43:47 520]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:43:47 526]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:44:02 509]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:44:02 514]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:44:17 531]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:44:17 536]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:44:32 545]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:44:32 551]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:44:47 590]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:44:47 595]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:45:02 570]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:45:02 576]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:45:17 607]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:45:17 613]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:45:32 588]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:45:32 593]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:45:47 598]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:45:47 603]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:46:02 623]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:46:02 629]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:46:17 634]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:46:17 640]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:46:32 637]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:46:32 643]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:46:47 649]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:46:47 654]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:47:02 668]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:47:02 673]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:47:17 664]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:47:17 670]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:47:32 705]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:47:32 711]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:47:47 709]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:47:47 714]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:48:02 717]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:48:02 723]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:48:17 728]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:48:17 734]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:48:32 737]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:48:32 743]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:48:47 741]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:48:47 746]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:49:02 758]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:49:02 763]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:49:17 767]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:49:17 772]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:49:32 783]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:49:32 788]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:49:47 798]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:49:47 803]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:50:02 807]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:50:02 812]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:50:17 824]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:50:17 830]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:50:32 842]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:50:32 847]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 9:50:47 857]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:50:47 863]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:51:02 861]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:51:02 867]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:51:17 866]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:51:17 872]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 9:51:32 887]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:51:32 893]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:51:47 901]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:51:47 906]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:52:02 917]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:52:02 922]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:52:17 918]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:52:17 923]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:52:32 926]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:52:32 931]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:52:47 947]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:52:47 952]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:53:02 967]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:53:02 972]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:53:17 983]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:53:17 988]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:53:32 990]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:53:32 995]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:53:48 005]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:53:48 011]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:54:03 007]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:54:03 014]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:54:18 026]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:54:18 032]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:54:33 057]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:54:33 062]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:54:48 048]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:54:48 053]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:55:03 068]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:55:03 073]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:55:18 060]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:55:18 066]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:55:33 101]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:55:33 107]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:55:48 106]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:55:48 111]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:56:03 116]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:56:03 122]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:56:18 126]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:56:18 132]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:56:33 136]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:56:33 141]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:56:48 140]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:56:48 145]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:57:03 158]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:57:03 164]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:57:18 174]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:57:18 180]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:57:33 180]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:57:33 186]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:57:48 221]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:57:48 226]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:58:03 211]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:58:03 217]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:58:18 222]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:58:18 228]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:58:33 234]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:58:33 239]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:58:48 254]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:58:48 260]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 9:59:03 261]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:59:03 266]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:59:18 275]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:59:18 281]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:59:33 286]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:59:33 291]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 9:59:48 301]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 9:59:48 306]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 10:00:03 315]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:00:03 320]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 10:00:18 326]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:00:18 332]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:00:33 340]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:00:33 345]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 10:00:48 345]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:00:48 350]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 10:01:03 354]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:01:03 360]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 10:01:18 378]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:01:18 384]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:01:33 383]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:01:33 388]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 10:01:48 405]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:01:48 410]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:02:03 433]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:02:03 439]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 10:02:18 434]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:02:18 439]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:02:33 443]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:02:33 449]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 10:02:48 444]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:02:48 449]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:03:03 464]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:03:03 469]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:03:18 483]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:03:18 489]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:03:33 485]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:03:33 491]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:03:48 505]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:03:48 510]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:04:03 522]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:04:03 528]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:04:18 538]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:04:18 544]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:04:33 532]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:04:33 537]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:04:48 573]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:04:48 578]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:05:03 565]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:05:03 570]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 10:05:18 584]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:05:18 590]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 10:05:33 589]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:05:33 594]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:05:48 593]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:05:48 598]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:06:03 606]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:06:03 613]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:06:18 627]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:06:18 634]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:06:33 640]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:06:33 646]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:06:48 653]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:06:48 659]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:07:03 659]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:07:03 665]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:07:18 682]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 10:07:18 688]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 10:07:27 342]  DeviceChange
+[2020/9/9 10:07:27 579]  DeviceChange
+[2020/9/9 11:07:27 707]  通信猫调试软件    2020/9/9
+[2020/9/9 11:07:27 726]  http://tongxinmao.com
+[2020/9/9 11:07:28 178]  
+
+[2020/9/9 11:13:11 501]  DeviceChange
+[2020/9/9 11:13:11 993]  DeviceChange
+[2020/9/9 11:56:14 423]  DeviceChange
+[2020/9/9 11:56:14 981]  DeviceChange
+[2020/9/9 11:56:25 715]  DeviceChange
+[2020/9/9 11:56:26 179]  DeviceChange
+[2020/9/9 12:14:06 649]  未连接MQTT服务器
+[2020/9/9 12:22:27 439]  DeviceChange
+[2020/9/9 12:22:27 920]  DeviceChange
+[2020/9/9 12:22:41 225]  DeviceChange
+[2020/9/9 12:25:19 377]  DeviceChange
+[2020/9/9 12:25:19 580]  DeviceChange
+[2020/9/9 12:25:19 896]  DeviceChange
+[2020/9/9 12:26:18 711]  DeviceChange
+[2020/9/9 12:26:18 912]  DeviceChange
+[2020/9/9 12:26:26 503]  DeviceChange
+[2020/9/9 12:26:26 654]  DeviceChange
+[2020/9/9 12:26:26 936]  DeviceChange
+[2020/9/9 12:27:22 151]  正在连接MQTT服务器...
+[2020/9/9 12:27:22 174]  MQTT连接成功
+[2020/9/9 12:27:22 804]  MQTT主题订阅成功
+[2020/9/9 12:27:25 611]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:27:25 616]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:27:27 962]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：146字节：
+[2020/9/9 12:27:27 966]  { 
+   "UnderControl":"stm32"
+      "ConrtolInfo":[
+
+                            {       "LED0" :"on"     } 
+                           ]
+
+}
+[2020/9/9 12:27:40 625]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:27:40 630]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:27:55 610]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:27:55 616]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:28:10 630]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:28:10 637]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:28:25 630]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:28:25 636]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:28:40 661]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:28:40 667]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:28:55 660]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:28:55 666]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:29:10 671]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:29:10 677]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:29:25 690]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:29:25 695]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:29:40 713]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:29:40 722]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:29:55 710]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:29:55 716]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:30:10 729]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:30:10 734]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:30:25 740]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:30:25 745]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:30:40 860]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:30:40 865]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:30:55 853]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:30:55 858]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:31:10 781]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:31:10 790]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:31:25 900]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:31:25 905]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:31:40 914]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:31:40 921]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:31:55 912]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:31:55 918]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:32:10 940]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:32:10 947]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.048925"
+		}]
+}
+[2020/9/9 12:32:25 929]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:32:25 934]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:32:40 948]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:32:40 954]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:32:55 979]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:32:55 984]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:33:10 870]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:33:10 876]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:33:25 988]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:33:25 993]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:33:41 013]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:33:41 020]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:33:55 913]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:33:55 918]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:34:11 033]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:34:11 039]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:34:26 033]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:34:26 040]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:34:41 054]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:34:41 061]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.255526"
+		}]
+}
+[2020/9/9 12:34:56 064]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:34:56 072]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:35:11 073]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:35:11 082]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:35:26 093]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:35:26 099]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:35:41 028]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:35:41 033]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:35:56 114]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:35:56 120]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:36:11 130]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:36:11 136]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:36:26 274]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:36:26 280]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:36:41 049]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:36:41 057]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:36:56 148]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:36:56 157]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:37:11 179]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:37:11 185]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:37:26 187]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:37:26 194]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:37:41 288]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:37:41 297]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:37:56 109]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:37:56 115]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:38:11 232]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:38:11 238]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:38:26 233]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:38:26 240]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:38:41 263]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:38:41 269]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:38:56 272]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:38:56 278]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:39:11 273]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:39:11 280]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:39:26 192]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:39:26 199]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:39:41 506]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:39:41 521]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:39:56 313]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:39:56 319]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:40:11 227]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:40:11 235]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:40:26 347]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:40:26 353]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:40:41 348]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:40:41 356]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:40:56 347]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:40:56 355]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:41:11 367]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:41:11 377]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:41:26 387]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:41:26 398]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:41:41 416]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:41:41 439]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:41:56 407]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:41:56 417]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:42:11 336]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:42:11 342]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:42:26 427]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:42:26 432]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:42:41 447]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:42:41 453]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:42:56 457]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:42:56 463]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:43:11 466]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:43:11 472]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:43:26 466]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:43:26 472]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 12:43:41 497]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:43:41 502]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:43:56 506]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:43:56 527]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:44:11 526]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:44:11 536]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:44:26 538]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:44:26 547]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:44:41 546]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:44:41 553]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:44:56 665]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:44:56 675]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:45:11 576]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:45:11 581]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:45:26 485]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:45:26 492]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:45:41 606]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:45:41 613]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 12:45:56 615]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 12:45:56 622]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 13:33:32 749]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:33:32 770]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 13:33:47 758]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:33:47 765]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.462128"
+		}]
+}
+[2020/9/9 13:34:02 768]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:34:02 774]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:34:17 687]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:34:17 693]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 13:34:32 822]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:34:32 828]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:34:47 808]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:34:47 814]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 13:35:02 827]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:35:02 833]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:35:17 829]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:35:17 835]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:35:32 848]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:35:32 854]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:35:47 868]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:35:47 874]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:36:02 868]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:36:02 873]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:36:17 787]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:36:17 793]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:36:32 890]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:36:32 895]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:36:48 046]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:36:48 052]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 13:37:02 928]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:37:02 934]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:37:17 947]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:37:17 954]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 13:37:32 950]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:37:32 954]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:37:47 867]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:37:47 903]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:38:02 987]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:38:02 993]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:38:17 906]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:38:17 913]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:38:33 187]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:38:33 193]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:38:48 027]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:38:48 033]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:39:03 027]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:39:03 032]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:39:18 027]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:39:18 034]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:39:33 067]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:39:33 073]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:39:48 067]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:39:48 074]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 13:40:02 986]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 13:40:02 993]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 13:43:50 925]  DeviceChange
+[2020/9/9 13:43:51 189]  DeviceChange
+[2020/9/9 16:17:26 877]  通信猫调试软件    2020/9/9
+[2020/9/9 16:17:26 881]  http://tongxinmao.com
+[2020/9/9 16:17:27 375]  
+
+[2020/9/9 16:17:31 498]  DeviceChange
+[2020/9/9 16:17:31 678]  DeviceChange
+[2020/9/9 16:17:38 134]  DeviceChange
+[2020/9/9 16:17:38 280]  DeviceChange
+[2020/9/9 16:17:38 604]  DeviceChange
+[2020/9/9 16:17:49 821]  正在连接MQTT服务器...
+[2020/9/9 16:17:49 848]  MQTT连接成功
+[2020/9/9 16:17:50 313]  MQTT主题订阅成功
+[2020/9/9 16:18:43 199]  DeviceChange
+[2020/9/9 16:20:12 901]  DeviceChange
+[2020/9/9 16:20:52 585]  DeviceChange
+[2020/9/9 16:20:52 729]  DeviceChange
+[2020/9/9 16:20:52 970]  DeviceChange
+[2020/9/9 16:20:53 139]  DeviceChange
+[2020/9/9 16:21:24 358]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 16:21:24 375]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.668728"
+		}]
+}
+[2020/9/9 16:21:56 277]  通信猫调试软件    2020/9/9
+[2020/9/9 16:21:56 281]  http://tongxinmao.com
+[2020/9/9 16:21:56 721]  
+
+[2020/9/9 16:22:01 230]  正在连接MQTT服务器...
+[2020/9/9 16:22:01 258]  MQTT连接成功
+[2020/9/9 16:22:01 741]  MQTT主题订阅成功
+[2020/9/9 16:22:09 703]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 16:22:09 707]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 16:22:36 228]  通信猫调试软件    2020/9/9
+[2020/9/9 16:22:36 235]  http://tongxinmao.com
+[2020/9/9 16:22:37 352]  
+
+[2020/9/9 16:22:40 197]  正在连接MQTT服务器...
+[2020/9/9 16:22:40 524]  MQTT连接成功
+[2020/9/9 16:22:41 222]  MQTT主题订阅成功
+[2020/9/9 16:22:44 954]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：146字节：
+[2020/9/9 16:22:44 959]  { 
+   "UnderControl":"stm32"
+      "ConrtolInfo":[
+
+                            {       "LED0" :"on"     } 
+                           ]
+
+}
+[2020/9/9 16:22:54 551]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 16:22:54 556]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 16:23:03 067]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：146字节：
+[2020/9/9 16:23:03 073]  { 
+   "UnderControl":"stm32"
+      "ConrtolInfo":[
+
+                            {       "LED0" :"on"     } 
+                           ]
+
+}
+[2020/9/9 16:23:16 672]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：146字节：
+[2020/9/9 16:23:16 677]  { 
+   "UnderControl":"stm32"
+      "ConrtolInfo":[
+
+                            {       "LED0" :"on"     } 
+                           ]
+
+}
+[2020/9/9 16:24:37 364]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：146字节：
+[2020/9/9 16:24:37 370]  { 
+   "UnderControl":"stm32"
+      "ConrtolInfo":[
+
+                            {       "LED0" :"on"     } 
+                           ]
+
+}
+[2020/9/9 16:25:44 886]  通信猫调试软件    2020/9/9
+[2020/9/9 16:25:44 891]  http://tongxinmao.com
+[2020/9/9 16:25:46 250]  
+
+[2020/9/9 16:25:51 294]  正在连接MQTT服务器...
+[2020/9/9 16:25:51 596]  MQTT连接成功
+[2020/9/9 16:25:52 117]  MQTT主题订阅成功
+[2020/9/9 16:25:56 598]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 16:25:56 603]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"31.875328"
+		}]
+}
+[2020/9/9 16:26:04 582]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：146字节：
+[2020/9/9 16:26:04 586]  { 
+   "UnderControl":"stm32"
+      "ConrtolInfo":[
+
+                            {       "LED0" :"on"     } 
+                           ]
+
+}
+[2020/9/9 16:26:10 822]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：146字节：
+[2020/9/9 16:26:10 829]  { 
+   "UnderControl":"stm32"
+      "ConrtolInfo":[
+
+                            {       "LED0" :"on"     } 
+                           ]
+
+}
+[2020/9/9 16:31:57 746]  通信猫调试软件    2020/9/9
+[2020/9/9 16:31:57 764]  http://tongxinmao.com
+[2020/9/9 16:32:00 496]  
+
+[2020/9/9 16:32:04 197]  正在连接MQTT服务器...
+[2020/9/9 16:32:05 275]  MQTT连接成功
+[2020/9/9 16:32:05 571]  MQTT主题订阅成功
+[2020/9/9 16:32:05 575]  MQTT主题订阅成功
+[2020/9/9 16:32:08 023]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：609字节：
+[2020/9/9 16:32:08 028]  {{
+	     "serialNumber":"212089842348362300",
+		 "cellularInfo":[
+		                    {
+		                          "name":"ethernet0/0/1",
+			                      "switch" : "0"
+	                         }, 
+	                        {
+		                         "name":"ethernet0/0/2",
+		                         "switch" : "1"
+	                         }, 
+	                        {
+		                         "name":"ethernet0/0/3",
+		                         "switch" : "0"
+	                         }
+						 ],
+	    "family":["father", "mother", "brother", "sister", "somebody"]
+ }
+
+[2020/9/9 16:32:11 911]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 16:32:11 944]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"32.084084"
+		}]
+}
+[2020/9/9 16:32:14 826]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：609字节：
+[2020/9/9 16:32:14 833]  {{
+	     "serialNumber":"212089842348362300",
+		 "cellularInfo":[
+		                    {
+		                          "name":"ethernet0/0/1",
+			                      "switch" : "0"
+	                         }, 
+	                        {
+		                         "name":"ethernet0/0/2",
+		                         "switch" : "1"
+	                         }, 
+	                        {
+		                         "name":"ethernet0/0/3",
+		                         "switch" : "0"
+	                         }
+						 ],
+	    "family":["father", "mother", "brother", "sister", "somebody"]
+ }
+
+[2020/9/9 16:32:33 831]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：223字节：
+[2020/9/9 16:32:33 836]  {{
+	     "serialNumber":"212089842348362300",
+		 "cellularInfo":[
+		                    {
+		                          "name":"ethernet0/0/1",
+			                      "switch" : "0"
+	                         }, 
+ }
+
+[2020/9/9 16:34:34 140]  通信猫调试软件    2020/9/9
+[2020/9/9 16:34:34 159]  http://tongxinmao.com
+[2020/9/9 16:34:35 191]  
+
+[2020/9/9 16:34:49 791]  正在连接MQTT服务器...
+[2020/9/9 16:34:50 549]  MQTT连接成功
+[2020/9/9 16:34:51 201]  MQTT主题订阅成功
+[2020/9/9 16:34:51 205]  MQTT主题订阅成功
+[2020/9/9 16:34:58 183]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 16:34:58 187]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"32.084084"
+		}]
+}
+[2020/9/9 16:35:01 872]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：223字节：
+[2020/9/9 16:35:01 900]  {{
+	     "serialNumber":"212089842348362300",
+		 "cellularInfo":[
+		                    {
+		                          "name":"ethernet0/0/1",
+			                      "switch" : "0"
+	                         }, 
+ }
+
+[2020/9/9 16:35:13 835]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：223字节：
+[2020/9/9 16:35:13 870]  {{
+	     "serialNumber":"212089842348362300",
+		 "cellularInfo":[
+		                    {
+		                          "name":"ethernet0/0/1",
+			                      "switch" : "0"
+	                         }, 
+ }
+
+[2020/9/9 16:36:40 115]  通信猫调试软件    2020/9/9
+[2020/9/9 16:36:40 135]  http://tongxinmao.com
+[2020/9/9 16:36:42 632]  
+
+[2020/9/9 16:36:45 471]  正在连接MQTT服务器...
+[2020/9/9 16:36:46 256]  MQTT连接成功
+[2020/9/9 16:36:47 106]  MQTT主题订阅成功
+[2020/9/9 16:36:58 312]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 16:36:58 316]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"32.084084"
+		}]
+}
+[2020/9/9 16:38:06 942]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：329字节：
+[2020/9/9 16:38:06 946]  {\"serialNumber\":\"212089842348362300\", \
+				   \"cellularInfo\":\1111111111111111
+						[\
+						  {\"name\":\"ethernet0/0/1\",\
+						  \"switch\":\"0\"},\
+						  {\"name\":\"ethernet0/0/2\",\
+						  \"switch\":\"1\"},\
+					      {\"name\":\"ethernet0/0/3\",\
+						  \"switch\":\"0\"}\
+						],\
+					
+				  }
+[2020/9/9 16:38:42 087]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：218字节：
+[2020/9/9 16:38:42 093]  {\"serialNumber\":\"212089842348362300\", \
+				   \"cellularInfo\":\1111111111111111
+						[\
+						  {\"name\":\"ethernet0/0/1\",\
+						  \"switch\":\"0\"},\
+						],\
+					
+				  }
+						],\
+					
+				  }
+[2020/9/9 16:39:00 064]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：218字节：
+[2020/9/9 16:39:00 071]  {\"serialNumber\":\"212089842348362300\", \
+				   \"cellularInfo\":\1111111111111111
+						[\
+						  {\"name\":\"ethernet0/0/1\",\
+						  \"switch\":\"0\"},\
+						],\
+					
+				  }
+						],\
+					
+				  }
+[2020/9/9 16:42:17 532]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：47字节：
+[2020/9/9 16:42:17 552]  {
+	     "serialNumber":"212089842348362300"
+}
+[2020/9/9 16:43:01 496]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：217字节：
+[2020/9/9 16:43:01 502]  {
+	     "serialNumber":"212089842348362300",
+ "cellularInfo":[
+		                    {
+		                          "name":"ethernet0/0/1",
+			                      "switch" : "0"
+	                         }, 
+}
+[2020/9/9 16:43:31 467]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：250字节：
+[2020/9/9 16:43:31 487]  {
+	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		                    {
+		                          "name":"ethernet0/0/1",
+			                      "switch" : "0"
+	                         }	 ]
+}
+[2020/9/9 16:43:54 641]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：250字节：
+[2020/9/9 16:43:54 646]  {
+	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		                    {
+		                          "name":"ethernet0/0/1",
+			                      "switch" : "0"
+	                         }	 ]
+}
+[2020/9/9 16:44:32 141]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：210字节：
+[2020/9/9 16:44:32 147]  {	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		  {
+		                      "name":"ethernet0/0/1",
+			            "switch" : "0"
+	                   }	 ]
+}
+[2020/9/9 16:45:02 029]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：210字节：
+[2020/9/9 16:45:02 036]  {	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		  {
+		                      "name":"ethernet0/0/1",
+			            "switch" : "0"
+	                   }	 ]
+}
+[2020/9/9 16:47:12 733]  通信猫调试软件    2020/9/9
+[2020/9/9 16:47:12 740]  http://tongxinmao.com
+[2020/9/9 16:47:13 313]  
+
+[2020/9/9 16:47:16 024]  正在连接MQTT服务器...
+[2020/9/9 16:47:16 048]  MQTT连接成功
+[2020/9/9 16:47:16 617]  MQTT主题订阅成功
+[2020/9/9 16:47:18 713]  MQTT[TOPIC:STM32F103ZET6/temperature]接收76字节: 
+[2020/9/9 16:47:18 717]  {
+	"sensor":	"adc1",
+	"float number":	[{
+			"tempreture":	"32.084084"
+		}]
+}
+[2020/9/9 16:47:22 151]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：210字节：
+[2020/9/9 16:47:22 155]  {	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		  {
+		                      "name":"ethernet0/0/1",
+			            "switch" : "0"
+	                   }	 ]
+}
+[2020/9/9 16:47:29 290]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：210字节：
+[2020/9/9 16:47:29 297]  {	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		  {
+		                      "name":"ethernet0/0/1",
+			            "switch" : "0"
+	                   }	 ]
+}
+[2020/9/9 16:47:37 172]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：210字节：
+[2020/9/9 16:47:37 178]  {	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		  {
+		                      "name":"ethernet0/0/1",
+			            "switch" : "0"
+	                   }	 ]
+}
+[2020/9/9 16:49:39 550]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：210字节：
+[2020/9/9 16:49:39 560]  {	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		  {
+		                      "name":"ethernet0/0/1",
+			            "switch" : "0"
+	                   }	 ]
+}
+[2020/9/9 16:50:04 038]  MQTT发送文本消息,主题：STM32F103ZET6/KEY 长度：210字节：
+[2020/9/9 16:50:04 043]  {	     "serialNumber":"212089842348362300",
+                                 "cellularInfo":[
+		  {
+		                      "name":"ethernet0/0/1",
+			            "switch" : "0"
+	                   }	 ]
 }
