@@ -39,6 +39,7 @@ QueueHandle_t PUBLISH_Queue;
 SemaphoreHandle_t BinarySemaphore_USART2ISR;	//USART2空闲中断二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_MQTTconnect;//MQTT CONNCET报文二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_MQTTsubscribe;//MQTT SUBSCRIBE报文二值信号量句柄
+
 //开机内部flash读取相关
 #define TEXT_MAXLEN 8	//数组长度
 #define SIZE TEXT_MAXLEN		//数组长度
@@ -50,8 +51,8 @@ SemaphoreHandle_t BinarySemaphore_MQTTsubscribe;//MQTT SUBSCRIBE报文二值信号量句
 //设置FLASH 保存地址(必须为偶数，且其值要大于本代码所占用FLASH的大小+0X08000000)
 #define FLASH_SAVE_ADDR_TEM  0x0807FE60	
 #define FLASH_SAVE_ADDR_P    0x0807FE50	
-#define FLASH_SAVE_ADDR_I  	 0x0807FF60 
-#define FLASH_SAVE_ADDR_D    0x0807FF50
+#define FLASH_SAVE_ADDR_I  	 0x0807FE70 
+#define FLASH_SAVE_ADDR_D    0x0807FF60
 
  //结构体保存变量 用于消息队列
 typedef struct SETMSG

@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include <Numpad.h>
 #include <stdio.h>
+#include <semphr.h>
+
 extern GUI_CONST_STORAGE GUI_BITMAP bmReturn;
 extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 
@@ -64,7 +66,8 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 
 
 
-
+extern QueueHandle_t Set_Queue;
+extern QueueHandle_t Settem_Queue;
 
 // USER START (Optionally insert additional defines)
 
@@ -95,13 +98,12 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 	static char     DisPlayP[TEXT_MAXLEN];
 	static char     DisPlayI[TEXT_MAXLEN];
 	static char     DisPlayD[TEXT_MAXLEN];
+	
 
 	static U8      ShowText1=0 ; //edit SETTEM 编辑框数据更改标志
 	static U8      ShowText2=0 ; //edit PID     编辑框数据更改标志
 	static U8      saveText1=0 ; //edit SETTEM 编辑框数据保存标志
 	static U8      saveText2=0 ; //edit PID     编辑框数据保存标志
-	
-	
 	
 	static u8 datatempTem[TEXT_MAXLEN];
 	static u8 datatempP[TEXT_MAXLEN];
@@ -115,8 +117,8 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 //设置FLASH 保存地址(必须为偶数，且其值要大于本代码所占用FLASH的大小+0X08000000)
 #define FLASH_SAVE_ADDR_TEM  0x0807FE60	
 #define FLASH_SAVE_ADDR_P    0x0807FE50	
-#define FLASH_SAVE_ADDR_I  	 0x0807FF60 
-#define FLASH_SAVE_ADDR_D    0x0807FF50
+#define FLASH_SAVE_ADDR_I  	 0x0807FE70 
+#define FLASH_SAVE_ADDR_D    0x0807FF60
 /*********************************************************MULTIPAGE页面****************************************/
 
 /**********************************************************
@@ -144,17 +146,19 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreateWindowPage1[] = {
 static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 {
 
+	float adcmsg;
+	char adcstring[20];
+	
+	/************队列句柄******************************/
+	extern QueueHandle_t Adc_Queue;
+	
+
 
 /*********窗口********************/	
 	WM_HWIN hWin = pMsg->hWin;
 	WM_HTIMER hTimer;
 	// USER START (Optionally insert additional variables)
 	// USER END
-
-	float adcmsg;
-	char adcstring[20];
-	extern QueueHandle_t Adc_Queue;
-
 
 	
 	switch (pMsg->MsgId) {
@@ -261,8 +265,12 @@ static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 		else
 		{
 		
+
+			
+			
+				
 		
-		}
+		}//WIFI调整数据
 		
 		
 	/*******************************渐变色***************************************/	
@@ -359,6 +367,11 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreateWindowPage2[] = {
 { BUTTON_CreateIndirect, "SET", ID_BUTTON_3, 700, 241, 97, 34, 0, 0x0, 0 },
 };
 
+
+	
+static void _cbMULTIPAGE2(WM_MESSAGE * pMsg)
+{
+
 typedef  struct SETMSG
 	{
 		float Kp;
@@ -366,21 +379,11 @@ typedef  struct SETMSG
 		float Kd;
 		
 	}SETMSG;
-extern SETMSG g_tMsg;
 
-	
-static void _cbMULTIPAGE2(WM_MESSAGE * pMsg)
-{
+extern SETMSG g_tMsg;
 
 	float SetTem;
   SETMSG *Setdata;
-
-//	Setdata->Kp=0;
-//	Setdata->Ki=0;
-//	Setdata->Kd=0;
-//	
-extern QueueHandle_t Set_Queue;
-extern QueueHandle_t Settem_Queue;
 //消息队列参数
 
 	int     NCode;
@@ -629,9 +632,10 @@ extern QueueHandle_t Settem_Queue;
 		
 				ShowText2=1;
 			  saveText2=1;
-				/************PID设置消息队列发送***************/
+		/************PID设置消息队列发送***************/
 	
-
+	printf("aBufferD:%s\r\n",aBufferD);
+	printf("DisPlayD:%s\r\n",DisPlayD);
 	  Setdata->Kp=(float)atof(DisPlayP);
 		Setdata->Ki=(float)atof(DisPlayI);
 		Setdata->Kd=(float)atof(DisPlayD);
@@ -879,7 +883,7 @@ if (saveText2==1)
 		STMFLASH_Write(FLASH_SAVE_ADDR_I,(u16*)DisPlayI,SIZE);
 			
 		STMFLASH_Write(FLASH_SAVE_ADDR_D,(u16*)DisPlayD,SIZE);
-	saveText2=0;
+		saveText2=0;
 }		
 
 	

@@ -36,18 +36,25 @@ void subscribe_init()
 {
 /****¶©ÔÄÖ÷Ìâ1***********/
 
-SETSUBSCRIBE[subscribe_count-2].string=subscrible1_topicFilters1;
+SETSUBSCRIBE[subscribe_count-3].string=subscrible1_topicFilters1;
 	
-SETSUBSCRIBE[subscribe_count-2].len=strlen(subscrible1_topicFilters1);
+SETSUBSCRIBE[subscribe_count-3].len=strlen(subscrible1_topicFilters1);
 	
-QoSs[subscribe_count-2]=subscribe1_qos1;    
+QoSs[subscribe_count-3]=subscribe1_qos1;    
 
 	
-SETSUBSCRIBE[subscribe_count-1].string=subscrible1_topicFilters2;
+SETSUBSCRIBE[subscribe_count-2].string=subscrible1_topicFilters2;
 	
-SETSUBSCRIBE[subscribe_count-1].len=strlen(subscrible1_topicFilters2);
+SETSUBSCRIBE[subscribe_count-2].len=strlen(subscrible1_topicFilters2);
 	
-QoSs[subscribe_count-1]=subscribe1_qos2;    
+QoSs[subscribe_count-2]=subscribe1_qos2;    
+
+
+SETSUBSCRIBE[subscribe_count-1].string=subscrible1_topicFilters3;
+	
+SETSUBSCRIBE[subscribe_count-1].len=strlen(subscrible1_topicFilters3);
+	
+QoSs[subscribe_count-1]=subscribe1_qos3;    
 
 
 };

@@ -1,7 +1,19 @@
-{	     "serialNumber":"212089842348362300",
-                                 "cellularInfo":[
+{	     "UnderControl":"stm32F103ZET6",
+                                 "ControlInfo":[
 		  {
-		                      "name":"ethernet0/0/1",
-			            "switch" : "0"
+		                      "name":"LED0",
+			       "switch" : "1"
 	                   }	 ]
 }
+
+
+
+																size2 = cJSON_GetArraySize(tnode);                  //????????
+																for (j = 0; j<size2; j++)
+																{
+																tnode2 = cJSON_GetArrayItem(tnode, j);          //??????????????
+																if (tnode2->type == cJSON_String)
+																printf("%d-%d: %s\n", i, j, tnode2->valuestring);
+																else
+																printf("tnod2 type is err\n");
+																}

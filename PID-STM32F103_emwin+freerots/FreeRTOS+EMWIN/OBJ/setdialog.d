@@ -94,3 +94,4 @@
 ..\obj\setdialog.o: ..\FreeRTOS\include\list.h
 ..\obj\setdialog.o: ..\FreeRTOS\include\queue.h
 ..\obj\setdialog.o: ..\EMWIN\EMWIN_APP\Numpad.h
+..\obj\setdialog.o: ..\FreeRTOS\include\semphr.h

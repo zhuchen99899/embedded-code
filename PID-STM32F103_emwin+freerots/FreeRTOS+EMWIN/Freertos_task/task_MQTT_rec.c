@@ -17,10 +17,26 @@ u32 wifi_lenth;
 u8 wifi_buffer[256];
 }wifibuff;
 
+
+typedef  struct SETMSG
+	{
+		float Kp;
+		float Ki;
+		float Kd;
+		
+	}SETMSG;
+extern SETMSG g_tMsg;
+
+
+
+
+
 /***************信号量参数************/
 	extern SemaphoreHandle_t BinarySemaphore_USART2ISR;	//二值信号量句柄
 	extern SemaphoreHandle_t BinarySemaphore_MQTTsubscribe;//MQTT SUBSCRIBE报文二值信号量句柄
-	/****消息队列参数**************/
+	extern SemaphoreHandle_t BinarySemaphore_WIFI_PIDSET;//WIFI_PIDSET二值信号量句柄
+	extern SemaphoreHandle_t BinarySemaphore_WIFI_TEMSET;//WIFI_TEMSET报文二值信号量句柄
+	/****消息队列句柄**************/
 	extern QueueHandle_t Wifi_buffer_Queue;
 	extern QueueHandle_t PINGREQ_Queue;
 	extern QueueHandle_t PUBLISH_Queue;
@@ -37,7 +53,11 @@ void MQTT_rec_task(void *pvParameters)
 		unsigned char* DeserializePublish_payload;
 		int DeserializePublish_payloadlen;
 	
+	//消息队列句柄
 
+  extern QueueHandle_t Key_Queue;
+	extern QueueHandle_t Set_Queue;
+  extern QueueHandle_t Settem_Queue;
 							
 									
 		//申请动态内存指针
@@ -48,11 +68,16 @@ void MQTT_rec_task(void *pvParameters)
 	/* 创建JSON结构体指针*/
 	cJSON *json = NULL;
 	cJSON *node = NULL;
-	cJSON *tnode = NULL;
-	cJSON *tnode2 = NULL;
+	cJSON *node1 = NULL;
+	cJSON *node2 = NULL;
 	char *json_data = NULL;
-	int i, j, size, size2;	
+
 	
+	/*****JSON树数据变量保存********/
+	double JDATA_P;
+	double JDATA_I;
+	double JDATA_D;
+	float JDATA_SETTEM;
 	
 /********************变量****************************/
 
@@ -64,6 +89,12 @@ void MQTT_rec_task(void *pvParameters)
 	u8 PINGREQ_FLAG=0;
 	u8 PUBLISH_FLAG=0;
 	
+	SETMSG *WIFI_PID;
+
+	
+	u8 key=0;
+	
+		WIFI_PID=&g_tMsg;//	PID结构体指针初始化
 /*******************阻塞等待DMA中断中传来的ISR信号量***************/
 	while(1)
 	{	
@@ -166,6 +197,22 @@ xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 								break;	
 				}//主题2确认
 				
+				switch(wifireceive->wifi_buffer[6])
+				{
+								case 0x00 : 
+								printf("主题3订阅成功,qos等级00\r\n");			//串口输出信息
+								break;
+					case 0x01 :
+								printf("主题3订阅成功,qos等级01\r\n");			//串口输出信息
+								break;
+					case 0x02 :
+								printf("主题3订阅成功,qos等级02\r\n");			//串口输出信息
+								break;
+					default   : printf("主题3订阅失败\r\n");			//串口输出信息 
+								break;	
+				}//主题3确认
+				
+				
 				
 				
 			}//订阅报文1确认
@@ -209,11 +256,14 @@ memcpy(topic1,DeserializePublish_topicName.string,DeserializePublish_topicName.l
 payload1[DeserializePublish_payloadlen]=0;
 topic1[DeserializePublish_topicName.len]=0;		
 
-			if((strcmp(topic1,topic1_compare_monolayer)==0)||(strcmp(topic1,topic1_compare_Universal))==0||(strcmp(topic1,subscrible1_topicFilters1))==0)
+									
+									
+							/***********按键主题*******************/
+			if((strcmp(topic1,topic1_compare_Universal)==0)||(strcmp(topic1,topic1_compare_monolayer)==0)||(strcmp(topic1,subscrible1_topicFilters1)==0))
 			{
 				printf("主题为按键主题\r\n");							
 				printf("主题为%s\r\n",topic1);	
-				printf("负载为%s\r\n",payload1);
+				printf("负载为\r\n");
 				
 				
 								/****************有效载荷Cjson解包******************/
@@ -226,31 +276,214 @@ topic1[DeserializePublish_topicName.len]=0;
 								vPortFree(json_data);                                  //释放JASON结构
 
 									/****************JASON树中键值对解析***************/
-									//根据键名再JASON中查找子节点，查找出UnderControl对象
-									node = cJSON_GetObjectItem(json, "serialNumber");
+									//根据键名再JASON中查找子节点，查找出LED0对象
+									node = cJSON_GetObjectItem(json, "LED0");
 									if (node == NULL)
 									{
-									printf("serialNumber: no\n");
-									
+									printf("LED0: no\r\n");
+										
 									}	
 									else
 									{
-									printf("serialNumber: ok\n");
-									}
+									printf("LED0: ok\r\n");
+										 if( node->type == cJSON_Number )
+
+											{
+													//从LED0中获取结果
+
+												printf("value:%d\r\n",node->valueint);
+														if((node->valueint)==1)
+														{
+														key=1;	
+														xQueueSend(Key_Queue,&key,10);
+														printf("LED0翻转");
+														}
+
+											}//查找LED0值
+											
+										
+
+													
+									}//识别JASON树中LED0对象
 			
-	cJSON_Delete(json);
+			
 				
-			}//主题确认
-			else
+			}//按键主题确认
+			
+						/********************PID主题******************/
+			else if((strcmp(topic1,topic1_compare_Universal)==0)||(strcmp(topic1,topic1_compare_monolayer)==0)||(strcmp(topic1,subscrible1_topicFilters2)==0))
 			{
 			
-			printf("非按键主题\r\n");
-			}//主题确认
+				printf("主题为PID主题\r\n");							
+				printf("主题为%s\r\n",topic1);	
+				printf("负载为\r\n");
+				
+						/****************有效载荷Cjson解包******************/
+			
+			
+									/**********	完整输出一个JSON对象结构************/
+								json = cJSON_Parse(payload1);                         //从数据缓冲区解析JASON对象结构
+								json_data = cJSON_Print(json);                    //将传入的JASON对象转化为JASON字符串
+								printf("data: %s\n", json_data);                  //输出JASON结构
+								vPortFree(json_data);                                  //释放JASON结构
+
+									/****************JASON树中键值对解析***************/
+				
+				          /*************找到P值**************/
+									//根据键名再JASON中查找子节点，查找出P对象
+									node = cJSON_GetObjectItem(json, "P");
+									if (node == NULL)
+									{
+									printf("p: no\r\n");
+										
+									}	
+									else
+									{
+									printf("P: ok\r\n");
+										 if( node->type == cJSON_Number )
+
+											{
+													//从P对象提取值
+
+												printf("value:%f\r\n",node->valuedouble);
+												JDATA_P = (node->valuedouble);
+
+											}//查找P对象内容类型
+											
+														
+									}//识别到JASON树 -> P
+			
+									
+									
+									
+									/*************找到I值**************/
+									//根据键名再JASON中查找子节点，查找出I对象
+									node1 = cJSON_GetObjectItem(json, "I");
+									if (node == NULL)
+									{
+									printf("I: no\r\n");
+										
+									}	
+									else
+									{
+									printf("I: ok\r\n");
+										 if( node->type == cJSON_Number )
+
+											{
+													//从I对象提取值
+
+												printf("value:%f\r\n",node1->valuedouble);
+												JDATA_I = (node1->valuedouble);
+
+											}//查找I对象内容类型
+											
+														
+									}//识别到JASON树 -> I
+									
+									
+									/*************找到D值**************/
+									//根据键名再JASON中查找子节点，查找出D对象
+									node2 = cJSON_GetObjectItem(json, "D");
+									if (node == NULL)
+									{
+									printf("D: no\r\n");
+										
+									}	
+									else
+									{
+									printf("D: ok\r\n");
+										 if( node2->type == cJSON_Number )
+
+											{
+													//从D对象提取值
+
+												printf("value:%f\r\n",node2->valuedouble);
+												JDATA_D = (node2->valuedouble);
+
+											}//查找D对象内容类型
+											
+														
+									}//识别到JASON树 -> D
+									
+									
+								//消息队列传递PID数值						
+									if ((node != NULL)&&(node1 != NULL)&&(node2 != NULL))	
+							{	
+			
+									WIFI_PID->Kp=JDATA_P;
+									WIFI_PID->Ki=JDATA_I;
+									WIFI_PID->Kd=JDATA_D;
+									xQueueOverwrite(Set_Queue,(void *)&WIFI_PID);				
+						
+							}
+			
 		
-			//释放解包所申请的空间
+			}//PID主题确认
+			
+			else if((strcmp(topic1,topic1_compare_Universal)==0)||(strcmp(topic1,topic1_compare_monolayer)==0)||(strcmp(topic1,subscrible1_topicFilters3)==0))
+			{
+				printf("主题为设置温度主题\r\n");							
+				printf("主题为%s\r\n",topic1);	
+				printf("负载为\r\n");
+				
+				
+								/****************有效载荷Cjson解包******************/
+			
+			
+									/**********	完整输出一个JSON对象结构************/
+								json = cJSON_Parse(payload1);                         //从数据缓冲区解析JASON对象结构
+								json_data = cJSON_Print(json);                    //将传入的JASON对象转化为JASON字符串
+								printf("data: %s\n", json_data);                  //输出JASON结构
+								vPortFree(json_data);                                  //释放JASON结构
+
+									/****************JASON树中键值对解析***************/
+									//根据键名再JASON中查找子节点，查找出SETTEM对象
+									node = cJSON_GetObjectItem(json, "SETTEM");
+									if (node == NULL)
+									{
+									printf("SETTEM: no\r\n");
+										
+									}	
+									else
+									{
+									printf("SETTEM: ok\r\n");
+										 if( node->type == cJSON_Number )
+
+											{
+													//从SETTEM中获取结果
+
+												printf("value:%f\r\n",node->valuedouble);
+
+												JDATA_SETTEM=(float)(node->valuedouble);
+												
+												xQueueOverwrite(Settem_Queue,&JDATA_SETTEM);	
+
+											}//查找SETTEM值
+											
+										
+
+													
+									}//识别JASON树中SETTEM对象
+			
+			
+				
+			}//settem主题确认
+			
+			
+			else
+			{
+			printf("已订阅的未知主题，请查看设置\r\n");
+			}
+			//主题确认
+		
+			
+			//释放JASON树
+			cJSON_Delete(json);
+			
+			//释放解包所申请的空间 
 	vPortFree(payload1);	
 	vPortFree(topic1);	
-printf(" 接收任务内存剩余量= %d\r\n", xPortGetFreeHeapSize());
+  printf(" 接收任务堆剩余量= %d\r\n", xPortGetFreeHeapSize());
 
 			
 		};//else if publish报文

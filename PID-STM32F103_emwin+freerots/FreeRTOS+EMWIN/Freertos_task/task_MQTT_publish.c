@@ -24,8 +24,8 @@ float adcmsg;
 	//Cjson
 	
 	cJSON *json = NULL;
-	cJSON *array = NULL;
-	cJSON *obj = NULL;	
+	//cJSON *array = NULL;
+	//cJSON *obj = NULL;	
 	char *json_buf;
 u8 PUBLISH_FLAG=0;
 publish_init();
@@ -43,6 +43,19 @@ publish_init();
 		
 			sprintf(stradc,"%f",adcmsg);
 		
+			json = cJSON_CreateObject();
+
+    cJSON_AddNumberToObject(json,"tempreture",adcmsg);
+
+  	//JSON数据传入缓冲区
+
+   json_buf = cJSON_Print(json);
+
+  
+		/*  创建完整Json树方法
+		//转换adc数据
+		sprintf(stradc,"%f",adcmsg);
+		
 		//创建Cjson对象
 			json = cJSON_CreateObject();                                  
 			cJSON_AddStringToObject(json, "sensor", "adc1");
@@ -55,9 +68,9 @@ publish_init();
 		cJSON_AddItemToObject(obj, "tempreture",cJSON_CreateString(stradc));   
 		//JSON数据传入缓冲区
 	 json_buf = cJSON_Print(json);  
+	*/	
 		
-		
-			len=MQTT_publish(temp_buff,256,publish1_header_dup,publish1_qos,publish1_retained,publish1_packetid,SETPUBLISH,(unsigned char *)json_buf,strlen(json_buf));
+		len=MQTT_publish(temp_buff,256,publish1_header_dup,publish1_qos,publish1_retained,publish1_packetid,SETPUBLISH,(unsigned char *)json_buf,strlen(json_buf));
 			
 		
 		WIFI_send(temp_buff,len);

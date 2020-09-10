@@ -1,5 +1,5 @@
 Dependencies for Project 'FreeRTOS', Target 'FreeRTOS': (DO NOT MODIFY !)
-F (.\main.c)(0x5F579018)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x5F5A1852)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (includes.h)(0x5F57139F)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stdio.h)(0x5475F300)
@@ -65,7 +65,7 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (QueueCreate.h)(0x5F5582C2)
 I (SemaphoreCreat.h)(0x5F44849D)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
@@ -122,7 +122,7 @@ I (..\Freertos_task\task_MQTT_publish.h)(0x5F5582C1)
 I (..\Freertos_task\task_MQTT_rec.h)(0x5F3980D3)
 I (..\Freertos_task\task_userif.h)(0x5F38E662)
 I (..\MQTT\MQTT.h)(0x5F579026)
-I (..\MQTT\MQTTConfig.h)(0x5F571052)
+I (..\MQTT\MQTTConfig.h)(0x5F5A063C)
 I (..\MQTT\MQTT_init.h)(0x5F5582C1)
 I (..\MQTT\MQTTconnect.h)(0x5F4471D5)
 I (..\MQTT\MQTTpacket.h)(0x5F5582C1)
@@ -233,7 +233,7 @@ I (..\FreeRTOS\include\portable.h)(0x5F57A356)
 I (..\FreeRTOS\include\deprecated_definitions.h)(0x5F0DFD99)
 I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (QueueCreate.h)(0x5F5582C2)
 F (.\tem.c)(0x5F420F00)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\tem.o --omf_browse ..\obj\tem.crf --depend ..\obj\tem.d)
 I (..\USER\stm32f10x.h)(0x5F0DFD99)
@@ -296,7 +296,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x5F0DFD99)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x5F0DFD99)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x5F0DFD99)
 F (.\includes.h)(0x5F57139F)()
-F (.\SemaphoreCreat.c)(0x5F5582C2)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\semaphorecreat.o --omf_browse ..\obj\semaphorecreat.crf --depend ..\obj\semaphorecreat.d)
+F (.\SemaphoreCreat.c)(0x5F5A1722)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\semaphorecreat.o --omf_browse ..\obj\semaphorecreat.crf --depend ..\obj\semaphorecreat.d)
 I (SemaphoreCreat.h)(0x5F44849D)
 I (..\FreeRTOS\include\freertos.h)(0x5F0DFD99)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stddef.h)(0x5475F300)
@@ -339,7 +339,7 @@ I (..\FreeRTOS\include\deprecated_definitions.h)(0x5F0DFD99)
 I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 F (..\HARDWARE\LED\led.c)(0x5F38D61F)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\led.o --omf_browse ..\obj\led.crf --depend ..\obj\led.d)
 I (..\HARDWARE\LED\led.h)(0x5F38D6DD)
 I (..\SYSTEM\sys\sys.h)(0x5F0DFD99)
@@ -841,7 +841,7 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 F (..\HARDWARE\ADC\adc.c)(0x5F38DE77)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\adc.o --omf_browse ..\obj\adc.crf --depend ..\obj\adc.d)
 I (..\HARDWARE\ADC\adc.h)(0x5F0DFD99)
 I (..\SYSTEM\sys\sys.h)(0x5F0DFD99)
@@ -952,7 +952,7 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
 F (..\HARDWARE\PWM\pwm.c)(0x5F38DB56)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\pwm.o --omf_browse ..\obj\pwm.crf --depend ..\obj\pwm.d)
 I (..\USER\stm32f10x.h)(0x5F0DFD99)
@@ -1105,7 +1105,7 @@ I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 F (..\CORE\core_cm3.c)(0x5F0DFD99)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\core_cm3.o --omf_browse ..\obj\core_cm3.crf --depend ..\obj\core_cm3.d)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stdint.h)(0x5475F300)
 F (..\CORE\startup_stm32f10x_hd.s)(0x5F0DFD99)(--cpu Cortex-M3 -g --apcs=interwork -I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"--pd "__UVISION_VERSION SETA 514" --pd "STM32F10X_HD SETA 1"--list ..\obj\startup_stm32f10x_hd.lst --xref -o ..\obj\startup_stm32f10x_hd.o --depend ..\obj\startup_stm32f10x_hd.d)
@@ -1665,7 +1665,7 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 F (..\FreeRTOS\tasks.c)(0x5F0DFD99)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\tasks.o --omf_browse ..\obj\tasks.crf --depend ..\obj\tasks.d)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\string.h)(0x5475F300)
@@ -1757,7 +1757,7 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (..\FreeRTOS\include\timers.h)(0x5F0DFD99)
 F (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5F585F53)()
 F (..\FreeRTOS\portable\MemMang\heap_4.c)(0x5F57A320)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\heap_4.o --omf_browse ..\obj\heap_4.crf --depend ..\obj\heap_4.d)
@@ -1848,7 +1848,7 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-F (..\Freertos_task\task_led.c)(0x5F38DF9C)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_led.o --omf_browse ..\obj\task_led.crf --depend ..\obj\task_led.d)
+F (..\Freertos_task\task_led.c)(0x5F58EBB5)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_led.o --omf_browse ..\obj\task_led.crf --depend ..\obj\task_led.d)
 I (..\Freertos_task\task_led.h)(0x5F38D736)
 I (..\SYSTEM\sys\sys.h)(0x5F0DFD99)
 I (..\USER\stm32f10x.h)(0x5F0DFD99)
@@ -1892,9 +1892,9 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (..\HARDWARE\LED\led.h)(0x5F38D6DD)
-F (..\Freertos_task\task_pwm.c)(0x5F57A3AD)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_pwm.o --omf_browse ..\obj\task_pwm.crf --depend ..\obj\task_pwm.d)
+F (..\Freertos_task\task_pwm.c)(0x5F59FC2A)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_pwm.o --omf_browse ..\obj\task_pwm.crf --depend ..\obj\task_pwm.d)
 I (..\Freertos_task\task_pwm.h)(0x5F38DB8B)
 I (..\FreeRTOS\include\freertos.h)(0x5F0DFD99)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stddef.h)(0x5475F300)
@@ -1938,7 +1938,7 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (..\USER\pid.h)(0x5F2FDB5F)
 I (..\HARDWARE\PWM\pwm.h)(0x5F2A9B8C)
 F (..\Freertos_task\task_adc.c)(0x5F39F1D5)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_adc.o --omf_browse ..\obj\task_adc.crf --depend ..\obj\task_adc.d)
@@ -1985,7 +1985,7 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (..\USER\tem.h)(0x5F0DFD99)
 I (..\Freertos_task\task_adc.h)(0x5F38DC45)
 F (..\Freertos_task\task_MQTT_connect.c)(0x5F5582C1)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_mqtt_connect.o --omf_browse ..\obj\task_mqtt_connect.crf --depend ..\obj\task_mqtt_connect.d)
@@ -2035,7 +2035,7 @@ I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\HARDWARE\WIFI\wifi.h)(0x5F36D676)
 I (..\MQTT\MQTT.h)(0x5F579026)
-I (..\MQTT\MQTTConfig.h)(0x5F571052)
+I (..\MQTT\MQTTConfig.h)(0x5F5A063C)
 I (..\MQTT\MQTT_init.h)(0x5F5582C1)
 I (..\MQTT\MQTTconnect.h)(0x5F4471D5)
 I (..\MQTT\MQTTpacket.h)(0x5F5582C1)
@@ -2045,7 +2045,7 @@ I (..\MQTT\MQTTsubscribe.h)(0x5F5582C1)
 I (..\MQTT\MQTTpublish.h)(0x5F5582C1)
 I (..\CJSON\cJSON.h)(0x5F579003)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 F (..\Freertos_task\task_MQTT_pingreq.c)(0x5F5582C1)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_mqtt_pingreq.o --omf_browse ..\obj\task_mqtt_pingreq.crf --depend ..\obj\task_mqtt_pingreq.d)
 I (..\Freertos_task\task_MQTT_Pingreq.h)(0x5F425556)
 I (..\FreeRTOS\include\freertos.h)(0x5F0DFD99)
@@ -2090,11 +2090,11 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\HARDWARE\WIFI\wifi.h)(0x5F36D676)
 I (..\MQTT\MQTT.h)(0x5F579026)
-I (..\MQTT\MQTTConfig.h)(0x5F571052)
+I (..\MQTT\MQTTConfig.h)(0x5F5A063C)
 I (..\MQTT\MQTT_init.h)(0x5F5582C1)
 I (..\MQTT\MQTTconnect.h)(0x5F4471D5)
 I (..\MQTT\MQTTpacket.h)(0x5F5582C1)
@@ -2150,7 +2150,7 @@ I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\HARDWARE\WIFI\wifi.h)(0x5F36D676)
 I (..\MQTT\MQTT.h)(0x5F579026)
-I (..\MQTT\MQTTConfig.h)(0x5F571052)
+I (..\MQTT\MQTTConfig.h)(0x5F5A063C)
 I (..\MQTT\MQTT_init.h)(0x5F5582C1)
 I (..\MQTT\MQTTconnect.h)(0x5F4471D5)
 I (..\MQTT\MQTTpacket.h)(0x5F5582C1)
@@ -2160,8 +2160,8 @@ I (..\MQTT\MQTTsubscribe.h)(0x5F5582C1)
 I (..\MQTT\MQTTpublish.h)(0x5F5582C1)
 I (..\CJSON\cJSON.h)(0x5F579003)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
-F (..\Freertos_task\task_MQTT_publish.c)(0x5F585862)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_mqtt_publish.o --omf_browse ..\obj\task_mqtt_publish.crf --depend ..\obj\task_mqtt_publish.d)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
+F (..\Freertos_task\task_MQTT_publish.c)(0x5F58ECE1)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_mqtt_publish.o --omf_browse ..\obj\task_mqtt_publish.crf --depend ..\obj\task_mqtt_publish.d)
 I (..\Freertos_task\task_MQTT_publish.h)(0x5F5582C1)
 I (..\FreeRTOS\include\freertos.h)(0x5F0DFD99)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stddef.h)(0x5475F300)
@@ -2208,7 +2208,7 @@ I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\HARDWARE\WIFI\wifi.h)(0x5F36D676)
 I (..\MQTT\MQTT.h)(0x5F579026)
-I (..\MQTT\MQTTConfig.h)(0x5F571052)
+I (..\MQTT\MQTTConfig.h)(0x5F5A063C)
 I (..\MQTT\MQTT_init.h)(0x5F5582C1)
 I (..\MQTT\MQTTconnect.h)(0x5F4471D5)
 I (..\MQTT\MQTTpacket.h)(0x5F5582C1)
@@ -2218,8 +2218,8 @@ I (..\MQTT\MQTTsubscribe.h)(0x5F5582C1)
 I (..\MQTT\MQTTpublish.h)(0x5F5582C1)
 I (..\CJSON\cJSON.h)(0x5F579003)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
-F (..\Freertos_task\task_MQTT_rec.c)(0x5F5896BD)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_mqtt_rec.o --omf_browse ..\obj\task_mqtt_rec.crf --depend ..\obj\task_mqtt_rec.d)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
+F (..\Freertos_task\task_MQTT_rec.c)(0x5F5A179E)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\task_mqtt_rec.o --omf_browse ..\obj\task_mqtt_rec.crf --depend ..\obj\task_mqtt_rec.d)
 I (..\Freertos_task\task_MQTT_rec.h)(0x5F3980D3)
 I (..\FreeRTOS\include\freertos.h)(0x5F0DFD99)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stddef.h)(0x5475F300)
@@ -2263,12 +2263,12 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\HARDWARE\WIFI\wifi.h)(0x5F36D676)
 I (..\MQTT\MQTT.h)(0x5F579026)
-I (..\MQTT\MQTTConfig.h)(0x5F571052)
+I (..\MQTT\MQTTConfig.h)(0x5F5A063C)
 I (..\MQTT\MQTT_init.h)(0x5F5582C1)
 I (..\MQTT\MQTTconnect.h)(0x5F4471D5)
 I (..\MQTT\MQTTpacket.h)(0x5F5582C1)
@@ -2410,7 +2410,7 @@ I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
 I (..\HARDWARE\KEY\key.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 F (..\EMWIN\STemWin\Lib\STemWin532_CM3_OS_Keil.lib)(0x5F0DFD99)()
 F (..\EMWIN\STemWin\Config\GUIConf.c)(0x5F57479D)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\guiconf.o --omf_browse ..\obj\guiconf.crf --depend ..\obj\guiconf.d)
 I (..\EMWIN\STemWin\inc\GUI.h)(0x5F0DFD99)
@@ -2501,7 +2501,7 @@ I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 F (..\EMWIN\STemWin\Config\GUIDRV_Template.c)(0x5F0DFD99)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\guidrv_template.o --omf_browse ..\obj\guidrv_template.crf --depend ..\obj\guidrv_template.d)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stddef.h)(0x5475F300)
 I (..\EMWIN\STemWin\inc\LCD_Private.h)(0x5F0DFD99)
@@ -2640,8 +2640,8 @@ I (..\HARDWARE\TOUCH\ft5206.h)(0x5F0DFD99)
 I (..\EMWIN\STemWin\Config\GUIDRV_Template.h)(0x5F0DFD99)
 I (..\EMWIN\STemWin\inc\GUIDRV_FlexColor.h)(0x5F0DFD99)
 F (..\EMWIN\STemWin_Addons\ST_GUI_Addons.h)(0x564483BF)()
-F (..\EMWIN\EMWIN_APP\setdialog.c)(0x5F57397E)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\setdialog.o --omf_browse ..\obj\setdialog.crf --depend ..\obj\setdialog.d)
-I (..\EMWIN\EMWIN_APP\setdialog.h)(0x5F1019E3)
+F (..\EMWIN\EMWIN_APP\setdialog.c)(0x5F5A1851)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\setdialog.o --omf_browse ..\obj\setdialog.crf --depend ..\obj\setdialog.d)
+I (..\EMWIN\EMWIN_APP\setdialog.h)(0x5F5A113F)
 I (..\EMWIN\STemWin\inc\DIALOG.h)(0x5F0DFD99)
 I (..\EMWIN\STemWin\inc\WM.h)(0x5F0DFD99)
 I (..\EMWIN\STemWin\inc\GUI_ConfDefaults.h)(0x5F0DFD99)
@@ -2731,8 +2731,9 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\task.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\list.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (..\EMWIN\EMWIN_APP\Numpad.h)(0x5F310595)
+I (..\FreeRTOS\include\semphr.h)(0x5F0DFD99)
 F (..\EMWIN\EMWIN_APP\iconvdesk.c)(0x5F39F2EC)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\iconvdesk.o --omf_browse ..\obj\iconvdesk.crf --depend ..\obj\iconvdesk.d)
 I (..\EMWIN\EMWIN_APP\iconvdesk.h)(0x5F119CA5)
 I (..\EMWIN\STemWin\inc\DIALOG.h)(0x5F0DFD99)
@@ -2782,7 +2783,7 @@ I (D:\tools\code tools\keil\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stdint.h)(0x5475F300)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\EMWIN\EMWIN_APP\ButtonController.h)(0x5F0DFD99)
-I (..\EMWIN\EMWIN_APP\setdialog.h)(0x5F1019E3)
+I (..\EMWIN\EMWIN_APP\setdialog.h)(0x5F5A113F)
 I (..\EMWIN\EMWIN_APP\adcgui.h)(0x5F0DFD99)
 F (..\EMWIN\EMWIN_APP\ButtonController.c)(0x5F5582C1)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\buttoncontroller.o --omf_browse ..\obj\buttoncontroller.crf --depend ..\obj\buttoncontroller.d)
 I (..\EMWIN\EMWIN_APP\ButtonController.h)(0x5F0DFD99)
@@ -2868,7 +2869,7 @@ I (..\FreeRTOS\include\portable.h)(0x5F57A356)
 I (..\FreeRTOS\include\deprecated_definitions.h)(0x5F0DFD99)
 I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 F (..\EMWIN\EMWIN_APP\adcgui.c)(0x5F36E315)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\adcgui.o --omf_browse ..\obj\adcgui.crf --depend ..\obj\adcgui.d)
 I (..\EMWIN\EMWIN_APP\adcgui.h)(0x5F0DFD99)
 I (..\EMWIN\STemWin\inc\DIALOG.h)(0x5F0DFD99)
@@ -2953,7 +2954,7 @@ I (..\FreeRTOS\include\portable.h)(0x5F57A356)
 I (..\FreeRTOS\include\deprecated_definitions.h)(0x5F0DFD99)
 I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5F0DFD99)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x5F0DFD99)
-I (..\FreeRTOS\include\queue.h)(0x5F0DFD99)
+I (..\FreeRTOS\include\queue.h)(0x5F5A0619)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stdbool.h)(0x5475F300)
 I (D:\tools\code tools\keil\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 F (..\EMWIN\EMWIN_APP\bkjpeg.c)(0x5F586A6A)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\bkjpeg.o --omf_browse ..\obj\bkjpeg.crf --depend ..\obj\bkjpeg.d)
@@ -3073,10 +3074,10 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x5F0DFD99)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x5F0DFD99)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x5F0DFD99)
 F (..\MQTT\MQTT.h)(0x5F579026)()
-F (..\MQTT\MQTTConfig.h)(0x5F571052)()
-F (..\MQTT\MQTT_init.c)(0x5F5582C1)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\mqtt_init.o --omf_browse ..\obj\mqtt_init.crf --depend ..\obj\mqtt_init.d)
+F (..\MQTT\MQTTConfig.h)(0x5F5A063C)()
+F (..\MQTT\MQTT_init.c)(0x5F5977C4)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MALLOC -I..\FreeRTOS\include -I..\FreeRTOS\portable\RVDS\ARM_CM3 -I..\HARDWARE\LED -I..\HARDWARE\TIMER -I..\HARDWARE\LCD -I..\HARDWARE\SPI -I..\HARDWARE\KEY -I..\HARDWARE\IIC -I..\HARDWARE\24CXX -I..\HARDWARE\SRAM -I..\HARDWARE\TOUCH -I..\HARDWARE\W25QXX -I..\EMWIN\EMWIN_APP -I..\EMWIN\STemWin\inc -I..\EMWIN\STemWin\Config -I..\HARDWARE\ADC -I..\EMWIN\STemWin_Addons -I..\HARDWARE\STMFLASH -I..\HARDWARE\PWM -I..\HARDWARE\WIFI -I..\Freertos_task -I..\MQTT -I..\CJSON-I D:\CODE\embedded\stm32f103zet6\freertos+emwin\PID-STM32F103_emwin+freerots\FreeRTOS+EMWIN\USER\RTE-I "D:\tools\code tools\keil\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\tools\code tools\keil\ARM\CMSIS\Include"-D__UVISION_VERSION="514" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\mqtt_init.o --omf_browse ..\obj\mqtt_init.crf --depend ..\obj\mqtt_init.d)
 I (..\MQTT\MQTT.h)(0x5F579026)
-I (..\MQTT\MQTTConfig.h)(0x5F571052)
+I (..\MQTT\MQTTConfig.h)(0x5F5A063C)
 I (..\MQTT\MQTT_init.h)(0x5F5582C1)
 I (..\MQTT\MQTTconnect.h)(0x5F4471D5)
 I (..\MQTT\MQTTpacket.h)(0x5F5582C1)
