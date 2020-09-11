@@ -399,7 +399,7 @@ topic1[DeserializePublish_topicName.len]=0;
 
 												printf("value:%f\r\n",node2->valuedouble);
 												JDATA_D = (node2->valuedouble);
-
+												
 											}//查找D对象内容类型
 											
 														
@@ -414,7 +414,7 @@ topic1[DeserializePublish_topicName.len]=0;
 									WIFI_PID->Ki=JDATA_I;
 									WIFI_PID->Kd=JDATA_D;
 									xQueueOverwrite(Set_Queue,(void *)&WIFI_PID);				
-						
+									xSemaphoreGive(BinarySemaphore_WIFI_PIDSET);
 							}
 			
 		
@@ -457,7 +457,7 @@ topic1[DeserializePublish_topicName.len]=0;
 												JDATA_SETTEM=(float)(node->valuedouble);
 												
 												xQueueOverwrite(Settem_Queue,&JDATA_SETTEM);	
-
+												xSemaphoreGive(BinarySemaphore_WIFI_TEMSET);
 											}//查找SETTEM值
 											
 										

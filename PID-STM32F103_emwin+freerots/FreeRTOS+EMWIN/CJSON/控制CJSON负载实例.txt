@@ -1,19 +1,14 @@
-{	     "UnderControl":"stm32F103ZET6",
-                                 "ControlInfo":[
-		  {
-		                      "name":"LED0",
-			       "switch" : "1"
-	                   }	 ]
+{"P":33,
+"I":0.01,
+"D":0.02
 }
 
 
+{
+"LED0":1
+}
 
-																size2 = cJSON_GetArraySize(tnode);                  //????????
-																for (j = 0; j<size2; j++)
-																{
-																tnode2 = cJSON_GetArrayItem(tnode, j);          //??????????????
-																if (tnode2->type == cJSON_String)
-																printf("%d-%d: %s\n", i, j, tnode2->valuestring);
-																else
-																printf("tnod2 type is err\n");
-																}
+
+{
+"SETTEM":150
+}

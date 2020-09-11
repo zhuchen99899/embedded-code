@@ -8,19 +8,17 @@
 解决方法 ：①注释 printf 注释 队列，信号量 以及结构体指针传参 
 					 ②taskENTER_CRITICAL()以及taskEXIT_CRITICAL()保护dma中断
 					 ③调度锁vTaskSuspendAll  保护
-					 
 					 调度锁vTaskSuspendAll()禁止调度器，临界区taskENTER_CRITICAL()把freertos系统时基也关闭了
 多次实验
 
+2.在EMWIN界面setdialog.c中使用snprintf来转换float数据为字符串
 
+原因：使用sprintf 时，转换结果中不仅有PIDSET->P数据还会有 I,D
+数据，猜测可能时将结构体首地址放入进行转换导致？ （需查看sprintf实现）
+snprintf可以限制转换的字符串长度，截去多余部分
 
-已解决问题：
-在CONNECT报文后 会同时启用pingreq,subscribe报文，以及publish报文，在发送过程中，可能存在ping或publish报文进入发送缓冲，
-从而使正在发送的subscribe报文不完整导致CONNCET断开连接。
-解决方法：①对DMA缓冲进行双缓冲区管理
-					②DMA发送函数wifi_send中首先关闭DMA通道防止打断
-					③对报文发送任务SUBSCRIBE，PINGREQ,PUBLISH 任务发送之后进行打印或者其他动作，防止在同一时刻（CONNECT报文发送之后）同时开启调度，导致DMA发送产生竞争
-					④调整报文发送任务优先级 SUBSCRIBE
+解决方法：使用snprintf替代，截去多余部分
+真正解决问题方法还需查看 sprintf函数实现。
 ***************************************************/
 /***********************************************************
 						变量定义
@@ -39,6 +37,8 @@ QueueHandle_t PUBLISH_Queue;
 SemaphoreHandle_t BinarySemaphore_USART2ISR;	//USART2空闲中断二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_MQTTconnect;//MQTT CONNCET报文二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_MQTTsubscribe;//MQTT SUBSCRIBE报文二值信号量句柄
+SemaphoreHandle_t BinarySemaphore_WIFI_PIDSET;//MQTT WIFI_PIDSET报文二值信号量句柄
+SemaphoreHandle_t BinarySemaphore_WIFI_TEMSET;//MQTT WIFI_TEMSET报文二值信号量句柄
 
 //开机内部flash读取相关
 #define TEXT_MAXLEN 8	//数组长度

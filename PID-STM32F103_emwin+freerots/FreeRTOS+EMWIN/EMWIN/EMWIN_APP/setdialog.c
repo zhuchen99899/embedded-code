@@ -99,9 +99,10 @@ extern QueueHandle_t Settem_Queue;
 	static char     DisPlayI[TEXT_MAXLEN];
 	static char     DisPlayD[TEXT_MAXLEN];
 	
+	
+	
 
-	static U8      ShowText1=0 ; //edit SETTEM 编辑框数据更改标志
-	static U8      ShowText2=0 ; //edit PID     编辑框数据更改标志
+
 	static U8      saveText1=0 ; //edit SETTEM 编辑框数据保存标志
 	static U8      saveText2=0 ; //edit PID     编辑框数据保存标志
 	
@@ -119,6 +120,28 @@ extern QueueHandle_t Settem_Queue;
 #define FLASH_SAVE_ADDR_P    0x0807FE50	
 #define FLASH_SAVE_ADDR_I  	 0x0807FE70 
 #define FLASH_SAVE_ADDR_D    0x0807FF60
+
+
+/*******************信号量句柄**************/
+extern SemaphoreHandle_t BinarySemaphore_WIFI_PIDSET;//MQTT WIFI_PIDSET报文二值信号量句柄
+extern SemaphoreHandle_t BinarySemaphore_WIFI_TEMSET;//MQTT WIFI_TEMSET报文二值信号量句柄
+
+
+BaseType_t err_settem=pdFALSE;
+BaseType_t err_setpid=pdFALSE;
+
+
+//pid设置结构体
+typedef  struct SETMSG
+	{
+		float Kp;
+		float Ki;
+		float Kd;
+		
+	}SETMSG;
+
+extern SETMSG g_tMsg;
+
 /*********************************************************MULTIPAGE页面****************************************/
 
 /**********************************************************
@@ -146,6 +169,14 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreateWindowPage1[] = {
 static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 {
 
+
+static char    WIFI_DisPlayTem[TEXT_MAXLEN];
+static char     WIFI_P[TEXT_MAXLEN];
+static char     WIFI_I[TEXT_MAXLEN];
+static char     WIFI_D[TEXT_MAXLEN];
+	
+	float SetTem;
+  SETMSG *PIDSET;//结构体指针初始化
 	float adcmsg;
 	char adcstring[20];
 	
@@ -177,9 +208,6 @@ static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 	TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_1), "Settem:");
 
 
-	STMFLASH_Read(FLASH_SAVE_ADDR_TEM,(u16*)datatempTem,SIZE);
-	TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_0), (char *)datatempTem);
-	
 	
 		/************获取实时温度**************/
 	TEXT_SetTextColor(WM_GetDialogItem(hWin, ID_TEXT_6),GUI_RED);
@@ -203,19 +231,6 @@ static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 
 
 
-		/********获取flash中存储的pid数值*******/
-		
-	STMFLASH_Read(FLASH_SAVE_ADDR_P,(u16*)datatempP,SIZE);
-	TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_11), (char *)datatempP);
-
-	
-	STMFLASH_Read(FLASH_SAVE_ADDR_I,(u16*)datatempI,SIZE);
-	TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_12), (char *)datatempI);
-	
-	STMFLASH_Read(FLASH_SAVE_ADDR_D,(u16*)datatempD,SIZE);
-	TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_13), (char *)datatempD);
-
-
 
 
 /******************创建窗口定时器***********************/
@@ -229,19 +244,22 @@ static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 
 	case WM_PAINT:
 
+	
+	/*****************多任务时使用消息队列解决显示问题，不使用全局变量showtest来使
+	多个页面间进行通讯
+	因为可能会有别的地方传入数据 。列入来源于上位机或网络数据需要显示
+	*****************************************************************/
+	
 	/**********************TEM设置温度显示*********************************/
-			if (ShowText1)
+/*	
+
+	
+	if (ShowText1)
 		{
-			
-
-
 				GUI_SetFont(&GUI_Font16B_ASCII);
 				TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_0), aBuffer1);
 				GUI_Clear();
 				ShowText1 = 0;
-	
-		
-			
 		}
 		
 		
@@ -250,9 +268,9 @@ static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 			
 			
 		}
-		
+		*/
 				/*************************PID设置显示********************************/
-		
+		/*
 		if (ShowText2)
 		{
 				GUI_SetFont(&GUI_Font16B_ASCII);
@@ -265,12 +283,9 @@ static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 		else
 		{
 		
+		}
 
-			
-			
-				
-		
-		}//WIFI调整数据
+   */
 		
 		
 	/*******************************渐变色***************************************/	
@@ -290,13 +305,7 @@ static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 							  170,             /* 右下角Y 位置 */
 							  GUI_RED,	       /* 矩形最左侧要绘制的颜色 */
 							  GUI_YELLOW);     /* 矩形最右侧要绘制的颜色 */
-							  
-		
-
-		
-		
-		
-		
+							  	
 		
 		break;//wm_paint
 	
@@ -305,15 +314,44 @@ static void _cbMULTIPAGE1(WM_MESSAGE * pMsg)
 		WM_RestartTimer(pMsg->Data.v,1000); //窗口定时器重装填
 
 		/*************获取ADC任务消息队列*********************/
+		
 		xQueuePeek(Adc_Queue,&adcmsg,100);
 		sprintf(adcstring,"%f",adcmsg);
 		TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_7), adcstring);
 		
+		
+		/*********************网络设置显示************************/
+
+	
+			xQueuePeek(Settem_Queue,&SetTem,100);
+			sprintf(WIFI_DisPlayTem,"%f",SetTem);
+			TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_0), WIFI_DisPlayTem);
+	
+
+
+
+			xQueuePeek(Set_Queue,&PIDSET,100);
+				
+
+/***************注意这里使用snprintf来转换float数据为字符串
+原因：使用sprintf 时，转换结果中不仅有PIDSET->P数据还会有 I,D
+数据，猜测可能时将结构体首地址放入进行转换导致？ （需查看sprintf实现）
+snprintf可以限制转换的字符串长度，截去多余部分*******************/
+//上述bug未来待解决
+			snprintf(WIFI_P,8,"%f",(*PIDSET).Kp);
+			snprintf(WIFI_I,8,"%f",(*PIDSET).Ki);
+			snprintf(WIFI_D,8,"%f",(*PIDSET).Kd);
+
+
+			TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_11), WIFI_P);
+			TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_12), WIFI_I);
+			TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_13), WIFI_D);
 
 
 
 		
 		break;//wm_timer
+			
 	case WM_NOTIFY_PARENT:
 
 
@@ -372,15 +410,6 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreateWindowPage2[] = {
 static void _cbMULTIPAGE2(WM_MESSAGE * pMsg)
 {
 
-typedef  struct SETMSG
-	{
-		float Kp;
-		float Ki;
-		float Kd;
-		
-	}SETMSG;
-
-extern SETMSG g_tMsg;
 
 	float SetTem;
   SETMSG *Setdata;
@@ -584,7 +613,6 @@ extern SETMSG g_tMsg;
 					GUI_MessageBox("set_tempreture is overflow!! please change the value","Warning",GUI_MESSAGEBOX_CF_MODAL);
 					strcpy(aBuffer1,"350");
 					strcpy(DisPlayTem,aBuffer1);
-					ShowText1=1;
 					saveText1=1;
 				}
 
@@ -592,7 +620,6 @@ extern SETMSG g_tMsg;
 				{
 					GUI_MessageBox("the value is changed","Set Tem successful",GUI_MESSAGEBOX_CF_MODAL);
 					strcpy(DisPlayTem,aBuffer1);
-					ShowText1=1;
 					saveText1=1;
 				}
 		/************温度设置消息队列发送***************/
@@ -630,12 +657,9 @@ extern SETMSG g_tMsg;
 			
 				strcpy(DisPlayD,aBufferD);
 		
-				ShowText2=1;
 			  saveText2=1;
 		/************PID设置消息队列发送***************/
-	
-	printf("aBufferD:%s\r\n",aBufferD);
-	printf("DisPlayD:%s\r\n",DisPlayD);
+
 	  Setdata->Kp=(float)atof(DisPlayP);
 		Setdata->Ki=(float)atof(DisPlayI);
 		Setdata->Kd=(float)atof(DisPlayD);
