@@ -40,6 +40,9 @@ SemaphoreHandle_t BinarySemaphore_MQTTsubscribe;//MQTT SUBSCRIBE报文二值信号量句
 SemaphoreHandle_t BinarySemaphore_WIFI_PIDSET;//MQTT WIFI_PIDSET报文二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_WIFI_TEMSET;//MQTT WIFI_TEMSET报文二值信号量句柄
 
+//事件标志组
+EventGroupHandle_t EventGroupHandler;// 独立看门狗事件标志组句柄
+
 //开机内部flash读取相关
 #define TEXT_MAXLEN 8	//数组长度
 #define SIZE TEXT_MAXLEN		//数组长度
@@ -81,6 +84,7 @@ void MQTT_rec_task(void *pvParameters);				// MQTT接收任务
 void MQTT_Pingreq_task(void *pvParameters);				// MQTTPINGREQ任务
 void MQTT_Subscribe_task(void *pvParameters);				// MQTTSUBSCRIBE任务
 void MQTT_Publish_task(void *pvParameters);				// MQTTPUBLISH任务
+void WATCHDOG_task(void *pvParameters);				// WATCHDOG任务
 /***********************************************************
 						任务函数句柄
 ************************************************************/
@@ -97,6 +101,7 @@ TaskHandle_t MQTT_Rec_task_Handler;		  // MQTT接收任务
 TaskHandle_t MQTT_PINGREQ_task_Handler;		  // MQTTPINGREQ任务
 TaskHandle_t MQTT_SUBSCRIBE_task_Handler;				// MQTTSUBSCRIBE任务
 TaskHandle_t MQTT_Publish_task_Handler;				// MQTTPUBLISH任务
+TaskHandle_t WatchDog_task_Handler;				// WATCHDOG任务
 /***********************************************************
 						任务堆栈大小
 ************************************************************/
@@ -112,6 +117,7 @@ TaskHandle_t MQTT_Publish_task_Handler;				// MQTTPUBLISH任务
 #define MQTT_PINGREQ_STK_SIZE		256	// MQTTPINGREQ任务
 #define MQTT_SUBSCRIBE_STK_SIZE		128		// MQTTSUBSCRIBE任务
 #define MQTT_Publish_STK_SIZE			256// MQTTPUBLISH任务
+#define WATCHDOG_STK_SIZE			128// WATCHDOG任务
 /***********************************************************
 						 任务优先级(数值越小优先级越低)
 ************************************************************/
@@ -127,6 +133,7 @@ TaskHandle_t MQTT_Publish_task_Handler;				// MQTTPUBLISH任务
 #define MQTT_PINGREQ_TASK_PRIO		2		// MQTTPINGREQ任务
 #define MQTT_SUBSCRIBE_TASK_PRIO		3		// MQTTSUBSCRIBE任务
 #define MQTT_Publish_TASK_PRIO			2	// MQTTPUBLISH任务
+#define WATCHDOG_TASK_PRIO			5	// MQTTPUBLISH任务
 /***********************************************************
 						 主函数入口
 ************************************************************/
@@ -213,6 +220,8 @@ float settem;
 	Queue_Creat();
 		//信号量创建
 SempaphoreCreate();
+	//事件标志组创建
+EventGroupCreat();
 	
 	//消息队列发送flash内存中的设置参数
 		xQueueOverwrite(Set_Queue,(void *)&Flashdata);			
@@ -314,7 +323,14 @@ SempaphoreCreate();
                 (void*          )NULL,                  
                 (UBaseType_t    )MQTT_Publish_TASK_PRIO,//
                 (TaskHandle_t*  )&MQTT_Publish_task_Handler);
-				
+				//创建Watchdog任务			
+			 xTaskCreate((TaskFunction_t )WATCHDOG_task,             
+                (const char*    )"WATCHDOG_Task",           
+                (uint16_t       )WATCHDOG_STK_SIZE,        
+                (void*          )NULL,                  
+                (UBaseType_t    )WATCHDOG_TASK_PRIO,//
+                (TaskHandle_t*  )&WatchDog_task_Handler);
+					
 														
     vTaskDelete(StartTask_Handler); //删除开始任务
     taskEXIT_CRITICAL();            //退出临界区

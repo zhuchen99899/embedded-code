@@ -4,7 +4,13 @@
 #include "queue.h"
 #include "tem.h"
 #include "task_adc.h"
+#include <EventGroupCreat.h>
+#include "event_groups.h"
 
+
+
+/****************事件标志组句柄*************************/
+extern EventGroupHandle_t EventGroupHandler;	//事件标志组句柄
 
 /*********************************************
 ADC任务
@@ -27,7 +33,7 @@ void ADC_task(void *pvParameters)
 			res=((adctemp/10.0)/0.909)*1000.0;//转换电阻
 			adcmsg=(float)get_tem(res);  //查表转换为温度
 			xQueueOverwrite(Adc_Queue,&adcmsg);		
-
+				xEventGroupSetBits(EventGroupHandler,EVENTBIT_3);	
 				
 				  vTaskDelay(1000);                           //延时10ms，也就是10个时钟节拍	
 	}

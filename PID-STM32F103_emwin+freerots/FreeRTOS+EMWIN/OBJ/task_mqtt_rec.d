@@ -57,3 +57,6 @@
 ..\obj\task_mqtt_rec.o: ..\MQTT\MQTTsubscribe.h
 ..\obj\task_mqtt_rec.o: ..\MQTT\MQTTpublish.h
 ..\obj\task_mqtt_rec.o: ..\CJSON\cJSON.h
+..\obj\task_mqtt_rec.o: ..\USER\EventGroupCreat.h
+..\obj\task_mqtt_rec.o: ..\FreeRTOS\include\event_groups.h
+..\obj\task_mqtt_rec.o: ..\FreeRTOS\include\timers.h

@@ -229,8 +229,10 @@ static char     WIFI_D[TEXT_MAXLEN];
 	TEXT_SetTextColor(WM_GetDialogItem(hWin, ID_TEXT_10),GUI_DARKMAGENTA);
 	TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_10), "D:");
 
-
-
+TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_0),  "000.000");
+TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_11), "000.000");
+TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_12), "000.000");
+TEXT_SetText(WM_GetDialogItem(hWin, ID_TEXT_13), "000.000");
 
 
 /******************创建窗口定时器***********************/

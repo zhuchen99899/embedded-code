@@ -46,3 +46,6 @@
 ..\obj\task_adc.o: ..\FreeRTOS\include\queue.h
 ..\obj\task_adc.o: ..\USER\tem.h
 ..\obj\task_adc.o: ..\Freertos_task\task_adc.h
+..\obj\task_adc.o: ..\USER\EventGroupCreat.h
+..\obj\task_adc.o: ..\FreeRTOS\include\event_groups.h
+..\obj\task_adc.o: ..\FreeRTOS\include\timers.h

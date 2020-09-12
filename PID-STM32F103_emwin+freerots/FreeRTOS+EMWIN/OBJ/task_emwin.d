@@ -88,3 +88,6 @@
 ..\obj\task_emwin.o: ..\EMWIN\STemWin\inc\TREEVIEW.h
 ..\obj\task_emwin.o: ..\EMWIN\STemWin\inc\KNOB.h
 ..\obj\task_emwin.o: ..\Freertos_task\task_emwin.h
+..\obj\task_emwin.o: ..\USER\EventGroupCreat.h
+..\obj\task_emwin.o: ..\FreeRTOS\include\event_groups.h
+..\obj\task_emwin.o: ..\FreeRTOS\include\timers.h

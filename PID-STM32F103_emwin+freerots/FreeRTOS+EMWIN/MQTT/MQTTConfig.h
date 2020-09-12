@@ -73,7 +73,7 @@ Publish 报文配设
 
 /********发布报文1*******/
 #define publish1_header_dup  0  //固定头部首字节控制报文标志dup位 
-#define publish1_qos       0   //publish qos等级 
+#define publish1_qos       1   //publish qos等级 
 #define publish1_retained   0  //是否保留消息
 #define publish1_packetid   2  //报文标识符 message id 
 #define publish1_topicname   "STM32F103ZET6/temperature"  //主题名

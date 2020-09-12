@@ -1,5 +1,6 @@
 #include <MQTTsubscribe.h>
 #include <MQTTpacket.h>
+#include <MQTTunpacket.h>
 #include <stdio.h>
 
 /********************************************************
@@ -73,4 +74,60 @@ exit:
 	FUNC_EXIT_RC(rc);
 	return rc;
 }
+
+
+
+
+
+/********************************************************
+函数: MQTTDeserialize_suback
+功能SUBACK 报文解包
+参数：
+			packetid								//报文标识符
+			maxcount								//最大主题计数
+			count									 //主题计数
+			grantedQoSs						 //允许的qos返回
+			buf                    //接收缓冲
+			buflen                 //接收缓冲长度
+返回值：rc        错误返回码，暂时未定义使用
+********************************************************/
+
+
+int MQTTDeserialize_suback(unsigned short* packetid, int maxcount, int* count, int grantedQoSs[], unsigned char* buf, int buflen)
+{
+	MQTTHeader header = {0};
+	unsigned char* curdata = buf;
+	unsigned char* enddata = NULL;
+	int rc = 0;
+	int mylen;
+
+
+	header.byte = readChar(&curdata);
+	if (header.bits.type != SUBACK)
+		goto exit;
+
+	curdata += (rc = MQTTPacket_decodeBuf(curdata, &mylen)); /* read remaining length */
+	enddata = curdata + mylen;
+	if (enddata - curdata < 2)
+		goto exit;
+
+	*packetid = readInt(&curdata);
+
+	*count = 0;
+	while (curdata < enddata)
+	{
+		if (*count > maxcount)
+		{
+			rc = -1;
+			goto exit;
+		}
+		grantedQoSs[(*count)++] = readChar(&curdata);
+	}
+
+	rc = 1;
+exit:
+	FUNC_EXIT_RC(rc);
+	return rc;
+}
+
 

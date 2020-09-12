@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\MALLOC;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\HARDWARE\LED;..\HARDWARE\TIMER;..\HARDWARE\LCD;..\HARDWARE\SPI;..\HARDWARE\KEY;..\HARDWARE\IIC;..\HARDWARE\24CXX;..\HARDWARE\SRAM;..\HARDWARE\TOUCH;..\HARDWARE\W25QXX;..\EMWIN\EMWIN_APP;..\EMWIN\STemWin\inc;..\EMWIN\STemWin\Config;..\HARDWARE\ADC;..\EMWIN\STemWin_Addons;..\HARDWARE\STMFLASH;..\HARDWARE\PWM;..\HARDWARE\WIFI;..\Freertos_task;..\MQTT;..\CJSON</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\MALLOC;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\HARDWARE\LED;..\HARDWARE\TIMER;..\HARDWARE\LCD;..\HARDWARE\SPI;..\HARDWARE\KEY;..\HARDWARE\IIC;..\HARDWARE\24CXX;..\HARDWARE\SRAM;..\HARDWARE\TOUCH;..\HARDWARE\W25QXX;..\EMWIN\EMWIN_APP;..\EMWIN\STemWin\inc;..\EMWIN\STemWin\Config;..\HARDWARE\ADC;..\EMWIN\STemWin_Addons;..\HARDWARE\STMFLASH;..\HARDWARE\PWM;..\HARDWARE\WIFI;..\Freertos_task;..\HARDWARE\WDG;..\MQTT;..\CJSON</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -447,6 +447,11 @@
               <FileName>SemaphoreCreat.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\SemaphoreCreat.c</FilePath>
+            </File>
+            <File>
+              <FileName>EventGroupCreat.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EventGroupCreat.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -542,6 +547,11 @@
               <FileName>pwm.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\PWM\pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>wdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\WDG\wdg.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -643,6 +653,11 @@
               <FileType>1</FileType>
               <FilePath>..\STM32F10x_FWLib\src\stm32f10x_dma.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f10x_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_iwdg.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -727,6 +742,11 @@
               <FileName>task_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Freertos_task\task_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_watchdog.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Freertos_task\task_watchdog.c</FilePath>
             </File>
             <File>
               <FileName>task_MQTT_connect.c</FileName>

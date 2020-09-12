@@ -69,6 +69,9 @@
 ..\obj\main.o: QueueCreate.h
 ..\obj\main.o: SemaphoreCreat.h
 ..\obj\main.o: ..\FreeRTOS\include\semphr.h
+..\obj\main.o: EventGroupCreat.h
+..\obj\main.o: ..\FreeRTOS\include\event_groups.h
+..\obj\main.o: ..\FreeRTOS\include\timers.h
 ..\obj\main.o: ..\EMWIN\STemWin\inc\GUI.h
 ..\obj\main.o: ..\EMWIN\STemWin\inc\GUI_ConfDefaults.h
 ..\obj\main.o: ..\EMWIN\STemWin\Config\GUIConf.h
@@ -117,6 +120,7 @@
 ..\obj\main.o: ..\EMWIN\STemWin\inc\TEXT.h
 ..\obj\main.o: ..\EMWIN\STemWin\inc\TREEVIEW.h
 ..\obj\main.o: ..\EMWIN\STemWin\inc\KNOB.h
+..\obj\main.o: ..\Freertos_task\task_watchdog.h
 ..\obj\main.o: ..\Freertos_task\task_MQTT_connect.h
 ..\obj\main.o: ..\Freertos_task\task_MQTT_pingreq.h
 ..\obj\main.o: ..\Freertos_task\task_MQTT_subscribe.h

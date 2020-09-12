@@ -37,6 +37,9 @@
 #include "QueueCreate.h"
 #include "SemaphoreCreat.h"
 #include "semphr.h"
+#include "EventGroupCreat.h"
+#include "event_groups.h"
+
 /***************GUIœ‡πÿ*****************************/
 #include "GUI.h"
 #include "WM.h"
@@ -46,6 +49,7 @@
 #include "task_pwm.h"
 #include "task_adc.h"
 #include "task_emwin.h"
+#include "task_watchdog.h"
 #include "task_MQTT_connect.h"
 #include "task_MQTT_pingreq.h"
 #include "task_MQTT_subscribe.h"
@@ -55,6 +59,9 @@
 
 /**********MQTTø‚********************/
 #include "MQTT.h"
+
+
+
 #endif
 
 

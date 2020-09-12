@@ -12,6 +12,10 @@
 #include <ButtonController.h>
 #include <setdialog.h>
 #include <adcgui.h>
+#include <freertos.h>
+#include "event_groups.h"
+#include <EventGroupCreat.h>
+extern EventGroupHandle_t EventGroupHandler;	//事件标志组句柄
 /*
 *********************************************************************************************************
 *                                         变量
@@ -461,6 +465,7 @@ void MainTask(void)
 	//CreateStatusDlg();
 	while (1)
 	{
+xEventGroupSetBits(EventGroupHandler,EVENTBIT_0);
 GUI_Delay(10);
 
 	}

@@ -46,3 +46,6 @@
 ..\obj\task_pwm.o: ..\FreeRTOS\include\queue.h
 ..\obj\task_pwm.o: ..\USER\pid.h
 ..\obj\task_pwm.o: ..\HARDWARE\PWM\pwm.h
+..\obj\task_pwm.o: ..\USER\EventGroupCreat.h
+..\obj\task_pwm.o: ..\FreeRTOS\include\event_groups.h
+..\obj\task_pwm.o: ..\FreeRTOS\include\timers.h

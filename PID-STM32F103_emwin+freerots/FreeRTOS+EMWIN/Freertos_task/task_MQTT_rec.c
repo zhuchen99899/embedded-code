@@ -7,7 +7,8 @@
 #include "string.h"
 #include "wifi.h"
 #include "MQTT.h"
-
+#include <EventGroupCreat.h>
+#include "event_groups.h"
 
 /**********消息队列参数**************/
 
@@ -40,10 +41,23 @@ extern SETMSG g_tMsg;
 	extern QueueHandle_t Wifi_buffer_Queue;
 	extern QueueHandle_t PINGREQ_Queue;
 	extern QueueHandle_t PUBLISH_Queue;
+	
+		/**************事件组句柄**********/
+	extern EventGroupHandle_t EventGroupHandler;	//事件标志组句柄
 
 /*************************WIFI接收任务函数******************/
 void MQTT_rec_task(void *pvParameters)
 {
+	
+	
+		/**********************SUBACK解包参数**********************/
+	unsigned short DeserializeSuback_packetid;
+	int DeserializeSuback_Maxcount=subscribe_count;
+	int DeserializeSuback_Count;
+	int grantedQoSs[subscribe_count];
+	
+	//显示参数
+	int i;
 	/**********************PUBLISH解包参数*********************/
 		unsigned char DeserializePublish_dup;
 		int DeserializePublish_qos;
@@ -162,9 +176,22 @@ xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 		
 		/*****************SUBACK报文********************************/
 		/*************如果增加subscribe，需要对wifi_buffer[2]剩余字节修改，增加一个加1，并且在下面主题判断中增加判断主题*****/
-		else if((wifireceive->wifi_buffer[0]==0x90)&&(wifireceive->wifi_buffer[1]==0x04)) 
+		else if(wifireceive->wifi_buffer[0]==0x90) 
 		{
 				printf("已接收服务器SUBACK报文\r\n");
+			
+						
+			MQTTDeserialize_suback(&DeserializeSuback_packetid,DeserializeSuback_Maxcount,&DeserializeSuback_Count,grantedQoSs,(unsigned char*)(wifireceive->wifi_buffer),
+									(int)(wifireceive->wifi_lenth));
+			
+			printf("包id为:%d\r\n",DeserializeSuback_packetid);
+			printf("反回的报文主题过滤器计数%d\r\n",DeserializeSuback_Count);
+			for (i=0;i<subscribe_count;i++)
+			{
+				printf("主题过滤器%d订阅成功,qos等级为:%d",i+1,grantedQoSs[i]);
+			}
+			
+			/*
 				if(wifireceive->wifi_buffer[2]==0x00&&wifireceive->wifi_buffer[3]==0x01)			//接收到订阅报文1订阅确认,报文标识符1
 				{
 					printf("已接收服务器SUBACK报文,message id=1\r\n");
@@ -216,6 +243,7 @@ xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 				
 				
 			}//订阅报文1确认
+				*/
 				
 		}//else if SUBSCRIBE报文
 		
@@ -503,7 +531,7 @@ topic1[DeserializePublish_topicName.len]=0;
 			
 			//	}
 			
-			
+		xEventGroupSetBits(EventGroupHandler,EVENTBIT_5);
 	
    vTaskDelay(30);                           //延时3000ms
 	}

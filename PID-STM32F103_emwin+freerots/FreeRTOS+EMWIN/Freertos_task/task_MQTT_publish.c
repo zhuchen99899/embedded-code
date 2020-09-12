@@ -6,6 +6,11 @@
 #include "wifi.h"
 #include "MQTT.h"
 #include "semphr.h"
+#include <EventGroupCreat.h>
+#include "event_groups.h"
+
+/****************事件标志组句柄*************************/
+extern EventGroupHandle_t EventGroupHandler;	//事件标志组句柄
 /************消息队列句柄***********/
 extern QueueHandle_t PUBLISH_Queue;
 extern QueueHandle_t Adc_Queue;
@@ -92,7 +97,7 @@ printf(" 发布任务申请后内存剩余量 = %d\r\n", xPortGetFreeHeapSize());
 printf("%s",json_buf);
 	
 	cJSON_Delete(json); 
-	
+	xEventGroupSetBits(EventGroupHandler,EVENTBIT_4);
 
 		}	
 	

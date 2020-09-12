@@ -57,3 +57,6 @@
 ..\obj\task_mqtt_publish.o: ..\CJSON\cJSON.h
 ..\obj\task_mqtt_publish.o: ..\FreeRTOS\include\semphr.h
 ..\obj\task_mqtt_publish.o: ..\FreeRTOS\include\queue.h
+..\obj\task_mqtt_publish.o: ..\USER\EventGroupCreat.h
+..\obj\task_mqtt_publish.o: ..\FreeRTOS\include\event_groups.h
+..\obj\task_mqtt_publish.o: ..\FreeRTOS\include\timers.h
