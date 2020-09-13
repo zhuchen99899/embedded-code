@@ -33,6 +33,7 @@ QueueHandle_t Settem_Queue;
 QueueHandle_t Wifi_buffer_Queue;
 QueueHandle_t PINGREQ_Queue;
 QueueHandle_t PUBLISH_Queue;
+QueueHandle_t PWM_Algorithm_Queue;
 //二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_USART2ISR;	//USART2空闲中断二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_MQTTconnect;//MQTT CONNCET报文二值信号量句柄
@@ -203,6 +204,7 @@ void start_task(void *pvParameters)
 {
 SETMSG *Flashdata;
 float settem;
+u8 PWM_Algorithm_flag=0;
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC,ENABLE);//开启CRC时钟
 
 	GUI_Init();  					//STemWin初始化
@@ -237,8 +239,8 @@ EventGroupCreat();
 	//消息队列发送flash内存中的设置参数
 		xQueueOverwrite(Set_Queue,(void *)&Flashdata);			
 		xQueueOverwrite(Settem_Queue,&settem);			
-
-
+ //开机默认使用参数设定PID模式
+		xQueueOverwrite(PWM_Algorithm_Queue,&PWM_Algorithm_flag);
 
 //发送MQTT任务信号量
 	xSemaphoreGive(BinarySemaphore_MQTTconnect);//发送MQTT Connack报文信号

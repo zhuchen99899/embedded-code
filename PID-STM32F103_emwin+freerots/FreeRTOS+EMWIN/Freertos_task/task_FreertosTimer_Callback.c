@@ -4,7 +4,7 @@
 #include "semphr.h"
 #include "queue.h"
 
-
+/************************************************Freertos软件定时器组监测MQTT报文应答情况**************************************/
 /********Freertos软件定时器组句柄******************/
 //周期性软件定时器
 extern TimerHandle_t 	AutoReloadTimer_For_MqttConnectErr_Handle;			

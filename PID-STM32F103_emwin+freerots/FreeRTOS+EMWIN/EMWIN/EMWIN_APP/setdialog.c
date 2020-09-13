@@ -41,9 +41,7 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 #define ID_TEXT_14      (GUI_ID_USER + 12)
 
 /**********测试显示控件****************/
-//测试使用
-#define ID_TEXT_15      (GUI_ID_USER + 28)
-#define ID_TEXT_16      (GUI_ID_USER + 29)
+
 
 //第二个multipage 控件
 #define ID_Window_2         (GUI_ID_USER + 13)
@@ -58,6 +56,11 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 #define ID_BUTTON_2         (GUI_ID_USER + 22)
 #define ID_BUTTON_3         (GUI_ID_USER + 23)
 
+//第三个multipage 控件
+#define ID_Window_3         (GUI_ID_USER + 30)
+#define ID_BUTTON_4      (GUI_ID_USER + 28)
+#define ID_BUTTON_5      (GUI_ID_USER + 29)
+
 //主界面控件
 #define ID_Window_0         (GUI_ID_USER + 24)
 #define ID_MULTIPAGE_0			(GUI_ID_USER + 25)
@@ -65,9 +68,6 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 #define ID_BUTTON_1        (GUI_ID_USER + 27)
 
 
-
-extern QueueHandle_t Set_Queue;
-extern QueueHandle_t Settem_Queue;
 
 // USER START (Optionally insert additional defines)
 
@@ -121,6 +121,10 @@ extern QueueHandle_t Settem_Queue;
 #define FLASH_SAVE_ADDR_I  	 0x0807FE70 
 #define FLASH_SAVE_ADDR_D    0x0807FF60
 
+/************消息队列句柄************/
+extern QueueHandle_t Set_Queue;
+extern QueueHandle_t Settem_Queue;
+extern QueueHandle_t PWM_Algorithm_Queue;
 
 /*******************信号量句柄**************/
 extern SemaphoreHandle_t BinarySemaphore_WIFI_PIDSET;//MQTT WIFI_PIDSET报文二值信号量句柄
@@ -452,7 +456,7 @@ static void _cbMULTIPAGE2(WM_MESSAGE * pMsg)
 							  800,	   	       /* 右下角X 位置 */
 							  480,  	   	   /* 右下角Y 位置 */
 							  GUI_WHITE,	   /* 矩形最左侧要绘制的颜色 */
-							  GUI_LIGHTBLUE);  /* 矩形最右侧要绘制的颜色 */
+							  GUI_LIGHTCYAN);  /* 矩形最右侧要绘制的颜色 */
 
 				GUI_DrawGradientH(0,			   /* 左上角X 位置 */
 							  170,			   /* 左上角Y 位置 */
@@ -700,6 +704,121 @@ hWin= GUI_CreateDialogBox(_aDialogCreateWindowPage2,GUI_COUNTOF(_aDialogCreateWi
 }
 
 
+
+
+
+
+/**********************************************************
+第三个MULTIPAGE页面
+功能：改变PID模式 ：1.模糊算法      2.PID参数模式
+************************************************************/
+
+
+/***************************************************************第三MULTIPAGE页面***********************************/
+static const GUI_WIDGET_CREATE_INFO _aDialogCreateWindowPage3[] = {
+{ WINDOW_CreateIndirect, "Window", ID_Window_3, 0, 0, 800, 480, 0, 0x0, 0 },
+{ BUTTON_CreateIndirect, "Typical", ID_BUTTON_4, 340, 70, 97, 34, 0, 0x0, 0 },
+{ BUTTON_CreateIndirect, "Fuzzy", ID_BUTTON_5, 340, 250, 97, 34, 0, 0x0, 0 },
+};
+
+
+static void _cbMULTIPAGE3(WM_MESSAGE * pMsg) {
+	//WM_HWIN hItem;
+	int     NCode;
+	int     Id;
+		u8	PWM_Algorithm_flag=0;
+
+
+
+	switch (pMsg->MsgId) {
+	case WM_INIT_DIALOG:
+		//
+		// Initialization of 'Framewin'
+		//
+
+		break;
+
+	case WM_PAINT:
+			GUI_DrawGradientV(0,			   /* 左上角X 位置 */
+							  0,			   /* 左上角Y 位置 */
+							  800,	   	       /* 右下角X 位置 */
+							  480,  	   	   /* 右下角Y 位置 */
+							  GUI_WHITE,	   /* 矩形最左侧要绘制的颜色 */
+							  GUI_LIGHTMAGENTA);  /* 矩形最右侧要绘制的颜色 */
+
+				GUI_DrawGradientH(0,			   /* 左上角X 位置 */
+							  170,			   /* 左上角Y 位置 */
+							  800,	           /* 右下角X 位置 */
+							  170,             /* 右下角Y 位置 */
+							  GUI_RED,	       /* 矩形最左侧要绘制的颜色 */
+							  GUI_YELLOW);     /* 矩形最右侧要绘制的颜色 */
+
+		break;
+	case WM_NOTIFY_PARENT:
+		Id = WM_GetId(pMsg->hWinSrc);
+		NCode = pMsg->Data.v;
+
+		switch (Id) {
+
+		case ID_BUTTON_4: // Notifications sent by 'Button'
+			switch (NCode) {
+
+			case WM_NOTIFICATION_CLICKED:
+	
+
+			break;
+			case WM_NOTIFICATION_RELEASED:
+				PWM_Algorithm_flag=0;
+				xQueueOverwrite(PWM_Algorithm_Queue,&PWM_Algorithm_flag);	
+				GUI_MessageBox("Set typical PID MODE successful","Set MODE successful",GUI_MESSAGEBOX_CF_MODAL);
+			
+			//发送启用PID参数算法给消息队列
+			break;
+			
+		}
+			break;
+		
+		case ID_BUTTON_5: // Notifications sent by 'Button'
+			switch (NCode) {
+
+			case WM_NOTIFICATION_CLICKED:
+	
+				break;
+			case WM_NOTIFICATION_RELEASED:
+				PWM_Algorithm_flag=1;
+			xQueueOverwrite(PWM_Algorithm_Queue,&PWM_Algorithm_flag);
+			GUI_MessageBox("Set Fuzzy PID MODE successful","Set MODE successful",GUI_MESSAGEBOX_CF_MODAL);
+			//发送启用模糊pid算法标志给消息队列
+			break;
+			// USER START (Optionally insert additional code for further Ids)
+			// USER END
+		}
+		
+		break;
+
+
+	}//控件
+		break;
+		default:
+		WM_DefaultProc(pMsg);
+		break;
+ }//message ID
+
+}//cbmultipage3
+
+
+
+WM_HWIN CreateWindowPage3(void)
+{
+	WM_HWIN hWin;
+hWin= GUI_CreateDialogBox(_aDialogCreateWindowPage3,GUI_COUNTOF(_aDialogCreateWindowPage3),_cbMULTIPAGE3,WM_HBKWIN,0,0);
+	return hWin;
+
+}
+
+
+
+
 /********************************************************主页面*****************************************************************/
 
 /*********************************************************************
@@ -851,8 +970,12 @@ static void _cbCallbackSettem(WM_MESSAGE * pMsg) {
 	
 	  hWinPage= CreateWindowPage1();
 		MULTIPAGE_AddPage(hItem,hWinPage,"DisPlay");
+		
 		hWinPage=CreateWindowPage2();
 		MULTIPAGE_AddPage(hItem,hWinPage,"SET");
+		
+		hWinPage=CreateWindowPage3();
+		MULTIPAGE_AddPage(hItem,hWinPage,"MODE");
 		
 		MULTIPAGE_SelectPage(hItem,0);
 
