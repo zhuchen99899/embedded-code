@@ -28,7 +28,11 @@ typedef  struct SETMSG
 	}SETMSG;
 extern SETMSG g_tMsg;
 
-
+/********Freertos软件定时器组句柄******************/
+//周期性软件定时器
+extern TimerHandle_t 	AutoReloadTimer_For_MqttConnectErr_Handle;			
+extern TimerHandle_t   AutoReloadTimer_For_MqttPingreqErr_Handle;
+extern TimerHandle_t   AutoReloadTimer_For_MqttSubscribeErr_Handle;
 
 
 
@@ -119,14 +123,16 @@ void MQTT_rec_task(void *pvParameters)
 xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 	/*printf("接收到的数据为 %02x\r\n ,长度为 %d\r\n",&wifireceive->wifi_buffer,wifireceive->wifi_lenth);*/
  
-				/************************CONNACT报文检测**************************************************/
+				/************************CONNACK报文检测**************************************************/
 			//	首字节固定为0x20  剩余字节固定为0x02 可变报头部分为 连接确认标志：0x00 以及连接返回码
 		if((wifireceive->wifi_buffer[0]==0x20)&&(wifireceive->wifi_buffer[1]==0x02)&&(wifireceive->wifi_buffer[2]==0x00))    //如果收到4个字节，且第一个字节是0x20，表示是connect ack报文，进入if
 		{
-			printf("已接收服务器CONNECT报文\r\n");
+			printf("已接收服务器CONNACK报文\r\n");
 			switch(wifireceive->wifi_buffer[3])	                                                     //判断收到的第4个字节
 			{					
 				case 0x00 : printf("CONNECT报文成功\r\n");
+										xTimerStop(AutoReloadTimer_For_MqttConnectErr_Handle,0); 	//关闭周期定时器
+										printf("关闭CONNECT报文应答检测定时器\r\n");
 										PINGREQ_FLAG=1;   //开始发送PINGREQ报文标志
 										PUBLISH_FLAG=1;   //开始发送PUBLISH报文标志
 										xQueueOverwrite(PINGREQ_Queue,&PINGREQ_FLAG);
@@ -134,16 +140,17 @@ xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 										xSemaphoreGive(BinarySemaphore_MQTTsubscribe);
 										vTaskDelay(3000);
 										xQueueOverwrite(PUBLISH_Queue,&PUBLISH_FLAG);	
+				
 										
 										/************SUBSCRIBE,publish*************/
 							break;
 				case 0x01 : printf("连接已拒绝，不支持的协议版本，准备重启\r\n");
 				/***************E1错误重启*********************/		
-
+										
 						break;
 				case 0x02 : printf("连接已拒绝，不合格的客户端标识符，准备重启\r\n");
 				/***************E2错误重启*********************/	
-
+								
 						break;
 				case 0x03 : printf("连接已拒绝，服务端不可用，准备重启\r\n");
 				/***************E3错误重启*********************/	
@@ -171,7 +178,8 @@ xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 		{
 		
 		printf("已接收服务器PINGRESP报文\r\n");
-		
+		xTimerStop(AutoReloadTimer_For_MqttPingreqErr_Handle,0); 	//关闭周期定时器
+		printf("关闭PINGREQ报文应答检测定时器\r\n");	
 		}//else if PINGRESP报文
 		
 		/*****************SUBACK报文********************************/
@@ -191,6 +199,8 @@ xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 				printf("主题过滤器%d订阅成功,qos等级为:%d",i+1,grantedQoSs[i]);
 			}
 			
+			xTimerStop(AutoReloadTimer_For_MqttSubscribeErr_Handle,0);  	//关闭周期定时器
+			printf("关闭SUBSCRIBE报文应答检测定时器\r\n");
 			/*
 				if(wifireceive->wifi_buffer[2]==0x00&&wifireceive->wifi_buffer[3]==0x01)			//接收到订阅报文1订阅确认,报文标识符1
 				{
@@ -523,8 +533,7 @@ topic1[DeserializePublish_topicName.len]=0;
 			
 		//else{
 			/************************
-			建立Freertos软件定时器 周期定时 ，时间为MQTTconfig.h中设值拿keepAlive_Interval 
-			定时器回调函数即超时处理。
+
 			**************/
 			
 			

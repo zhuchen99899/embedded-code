@@ -64,6 +64,7 @@
 "..\obj\task_mqtt_rec.o"
 "..\obj\task_emwin.o"
 "..\obj\task_userif.o"
+"..\obj\task_freertostimer_callback.o"
 "..\EMWIN\STemWin\Lib\STemWin532_CM3_OS_Keil.lib"
 "..\obj\guiconf.o"
 "..\obj\gui_x_freertos.o"

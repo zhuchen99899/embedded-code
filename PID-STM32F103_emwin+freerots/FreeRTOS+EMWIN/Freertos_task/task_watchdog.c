@@ -46,7 +46,7 @@ EventBits_t uxBits;
 		{
 			/* 基本是每xTicksToWait进来一次 */
 			/* 通过变量uxBits简单的可以在此处检测那个任务长期没有发来运行标志 */ //返回置1的事件标志组的值
-			printf("uxBits:%X   ",uxBits);
+			printf("等待所有事件标志uxBits:%X     ",uxBits);
 		}
 		vTaskDelay(3000);
     }

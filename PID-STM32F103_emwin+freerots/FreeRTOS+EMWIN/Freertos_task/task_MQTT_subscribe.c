@@ -6,10 +6,19 @@
 #include "wifi.h"
 #include "MQTT.h"
 #include "semphr.h"
+#include "timers.h"
+
+
+
 
 /******MQTTsubscribe结构体************/
 MQTTString SETSUBSCRIBE[subscribe_count];
 int QoSs[subscribe_count];	
+
+/************Freertos软件定时器句柄********************/
+//周期性软件定时器
+extern TimerHandle_t   AutoReloadTimer_For_MqttSubscribeErr_Handle;
+
 /**********信号量**********/
 extern SemaphoreHandle_t BinarySemaphore_MQTTsubscribe;//MQTT SUBSCRIBE报文二值信号量句柄
 
@@ -27,7 +36,7 @@ subscribe_init(); //MQTTsubscribe 报头初始化设置
 	
 	err=xSemaphoreTake(BinarySemaphore_MQTTsubscribe,portMAX_DELAY);	//获取SUBSCRIBE报文信号量
 			if(err==pdTRUE)										//获取信号量成功
-			{		
+	{		
 			printf("WIFI正在发送Subscribe报文\r\n");
 			len=MQTT_subscribe(temp_buff,256,subscribe_header_dup,subscribe_packetid,subscribe_count,SETSUBSCRIBE,QoSs);
 			WIFI_send(temp_buff,len);
@@ -44,7 +53,13 @@ subscribe_init(); //MQTTsubscribe 报头初始化设置
 		printf("Subscribe报文发送完成\r\n");
 			
 
-			}
+		
+		xTimerStart(AutoReloadTimer_For_MqttSubscribeErr_Handle,0);	
+
+		printf("开启SUBSCRIBE应答检测定时器");
+		
+		
+	}
 
 
 	

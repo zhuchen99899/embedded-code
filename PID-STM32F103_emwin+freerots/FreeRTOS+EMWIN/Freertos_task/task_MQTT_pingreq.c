@@ -7,10 +7,17 @@
 #include "string.h"
 #include "wifi.h"
 #include "MQTT.h"
+#include "timers.h"
 
 
-/********************WIFI发送PINGREQ任务*****************/
+/************Freertos软件定时器句柄********************/
+//周期性软件定时器
+extern TimerHandle_t   AutoReloadTimer_For_MqttPingreqErr_Handle;
+
+/******************消息队列句柄********************/
 	extern QueueHandle_t PINGREQ_Queue;
+/********************WIFI发送PINGREQ任务*****************/
+
 	
 void MQTT_Pingreq_task(void *pvParameters)
 {
@@ -39,11 +46,15 @@ int i;
 	
 		}
 		printf("发送PINGREQ报文完成\r\n");
+		
+		
+		
+		xTimerStart(AutoReloadTimer_For_MqttPingreqErr_Handle,0);	
+
+		printf("开启Pingreq应答检测定时器");
+		
 		}
 
-
-
-	
       vTaskDelay(50000);                           //延时50s
 	}//while
 };// pingreq_task

@@ -43,6 +43,11 @@ SemaphoreHandle_t BinarySemaphore_WIFI_TEMSET;//MQTT WIFI_TEMSET报文二值信号量句
 //事件标志组
 EventGroupHandle_t EventGroupHandler;// 独立看门狗事件标志组句柄
 
+//Freertos软件定时器组句柄
+//周期性软件定时器
+TimerHandle_t 	AutoReloadTimer_For_MqttConnectErr_Handle;			
+TimerHandle_t   AutoReloadTimer_For_MqttPingreqErr_Handle;
+TimerHandle_t   AutoReloadTimer_For_MqttSubscribeErr_Handle;
 //开机内部flash读取相关
 #define TEXT_MAXLEN 8	//数组长度
 #define SIZE TEXT_MAXLEN		//数组长度
@@ -71,7 +76,12 @@ SETMSG g_tMsg;
 /***********************************************************
 					任务函数声明
 ************************************************************/
-
+//周期定时器回调函数
+void AutoReloadCallback_MqttConnectErr(TimerHandle_t xTimer); 	
+void AutoReloadCallback_MqttPingreqErr(TimerHandle_t xTimer);
+void AutoReloadCallback_MqttSubscribeErr(TimerHandle_t xTimer);
+	
+//任务函数
 void start_task(void *pvParameters);		//Start任务
 void touch_task(void *pvParameters);		//TOUCH任务
 void UserIf_task(void *pvParameters);		//UserIf空闲任务
@@ -215,7 +225,7 @@ float settem;
   Flashdata->Kd=(float)atof((char *)datatempD);
   settem=(float)atof((char *)datatempTem);
 
-
+/**************创建任务间通讯机制******************/
 	//创建消息队列
 	Queue_Creat();
 		//信号量创建
@@ -223,6 +233,7 @@ SempaphoreCreate();
 	//事件标志组创建
 EventGroupCreat();
 	
+
 	//消息队列发送flash内存中的设置参数
 		xQueueOverwrite(Set_Queue,(void *)&Flashdata);			
 		xQueueOverwrite(Settem_Queue,&settem);			
@@ -235,8 +246,28 @@ EventGroupCreat();
 	CJSON_init();
 	/**********************************任务创建******************************/
 	
-	
-	
+		/***************创建freertos定时器组***************/
+		//周期定时器1，发送CONNECT报文后开启定时器，5S内没有接收CONNACK报文 在定时器回调中再次释放CONNECT任务信号量，并关闭定时器
+	  AutoReloadTimer_For_MqttConnectErr_Handle=xTimerCreate((const char*		)"AutoReloadTimer_For_MqttConnectErr",
+									    (TickType_t			)5000,
+							            (UBaseType_t		)pdTRUE,
+							            (void*				)1,
+							            (TimerCallbackFunction_t)AutoReloadCallback_MqttConnectErr); //周期定时器
+	//周期定时器2，发送pingreq报文后开启，2min30s内没有接收到pingreq报文传来关闭定时器指令，在回调函数中再次释放CONNECT任务信号量，并提前复位定时器，再关闭定时器
+	AutoReloadTimer_For_MqttPingreqErr_Handle=xTimerCreate((const char*		)"AutoReloadTimer_For_MqttPingreqErr",
+									    (TickType_t			)150000,
+							            (UBaseType_t		)pdTRUE,
+							            (void*				)1,
+							            (TimerCallbackFunction_t)AutoReloadCallback_MqttPingreqErr); //周期定时器，
+	//周期定时器3，发送subscribe报文后开启，5s内没有接收到suback报文，在定时器回调中再次释放subscribe信号量，重复三次计数flag,
+	//如果还没有suback报文(在回调中判断flag),提前将flag置0，并再次释放CONNECT信号量，并关闭定时器			
+	AutoReloadTimer_For_MqttSubscribeErr_Handle=xTimerCreate((const char*		)"AutoReloadTimer_For_MqttSubscribeErr",
+									    (TickType_t			)5000,
+							            (UBaseType_t		)pdTRUE,
+							            (void*				)1,
+							            (TimerCallbackFunction_t)AutoReloadCallback_MqttSubscribeErr); //周期定时器										
+													
+													
 	//创建触摸任务
     xTaskCreate((TaskFunction_t )touch_task,             
                 (const char*    )"touch_task",           

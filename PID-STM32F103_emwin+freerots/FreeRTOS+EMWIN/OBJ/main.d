@@ -55,6 +55,7 @@
 ..\obj\main.o: ..\HARDWARE\PWM\pwm.h
 ..\obj\main.o: ..\HARDWARE\WIFI\wifi.h
 ..\obj\main.o: ..\HARDWARE\STMFLASH\stmflash.h
+..\obj\main.o: ..\HARDWARE\WDG\wdg.h
 ..\obj\main.o: ..\FreeRTOS\include\FreeRTOS.h
 ..\obj\main.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\main.o: ..\FreeRTOS\include\FreeRTOSConfig.h
@@ -127,6 +128,7 @@
 ..\obj\main.o: ..\Freertos_task\task_MQTT_publish.h
 ..\obj\main.o: ..\Freertos_task\task_MQTT_rec.h
 ..\obj\main.o: ..\Freertos_task\task_userif.h
+..\obj\main.o: ..\Freertos_task\task_FreertosTimer_Callback.h
 ..\obj\main.o: ..\MQTT\MQTT.h
 ..\obj\main.o: ..\MQTT\MQTTConfig.h
 ..\obj\main.o: ..\MQTT\MQTT_init.h

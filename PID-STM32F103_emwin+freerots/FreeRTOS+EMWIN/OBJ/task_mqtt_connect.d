@@ -57,3 +57,4 @@
 ..\obj\task_mqtt_connect.o: ..\CJSON\cJSON.h
 ..\obj\task_mqtt_connect.o: ..\FreeRTOS\include\semphr.h
 ..\obj\task_mqtt_connect.o: ..\FreeRTOS\include\queue.h
+..\obj\task_mqtt_connect.o: ..\FreeRTOS\include\timers.h

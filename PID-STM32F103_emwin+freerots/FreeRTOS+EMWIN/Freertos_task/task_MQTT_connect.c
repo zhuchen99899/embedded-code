@@ -7,6 +7,11 @@
 #include "wifi.h"
 #include "MQTT.h"
 #include "semphr.h"
+#include "timers.h"
+/************Freertos软件定时器句柄********************/
+//周期性软件定时器
+extern TimerHandle_t 	AutoReloadTimer_For_MqttConnectErr_Handle;			
+
 /**********信号量**********/
 extern SemaphoreHandle_t BinarySemaphore_MQTTconnect;//MQTT CONNCET报文二值信号量句柄
 
@@ -46,9 +51,9 @@ conncect_init(); //MQTTconncet 报头初始化设置
 	
 			
 		printf("CONNECT报文发送完成\r\n");
-
-
-
+	
+		xTimerStart(AutoReloadTimer_For_MqttConnectErr_Handle,0);	
+		printf("开启CONNECT报文应答检测定时器");
 			}
 
 	

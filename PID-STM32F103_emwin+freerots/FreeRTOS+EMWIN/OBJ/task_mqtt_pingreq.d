@@ -56,3 +56,4 @@
 ..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTsubscribe.h
 ..\obj\task_mqtt_pingreq.o: ..\MQTT\MQTTpublish.h
 ..\obj\task_mqtt_pingreq.o: ..\CJSON\cJSON.h
+..\obj\task_mqtt_pingreq.o: ..\FreeRTOS\include\timers.h

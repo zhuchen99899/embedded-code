@@ -2,7 +2,7 @@
 #ifndef  __INCLUDES_H__
 #define  __INCLUDES_H__
 
-/*****************基本库**********************/
+/*****************C基本库**********************/
 #include  <stdarg.h>
 #include  <stdio.h>
 #include  <stdlib.h>
@@ -30,6 +30,7 @@
 #include "pwm.h"
 #include "wifi.h"
 #include "stmflash.h"
+#include "wdg.h"
 /***************Freertos相关**********************/
 #include "FreeRTOS.h"
 #include "task.h"
@@ -39,7 +40,7 @@
 #include "semphr.h"
 #include "EventGroupCreat.h"
 #include "event_groups.h"
-
+#include "timers.h"
 /***************GUI相关*****************************/
 #include "GUI.h"
 #include "WM.h"
@@ -56,11 +57,13 @@
 #include "task_MQTT_publish.h"
 #include "task_MQTT_rec.h"
 #include "task_userif.h"
+#include "task_FreertosTimer_Callback.h"
 
 /**********MQTT库********************/
 #include "MQTT.h"
 
-
+/***********JSON库******************/
+#include "cJSON.h"
 
 #endif
 
