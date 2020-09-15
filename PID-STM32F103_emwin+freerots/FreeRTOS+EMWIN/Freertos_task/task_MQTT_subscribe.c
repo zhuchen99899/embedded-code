@@ -28,7 +28,7 @@ void MQTT_Subscribe_task(void *pvParameters)
 {
 int i;
 BaseType_t err=pdFALSE;
- u8 temp_buff[256];
+ u8 temp_buff[256]; //可以使用packet包中函数获取长度， 使用malloc创建动态内存
 int len;
 subscribe_init(); //MQTTsubscribe 报头初始化设置
 	while(1)

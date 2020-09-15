@@ -126,6 +126,7 @@ extern QueueHandle_t Set_Queue;
 extern QueueHandle_t Settem_Queue;
 extern QueueHandle_t PWM_Algorithm_Queue;
 
+
 /*******************信号量句柄**************/
 extern SemaphoreHandle_t BinarySemaphore_WIFI_PIDSET;//MQTT WIFI_PIDSET报文二值信号量句柄
 extern SemaphoreHandle_t BinarySemaphore_WIFI_TEMSET;//MQTT WIFI_TEMSET报文二值信号量句柄

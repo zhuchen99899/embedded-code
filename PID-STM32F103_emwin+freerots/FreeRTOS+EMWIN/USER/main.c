@@ -19,6 +19,8 @@ snprintf可以限制转换的字符串长度，截去多余部分
 
 解决方法：使用snprintf替代，截去多余部分
 真正解决问题方法还需查看 sprintf函数实现。
+
+3.在emwin LISTVIEW界面中，长时间打开后，数据不刷新，闪烁，猜测空间不足。
 ***************************************************/
 /***********************************************************
 						变量定义
@@ -34,6 +36,8 @@ QueueHandle_t Wifi_buffer_Queue;
 QueueHandle_t PINGREQ_Queue;
 QueueHandle_t PUBLISH_Queue;
 QueueHandle_t PWM_Algorithm_Queue;
+QueueHandle_t REC_ShowHeap_Queue;
+QueueHandle_t PUBLISH_ShowHeap_Queue;
 //二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_USART2ISR;	//USART2空闲中断二值信号量句柄
 SemaphoreHandle_t BinarySemaphore_MQTTconnect;//MQTT CONNCET报文二值信号量句柄

@@ -88,4 +88,5 @@
 ..\obj\showtask.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\obj\showtask.o: ..\FreeRTOS\include\task.h
 ..\obj\showtask.o: ..\FreeRTOS\include\list.h
+..\obj\showtask.o: ..\FreeRTOS\include\queue.h
 ..\obj\showtask.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\string.h

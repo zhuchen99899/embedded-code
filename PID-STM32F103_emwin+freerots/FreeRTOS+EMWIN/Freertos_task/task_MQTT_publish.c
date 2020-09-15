@@ -14,13 +14,15 @@ extern EventGroupHandle_t EventGroupHandler;	//事件标志组句柄
 /************消息队列句柄***********/
 extern QueueHandle_t PUBLISH_Queue;
 extern QueueHandle_t Adc_Queue;
-
+extern QueueHandle_t PUBLISH_ShowHeap_Queue;
 /*************全局变量**************/
 
 MQTTString SETPUBLISH; //PUBLISH封包结构体
 
 void MQTT_Publish_task(void *pvParameters)
 {
+	size_t ShowPulishHeap;
+	
 //	int i;
  u8 temp_buff[256];
 int len;
@@ -75,28 +77,24 @@ publish_init();
 	 json_buf = cJSON_Print(json);  
 	*/	
 		
+		//publish 报文序列化
 		len=MQTT_publish(temp_buff,256,publish1_header_dup,publish1_qos,publish1_retained,publish1_packetid,SETPUBLISH,(unsigned char *)json_buf,strlen(json_buf));
-			
-		
+		//发送报文
 		WIFI_send(temp_buff,len);
 
-    vPortFree(json_buf);
-					/*******打印wifi发送*******/
-		/*
-		for (i=0;i<len;i++)
-		{
-		printf("%02x",temp_buff[i]);
+
+printf("%s",json_buf); //打印json对象
 	
-		}
-		printf("PUBLISH报文发送完成");
-			*/
+	cJSON_Delete(json); //释放json
 	
-printf(" 发布任务申请后内存剩余量 = %d\r\n", xPortGetFreeHeapSize());
+	 vPortFree(json_buf);//释放申请的json缓冲
 	
+//发送剩余堆给emwin
+ShowPulishHeap=xPortGetFreeHeapSize();
+printf(" 发布任务申请后内存剩余量 = %d\r\n", ShowPulishHeap);
+xQueueOverwrite(PUBLISH_ShowHeap_Queue,&ShowPulishHeap);	
 	
-printf("%s",json_buf);
-	
-	cJSON_Delete(json); 
+//事件标志组喂狗	
 	xEventGroupSetBits(EventGroupHandler,EVENTBIT_4);
 
 		}	

@@ -15,6 +15,9 @@ void PINGREQ_QueueCreat(void);
 void PUBLISH_QueueCreat(void);
 void PWM_Algorithm_QueueCreat(void);
 void Queue_Creat(void);
+void REC_HeapShow_QueueCreat(void);
+void publish_HeapShow_QueueCreat(void);
+
 
 #endif
 

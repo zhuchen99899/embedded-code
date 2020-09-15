@@ -45,7 +45,8 @@ extern TimerHandle_t   AutoReloadTimer_For_MqttSubscribeErr_Handle;
 	extern QueueHandle_t Wifi_buffer_Queue;
 	extern QueueHandle_t PINGREQ_Queue;
 	extern QueueHandle_t PUBLISH_Queue;
-	
+	extern QueueHandle_t REC_ShowHeap_Queue;
+
 		/**************事件组句柄**********/
 	extern EventGroupHandle_t EventGroupHandler;	//事件标志组句柄
 
@@ -97,6 +98,9 @@ void MQTT_rec_task(void *pvParameters)
 	double JDATA_D;
 	float JDATA_SETTEM;
 	
+	/********传递任务堆剩余变量*********/
+	size_t ShowRecHeap;
+
 /********************变量****************************/
 
 
@@ -262,7 +266,11 @@ xQueuePeek(Wifi_buffer_Queue,(void *)&wifireceive,portMAX_DELAY);
 		{
 
 		printf("已接收服务器puback报文\r\n");
-
+//发送剩余堆给emwin任务
+ShowRecHeap=xPortGetFreeHeapSize();
+printf(" 接收任务堆剩余量= %d\r\n", ShowRecHeap);
+xQueueOverwrite(REC_ShowHeap_Queue,&ShowRecHeap);	
+			
 		}//else if puback报文
 
 		else if((wifireceive->wifi_buffer[0]&0xF0)==0x30)
@@ -521,8 +529,11 @@ topic1[DeserializePublish_topicName.len]=0;
 			//释放解包所申请的空间 
 	vPortFree(payload1);	
 	vPortFree(topic1);	
-  printf(" 接收任务堆剩余量= %d\r\n", xPortGetFreeHeapSize());
-
+			
+//将剩余堆传递给emwin	
+	ShowRecHeap=xPortGetFreeHeapSize();
+  printf(" 接收任务堆剩余量= %d\r\n", ShowRecHeap);
+xQueueOverwrite(REC_ShowHeap_Queue,&ShowRecHeap);	
 			
 		};//else if publish报文
 		
@@ -540,6 +551,7 @@ topic1[DeserializePublish_topicName.len]=0;
 			
 			//	}
 			
+	//事件标志组喂狗
 		xEventGroupSetBits(EventGroupHandler,EVENTBIT_5);
 	
    vTaskDelay(30);                           //延时3000ms

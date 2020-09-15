@@ -16,6 +16,10 @@
 #define PINGREQ_Q_NUM   1   	//PINGREQ的消息队列的数量  
 #define PUBLISH_Q_NUM   1			//PUBLISH的消息队列的数量  
 #define PWM_Algorithm_NUM  1			//PUBLISH的消息队列的数量  
+#define Rec_ShowHeap_NUM   1      //接收任务堆剩余量
+#define Publish_ShowHeap_NUM   1      //Publish任务堆剩余量
+
+
 typedef struct SETMSG
 	{
 		float Kp;
@@ -172,6 +176,39 @@ void PWM_Algorithm_QueueCreat(void)
 }
 
 
+void REC_HeapShow_QueueCreat(void)
+{
+	extern QueueHandle_t REC_ShowHeap_Queue;
+	REC_ShowHeap_Queue =xQueueCreate(Rec_ShowHeap_NUM,sizeof(size_t));
+	
+	if (REC_ShowHeap_Queue==0)
+	{
+	/*消息创建失败处理机制*/
+	printf("Rec_堆显示消息队列创建失败");
+	}
+	else 
+	{
+	printf("Rec_堆显示消息队列创建成功");
+	}
+}
+
+
+void publish_HeapShow_QueueCreat(void)
+{
+	extern QueueHandle_t PUBLISH_ShowHeap_Queue;
+	PUBLISH_ShowHeap_Queue =xQueueCreate(Publish_ShowHeap_NUM,sizeof(size_t));
+	
+	if (PUBLISH_ShowHeap_Queue==0)
+	{
+	/*消息创建失败处理机制*/
+	printf("Publish_堆显示消息队列创建失败");
+	}
+	else 
+	{
+	printf("Publish_堆显示消息队列创建成功");
+	}
+}
+
 
 void Queue_Creat(void)
 {
@@ -184,6 +221,9 @@ WIFI_buffer_QueueCreat();
 PINGREQ_QueueCreat();
 PUBLISH_QueueCreat();
 PWM_Algorithm_QueueCreat();
+REC_HeapShow_QueueCreat();
+publish_HeapShow_QueueCreat();
+
 }
 
 

@@ -2,10 +2,20 @@
 #include "ST_GUI_Addons.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "queue.h"
 #include <string.h> 
 #include <stdio.h>
+
+/************************实际项目禁止使用打印任务信息（影响实时性）************/
 extern GUI_CONST_STORAGE GUI_BITMAP bmReturn;
 
+
+/***************消息队列句柄*************/
+extern QueueHandle_t REC_ShowHeap_Queue;
+extern QueueHandle_t PUBLISH_ShowHeap_Queue;
+/************消息队列参数变量***********/
+	size_t ShowRecHeap;
+	size_t ShowPulishHeap;
 
 /************************返回Freertos任务状态函数****************/
 char* return_state(char* state ,int value)
@@ -151,6 +161,10 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 	char count[5];
 	uint32_t percentage;
 	char usingrate[8];
+	char StrEmwinHeap[5];
+	char StrRecHeap[5];
+	char StrPublishHeap[5];
+	
   switch (pMsg->MsgId) {
   case WM_INIT_DIALOG:
     //
@@ -164,25 +178,26 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		WM_SetCallback(hItem, _cbButtonBack);
 	
     hItem = WM_GetDialogItem(pMsg->hWin, ID_LISTVIEW_0);
-		LISTVIEW_AddColumn(hItem, 100, "ID", GUI_TA_HCENTER | GUI_TA_VCENTER);
-    LISTVIEW_AddColumn(hItem, 100, "Name", GUI_TA_HCENTER | GUI_TA_VCENTER);
-    LISTVIEW_AddColumn(hItem, 100, "Status", GUI_TA_HCENTER | GUI_TA_VCENTER);
-    LISTVIEW_AddColumn(hItem, 100, "CurrentPriority", GUI_TA_HCENTER | GUI_TA_VCENTER);
-		LISTVIEW_AddColumn(hItem, 100, "BasePriority", GUI_TA_HCENTER | GUI_TA_VCENTER);
-		LISTVIEW_AddColumn(hItem, 100, "Remaining stack", GUI_TA_HCENTER | GUI_TA_VCENTER);
-		LISTVIEW_AddColumn(hItem, 100, "Count", GUI_TA_HCENTER | GUI_TA_VCENTER);
-		LISTVIEW_AddColumn(hItem, 100, "Using rate", GUI_TA_HCENTER | GUI_TA_VCENTER);
-
+		LISTVIEW_AddColumn(hItem, 88, "ID", GUI_TA_HCENTER | GUI_TA_VCENTER);
+    LISTVIEW_AddColumn(hItem, 88, "Name", GUI_TA_HCENTER | GUI_TA_VCENTER);
+    LISTVIEW_AddColumn(hItem, 88, "Status", GUI_TA_HCENTER | GUI_TA_VCENTER);
+    LISTVIEW_AddColumn(hItem, 88, "CurrentPriority", GUI_TA_HCENTER | GUI_TA_VCENTER);
+		LISTVIEW_AddColumn(hItem, 88, "BasePriority", GUI_TA_HCENTER | GUI_TA_VCENTER);
+		LISTVIEW_AddColumn(hItem, 88, "Remaining stack", GUI_TA_HCENTER | GUI_TA_VCENTER);
+		LISTVIEW_AddColumn(hItem, 88, "Count", GUI_TA_HCENTER | GUI_TA_VCENTER);
+		LISTVIEW_AddColumn(hItem, 88, "Using rate", GUI_TA_HCENTER | GUI_TA_VCENTER);
+		LISTVIEW_AddColumn(hItem, 88, "Heap", GUI_TA_HCENTER | GUI_TA_VCENTER);
+	
     LISTVIEW_AddRow(hItem, NULL);
 		LISTVIEW_AddRow(hItem, NULL);
     LISTVIEW_SetGridVis(hItem, 1);
-		hTimer= WM_CreateTimer(WM_GetClientWindow(hWin),1, 1000,0);//创建定时器
+		hTimer= WM_CreateTimer(WM_GetClientWindow(hWin),1, 2000,0);//创建定时器
 		(void)hTimer;//防止警告
 		
     break;
 	
 	case WM_TIMER:	
-		WM_RestartTimer(pMsg->Data.v,1000); //窗口定时器重装填
+		WM_RestartTimer(pMsg->Data.v,2000); //窗口定时器重装填
 	/*********************************************************************************
 	获取任务信息
 	若出现任务打印重复或任务句柄无法获取，串口调试中出现断言
@@ -219,8 +234,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,0,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,0,number); 
+		LISTVIEW_SetItemText(hItem,0,0,number); 
+		LISTVIEW_SetItemText(hItem,1,0,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,0,state); 
 		LISTVIEW_SetItemText(hItem,3,0,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,0,BasePriority); 
@@ -247,17 +262,23 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
+		sprintf(StrEmwinHeap,"%d",xPortGetFreeHeapSize());
 		
-		LISTVIEW_SetItemText(hItem,0,1,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,1,number); 
+		LISTVIEW_SetItemText(hItem,0,1,number); 
+		LISTVIEW_SetItemText(hItem,1,1,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,1,state); 
 		LISTVIEW_SetItemText(hItem,3,1,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,1,BasePriority); 
 		LISTVIEW_SetItemText(hItem,5,1,Stack); 
 		LISTVIEW_SetItemText(hItem,6,1,count);
 		LISTVIEW_SetItemText(hItem,7,1,usingrate);
-		
-		
+		LISTVIEW_SetItemText(hItem,8,1,StrEmwinHeap);
+		LISTVIEW_SetItemBkColor(hItem,8,1,LISTVIEW_CI_UNSEL,GUI_LIGHTBLUE);
+		if(xPortGetFreeHeapSize()<=0)
+		{
+		LISTVIEW_SetItemBkColor(hItem,8,1,LISTVIEW_CI_UNSEL,GUI_LIGHTRED);
+		}
+			
 				/****************touch_task*******************/
 	TaskHandle=xTaskGetHandle("touch_task");	//根据任务名称获取句柄
 	vTaskGetInfo((TaskHandle_t	)TaskHandle, 		//任务句柄
@@ -278,8 +299,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,2,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,2,number); 
+		LISTVIEW_SetItemText(hItem,0,2,number); 
+		LISTVIEW_SetItemText(hItem,1,2,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,2,state); 
 		LISTVIEW_SetItemText(hItem,3,2,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,2,BasePriority); 
@@ -308,8 +329,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,3,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,3,number); 
+		LISTVIEW_SetItemText(hItem,0,3,number); 
+		LISTVIEW_SetItemText(hItem,1,3,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,3,state); 
 		LISTVIEW_SetItemText(hItem,3,3,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,3,BasePriority); 
@@ -337,8 +358,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,4,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,4,number); 
+		LISTVIEW_SetItemText(hItem,0,4,number); 
+		LISTVIEW_SetItemText(hItem,1,4,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,4,state); 
 		LISTVIEW_SetItemText(hItem,3,4,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,4,BasePriority); 
@@ -369,8 +390,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,5,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,5,number); 
+		LISTVIEW_SetItemText(hItem,0,5,number); 
+		LISTVIEW_SetItemText(hItem,1,5,TaskStatus.pcTaskName); 
 	  LISTVIEW_SetItemText(hItem,2,5,state); 
 		LISTVIEW_SetItemText(hItem,3,5,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,5,BasePriority); 
@@ -399,16 +420,24 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,6,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,6,number); 
+		xQueuePeek(REC_ShowHeap_Queue,&ShowRecHeap,0);
+		sprintf(StrRecHeap,"%d",ShowRecHeap);
+		
+		LISTVIEW_SetItemText(hItem,0,6,number); 
+		LISTVIEW_SetItemText(hItem,1,6,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,6,state); 
 		LISTVIEW_SetItemText(hItem,3,6,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,6,BasePriority); 
 		LISTVIEW_SetItemText(hItem,5,6,Stack); 
 		LISTVIEW_SetItemText(hItem,6,6,count);
 		LISTVIEW_SetItemText(hItem,7,6,usingrate);
-		
-		
+		LISTVIEW_SetItemText(hItem,8,6,StrRecHeap);
+		LISTVIEW_SetItemBkColor(hItem,8,6,LISTVIEW_CI_UNSEL,GUI_LIGHTBLUE);
+		if(ShowRecHeap<=0)
+		{
+		LISTVIEW_SetItemBkColor(hItem,8,6,LISTVIEW_CI_UNSEL,GUI_LIGHTRED);
+		}
+
 						/****************MQTT_PINGREQ_Task*******************/
 	TaskHandle=xTaskGetHandle("MQTT_PINGREQ_Task");	//根据任务名称获取句柄
 	vTaskGetInfo((TaskHandle_t	)TaskHandle, 		//任务句柄
@@ -429,8 +458,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,7,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,7,number); 
+		LISTVIEW_SetItemText(hItem,0,7,number); 
+		LISTVIEW_SetItemText(hItem,1,7,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,7,state); 
 		LISTVIEW_SetItemText(hItem,3,7,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,7,BasePriority); 
@@ -460,15 +489,15 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,8,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,8,number); 
+		LISTVIEW_SetItemText(hItem,0,8,number); 
+		LISTVIEW_SetItemText(hItem,1,8,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,8,state); 
 		LISTVIEW_SetItemText(hItem,3,8,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,8,BasePriority); 
 		LISTVIEW_SetItemText(hItem,5,8,Stack); 
 		LISTVIEW_SetItemText(hItem,6,8,count);
 		LISTVIEW_SetItemText(hItem,7,8,usingrate);
-		
+
 				
 				
 	/****************MQTT_PUBLISH_Task*******************/
@@ -491,15 +520,24 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,9,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,9,number); 
+		xQueuePeek(PUBLISH_ShowHeap_Queue,&ShowPulishHeap,0);
+		sprintf(StrPublishHeap,"%d",ShowPulishHeap);
+		
+		
+		LISTVIEW_SetItemText(hItem,0,9,number); 
+		LISTVIEW_SetItemText(hItem,1,9,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,9,state); 
 		LISTVIEW_SetItemText(hItem,3,9,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,9,BasePriority); 
 		LISTVIEW_SetItemText(hItem,5,9,Stack); 
 		LISTVIEW_SetItemText(hItem,6,9,count);
 		LISTVIEW_SetItemText(hItem,7,9,usingrate);
-				
+		LISTVIEW_SetItemText(hItem,8,9,StrPublishHeap);
+		LISTVIEW_SetItemBkColor(hItem,8,9,LISTVIEW_CI_UNSEL,GUI_LIGHTBLUE);
+		if(ShowPulishHeap<=0)
+		{
+		LISTVIEW_SetItemBkColor(hItem,8,9,LISTVIEW_CI_UNSEL,GUI_LIGHTRED);
+		}		
 				
 				
 				/****************WATCHDOG_Task*******************/
@@ -522,8 +560,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,10,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,10,number); 
+		LISTVIEW_SetItemText(hItem,0,10,number); 
+		LISTVIEW_SetItemText(hItem,1,10,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,10,state); 
 		LISTVIEW_SetItemText(hItem,3,10,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,10,BasePriority); 
@@ -552,8 +590,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,11,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,11,number); 
+		LISTVIEW_SetItemText(hItem,0,11,number); 
+		LISTVIEW_SetItemText(hItem,1,11,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,11,state); 
 		LISTVIEW_SetItemText(hItem,3,11,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,11,BasePriority); 
@@ -561,7 +599,7 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		LISTVIEW_SetItemText(hItem,6,11,count);
 		LISTVIEW_SetItemText(hItem,7,11,usingrate);
 		
-						/****************Tmr Svc *******************/
+	/****************Tmr Svc *******************/
 	TaskHandle=xTaskGetHandle("Tmr Svc");	//根据任务名称获取句柄
 	vTaskGetInfo((TaskHandle_t	)TaskHandle, 		//任务句柄
 				 (TaskStatus_t*	)&TaskStatus, 		//任务信息结构
@@ -581,8 +619,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,12,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,12,number); 
+		LISTVIEW_SetItemText(hItem,0,12,number); 
+		LISTVIEW_SetItemText(hItem,1,12,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,12,state); 
 		LISTVIEW_SetItemText(hItem,3,12,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,12,BasePriority); 
@@ -592,7 +630,7 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		
 		
 		
-						/****************IDLE*******************/
+	/****************IDLE*******************/
 	TaskHandle=xTaskGetHandle("IDLE");	//根据任务名称获取句柄
 	vTaskGetInfo((TaskHandle_t	)TaskHandle, 		//任务句柄
 				 (TaskStatus_t*	)&TaskStatus, 		//任务信息结构
@@ -612,8 +650,8 @@ static void _showtaskcallback(WM_MESSAGE * pMsg) {
 		percentage=TaskStatus.ulRunTimeCounter/TotalRunTime;
 		return_usingrate(percentage,usingrate);
 		
-		LISTVIEW_SetItemText(hItem,0,13,TaskStatus.pcTaskName);
-		LISTVIEW_SetItemText(hItem,1,13,number); 
+		LISTVIEW_SetItemText(hItem,0,13,number); 
+		LISTVIEW_SetItemText(hItem,1,13,TaskStatus.pcTaskName);
 	  LISTVIEW_SetItemText(hItem,2,13,state); 
 		LISTVIEW_SetItemText(hItem,3,13,CurrentPriority); 
 		LISTVIEW_SetItemText(hItem,4,13,BasePriority); 
