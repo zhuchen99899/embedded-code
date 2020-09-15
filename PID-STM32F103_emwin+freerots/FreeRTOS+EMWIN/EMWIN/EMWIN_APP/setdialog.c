@@ -58,14 +58,13 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmSetting;
 
 //第三个multipage 控件
 #define ID_Window_3         (GUI_ID_USER + 30)
-#define ID_BUTTON_4      (GUI_ID_USER + 28)
-#define ID_BUTTON_5      (GUI_ID_USER + 29)
+#define ID_BUTTON_4      (GUI_ID_USER + 27)
+#define ID_BUTTON_5      (GUI_ID_USER + 28)
 
 //主界面控件
 #define ID_Window_0         (GUI_ID_USER + 24)
 #define ID_MULTIPAGE_0			(GUI_ID_USER + 25)
-#define ID_BUTTON_0        (GUI_ID_USER + 26)
-#define ID_BUTTON_1        (GUI_ID_USER + 27)
+#define ID_BUTTON_1        (GUI_ID_USER + 26)
 
 
 
@@ -864,46 +863,6 @@ static void _cbButtonBack(WM_MESSAGE * pMsg)
 	}
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: _cbButtonList
-*	功能说明: 按钮回调函数
-*	形    参: pMsg  消息指针
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void _cbButtonList(WM_MESSAGE * pMsg) 
-{
-	WM_HWIN  hWin;
-
-	hWin  = pMsg->hWin;
-	switch (pMsg->MsgId) 
-	{
-		case WM_PAINT:
-			if (BUTTON_IsPressed(hWin)) 
-			{
-				GUI_SetColor(GUI_DARKGRAY);
-				GUI_AA_FillCircle(0, 0, 72);
-				GUI_SetBkColor(GUI_DARKGRAY);
-				GUI_SetColor(GUI_WHITE); 
-				
-				GUI_DrawBitmap(&bmSetting, 0, 5);
-			} 
-			else 
-			{
-				GUI_SetColor(GUI_STCOLOR_LIGHTBLUE);
-				GUI_AA_FillCircle(0, 0, 72);
-				GUI_SetBkColor(GUI_STCOLOR_LIGHTBLUE);
-				GUI_SetColor(GUI_WHITE);  
-
-				GUI_DrawBitmap(&bmSetting, 0, 5);
-			}
-			break;
-			
-		default:
-			BUTTON_Callback(pMsg);
-	}
-}
 
 
 /*********************************************************************
@@ -915,7 +874,6 @@ static void _cbButtonList(WM_MESSAGE * pMsg)
 static const GUI_WIDGET_CREATE_INFO _aDialogCreateSettem[] = {
 { WINDOW_CreateIndirect, "Window", ID_Window_0, 0, 0, 800, 480, 0, 0x64, 0 },
 { MULTIPAGE_CreateIndirect, "Multipage", ID_MULTIPAGE_0, 0, 100, 800, 480, 0, 0x0, 0 },
-{ BUTTON_CreateIndirect, "Button0", ID_BUTTON_0, 0, 0, 100,100, 0, 0x0, 0 },
 { BUTTON_CreateIndirect, "Button1", ID_BUTTON_1,700, 0, 100, 100, 0, 0x0, 0 },
 // USER START (Optionally insert additional widgets)
 // USER END
@@ -952,11 +910,7 @@ static void _cbCallbackSettem(WM_MESSAGE * pMsg) {
 		// Initialization of 'Framewin'
 		//
 
-		hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_0);
-		BUTTON_SetFont(hItem, GUI_FONT_16B_ASCII);
-		BUTTON_SetText(hItem, "GRAPH");
-		WM_SetHasTrans(hItem);
-		WM_SetCallback(hItem, _cbButtonList);
+
 	
 		hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_1);
 		BUTTON_SetFont(hItem, GUI_FONT_16B_ASCII);
@@ -993,18 +947,7 @@ static void _cbCallbackSettem(WM_MESSAGE * pMsg) {
 
 		switch (Id) {
 
-		case ID_BUTTON_0: // Notifications sent by 'Button'
-			switch (NCode) {
-
-			case WM_NOTIFICATION_CLICKED:
 	
-				ADCCreateFramewin();
-
-			break;
-			case WM_NOTIFICATION_RELEASED:
-			break;
-		}
-			break;
 		
 		case ID_BUTTON_1: // Notifications sent by 'Button'
 			switch (NCode) {
@@ -1077,9 +1020,9 @@ if (saveText2==1)
 *
 *       CreateFramewin
 */
-WM_HWIN SETCreateFramewin(void);
 
-WM_HWIN SETCreateFramewin(void) {
+
+WM_HWIN SETCreateSetwin(void) {
 	WM_HWIN hWin;
 
 	hWin = GUI_CreateDialogBox(_aDialogCreateSettem, GUI_COUNTOF(_aDialogCreateSettem), _cbCallbackSettem, WM_HBKWIN, 0, 0);

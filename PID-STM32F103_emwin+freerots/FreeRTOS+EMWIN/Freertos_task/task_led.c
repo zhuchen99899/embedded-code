@@ -11,6 +11,7 @@ void LED_task(void *pvParameters)
 	u8 key=0;
   BaseType_t err;
 	extern QueueHandle_t Key_Queue;
+	
 	while(1)
 	{
 		
@@ -18,10 +19,15 @@ void LED_task(void *pvParameters)
       if(err!=NULL)   	//消息队列Key_Queue创建成功,并且按键被按下
 			{
 			//printf("the message is %d\r\n",key);
-				if (key==1)
+				//LED1=0时开
+				if (key==0)
 				{
-				LED1=~LED1;
+				LED1=1;
 			
+				}
+				else if (key==1)
+				{
+				LED1=0;
 				}
 			}
 

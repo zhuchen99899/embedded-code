@@ -48,6 +48,7 @@
 ..\obj\iconvdesk.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\iconvdesk.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\iconvdesk.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\iconvdesk.o: ..\EMWIN\EMWIN_APP\Plate.h
 ..\obj\iconvdesk.o: ..\EMWIN\EMWIN_APP\ButtonController.h
 ..\obj\iconvdesk.o: ..\EMWIN\EMWIN_APP\setdialog.h
 ..\obj\iconvdesk.o: ..\EMWIN\EMWIN_APP\adcgui.h

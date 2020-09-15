@@ -45,6 +45,7 @@
 ..\obj\buttoncontroller.o: ..\EMWIN\STemWin\inc\TEXT.h
 ..\obj\buttoncontroller.o: ..\EMWIN\STemWin\inc\TREEVIEW.h
 ..\obj\buttoncontroller.o: ..\EMWIN\STemWin\inc\KNOB.h
+..\obj\buttoncontroller.o: ..\EMWIN\STemWin_Addons\ST_GUI_Addons.h
 ..\obj\buttoncontroller.o: ..\FreeRTOS\include\freertos.h
 ..\obj\buttoncontroller.o: D:\tools\code tools\keil\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\buttoncontroller.o: ..\FreeRTOS\include\FreeRTOSConfig.h

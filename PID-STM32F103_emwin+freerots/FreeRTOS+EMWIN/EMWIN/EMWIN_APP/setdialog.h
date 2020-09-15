@@ -300,8 +300,8 @@ static GUI_CONST_STORAGE unsigned long acSettem[] = {
 
 
 
-WM_HWIN CreateNumpad(void);
-WM_HWIN CreateFramewin(void);
+
+WM_HWIN SETCreateSetwin(void);
 
 
 void App_Settem(WM_HWIN hWin);

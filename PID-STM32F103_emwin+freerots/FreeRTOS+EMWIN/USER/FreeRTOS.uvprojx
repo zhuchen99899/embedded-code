@@ -839,6 +839,11 @@
               <FilePath>..\EMWIN\STemWin_Addons\ST_GUI_Addons.h</FilePath>
             </File>
             <File>
+              <FileName>Plate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\EMWIN\EMWIN_APP\Plate.c</FilePath>
+            </File>
+            <File>
               <FileName>setdialog.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\EMWIN\EMWIN_APP\setdialog.c</FilePath>
@@ -882,6 +887,16 @@
               <FileName>Numpad.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\EMWIN\EMWIN_APP\Numpad.c</FilePath>
+            </File>
+            <File>
+              <FileName>LEDbuttonbmp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\EMWIN\EMWIN_APP\LEDbuttonbmp.c</FilePath>
+            </File>
+            <File>
+              <FileName>deskpic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\EMWIN\EMWIN_APP\deskpic.c</FilePath>
             </File>
           </Files>
         </Group>

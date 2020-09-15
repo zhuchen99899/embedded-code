@@ -322,30 +322,36 @@ topic1[DeserializePublish_topicName.len]=0;
 								vPortFree(json_data);                                  //释放JASON结构
 
 									/****************JASON树中键值对解析***************/
-									//根据键名再JASON中查找子节点，查找出LED0对象
-									node = cJSON_GetObjectItem(json, "LED0");
+									//根据键名再JASON中查找子节点，查找出LED1对象
+									node = cJSON_GetObjectItem(json, "LED1");
 									if (node == NULL)
 									{
-									printf("LED0: no\r\n");
+									printf("LED1: no\r\n");
 										
 									}	
 									else
 									{
-									printf("LED0: ok\r\n");
+									printf("LED1: ok\r\n");
 										 if( node->type == cJSON_Number )
 
 											{
-													//从LED0中获取结果
+													//从LED1中获取结果
 
 												printf("value:%d\r\n",node->valueint);
 														if((node->valueint)==1)
 														{
 														key=1;	
 														xQueueSend(Key_Queue,&key,10);
-														printf("LED0翻转");
+														printf("LED1点亮");
+														}
+														else if((node->valueint)==0)
+														{
+														key=0;	
+														xQueueSend(Key_Queue,&key,10);
+														printf("LED1熄灭");
 														}
 
-											}//查找LED0值
+											}//查找LED1值
 											
 										
 

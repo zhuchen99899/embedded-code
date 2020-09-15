@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <iconvdesk.h>
+#include <Plate.h>
 #include <ButtonController.h>
 #include <setdialog.h>
 #include <adcgui.h>
@@ -24,13 +25,15 @@ extern EventGroupHandle_t EventGroupHandler;	//事件标志组句柄
 */
 
 extern GUI_CONST_STORAGE unsigned char _acdeskbkbmp[235020UL + 1];
-
+extern GUI_CONST_STORAGE GUI_BITMAP _bmWhiteCircle_6x6;
+extern GUI_CONST_STORAGE GUI_BITMAP _bmWhiteCircle_10x10;
 
 static GUI_MEMDEV_Handle   hMempic; //存储设备句柄用于绘制桌面背景图片
 
 static WM_HWIN hIcon1, hIcon2, hIcon3;
 
-//static uint8_t s_ucIconSwitch = 0;
+/***************全局变量************/
+static uint8_t s_ucIconSwitch = 0;
 WM_HWIN hMotion;
 
 // USER START (Optionally insert additional defines)
@@ -62,6 +65,14 @@ WM_HWIN hMotion;
 *
 *********************************************************************************************************
 */
+//调试模式
+#if 0
+	#define printf_main printf
+#else
+	#define printf_main(...)
+#endif
+
+
 
 #define ICONVIEW_TBorder   10   /* 控件ICONVIEW的上边距 */
 #define ICONVIEW_LBorder   38   /* 控件ICONVIEW的左边距 */  
@@ -85,12 +96,24 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmButtonController_1;
 extern GUI_CONST_STORAGE GUI_BITMAP bmApp_Settem;
 extern GUI_CONST_STORAGE GUI_BITMAP bmADC;
 extern GUI_CONST_STORAGE GUI_BITMAP bmSHOWTASK;
+extern GUI_CONST_STORAGE GUI_BITMAP bmPlate;
 GUI_CONST_STORAGE GUI_BITMAP bmButtonController_1 = {
 	72, // xSize
 	72, // ySize
 	288, // BytesPerLine
 	32, // BitsPerPixel
 	(unsigned char *)_ButtonController_1,  // Pointer to picture data
+	NULL,  // Pointer to palette
+	GUI_DRAW_BMP8888
+};
+
+
+GUI_CONST_STORAGE GUI_BITMAP bmPlate = {
+	72, // xSize
+	72, // ySize
+	288, // BytesPerLine
+	32, // BitsPerPixel
+	(unsigned char *)_acPlate,  // Pointer to picture data
 	NULL,  // Pointer to palette
 	GUI_DRAW_BMP8888
 };
@@ -168,6 +191,42 @@ typedef struct
 	ITEM_INFO    * pItemInfo;
 } PARA;
 
+
+
+/* 用于第一屏桌面上ICONVIEW图标的创建 */
+static const BITMAP_ITEM _aBitmapItem1[] =
+{
+
+	{ &bmButtonController_1,      "ButtonController",       "JDQ_1" },
+	{	&bmPlate,      							"temperaturePlate",       "Plate" },
+	{ &bmApp_Settem,      				"SetTem",       					"SET" },
+	{ &bmADC,    									"ADC",                    "ADC"},
+	{ &bmSHOWTASK,     						"TASK_Controller",        "TASK" },
+
+};
+
+
+
+/* 用于第二屏桌面上ICONVIEW图标的创建 */
+static const BITMAP_ITEM _aBitmapItem2[] = 
+{
+	{ &bmButtonController_1,      "ButtonController",       "JDQ_1" },
+	{	&bmPlate,      							"temperaturePlate",       "Plate" },
+	{ &bmApp_Settem,      				"SetTem",       					"SET" },
+	{ &bmADC,    									"ADC",                    "ADC"},
+	{ &bmSHOWTASK,     						"TASK_Controller",        "TASK" },
+};
+
+/* 用于第三屏桌面上ICONVIEW图标的创建 */
+static const BITMAP_ITEM _aBitmapItem3[] = 
+{
+	{ &bmButtonController_1,      "ButtonController",       "JDQ_1" },
+	{	&bmPlate,      							"temperaturePlate",       "Plate" },
+	{ &bmApp_Settem,      				"SetTem",       					"SET" },
+	{ &bmADC,    									"ADC",                    "ADC"},
+	{ &bmSHOWTASK,     						"TASK_Controller",        "TASK" },
+};
+
 /*
 *********************************************************************************************************
 *                                  应用程序入口函数
@@ -176,14 +235,30 @@ typedef struct
 static void(*_apModules0[])(WM_HWIN hWin) =
 {
 	App_Button_Controller_1,
+	App_Plate,
 	App_Settem,
 	App_ADC,
 	App_showtask,
 
 };
 
+static void (* _apModules1[])( WM_HWIN hWin) = 
+{
+	App_Button_Controller_1,
+	App_Plate,
+	App_Settem,
+	App_ADC,
+	App_showtask,
+};
 
-
+static void (* _apModules2[])( WM_HWIN hWin) = 
+{
+	App_Button_Controller_1,
+	App_Plate,
+	App_Settem,
+	App_ADC,
+	App_showtask,
+};
 
 /******************************************
 *函 数 名 : _cbBkWindow
@@ -193,7 +268,8 @@ static void(*_apModules0[])(WM_HWIN hWin) =
 *******************************************/
 static void _cbBkWindow(WM_MESSAGE * pMsg)
 {
-
+	const GUI_BITMAP  *pBm;
+	int x, y;
 	switch (pMsg->MsgId)
 	{
 		
@@ -202,7 +278,17 @@ static void _cbBkWindow(WM_MESSAGE * pMsg)
 		case WM_PAINT:
 			
 		GUI_MEMDEV_WriteAt(hMempic, 0, 0);
-
+			pBm = &_bmWhiteCircle_6x6;
+			x = LCD_GetXSize()/2 - pBm->XSize / 2 - 20;
+			y = LCD_GetYSize() - pBm->YSize / 2 - 60;
+		
+			GUI_DrawBitmap(pBm, x,      y);
+			GUI_DrawBitmap(pBm, x + 20, y);
+			GUI_DrawBitmap(pBm, x + 40, y);
+		
+		   /* 显示10*10圆圈，表示已经切换到相应的界面上 */
+			pBm = &_bmWhiteCircle_10x10;
+		    GUI_DrawBitmap(pBm, x + s_ucIconSwitch*20, y - 2); 
 		
 		break;
 
@@ -229,75 +315,204 @@ static void _cbMotion(WM_MESSAGE * pMsg)
 	PARA           * pPara;
 	static uint32_t  tStart, tEnd;
 	int NCode, Id;
-
-	switch (pMsg->MsgId)
+switch (pMsg->MsgId) 
 	{
-	case WM_PRE_PAINT:
-	
-		break;
-
-	case WM_POST_PAINT:
-		
-		break;
-
-	case WM_NOTIFY_PARENT:
-		Id = WM_GetId(pMsg->hWinSrc);
-		NCode = pMsg->Data.v;
-		switch (Id)
-		{
-			/* 第一个界面上的图标 */
-		case GUI_ID_ICONVIEW0:
-			switch (NCode)
-			{
-				/* ICON控件点击消息 */
-			case WM_NOTIFICATION_CLICKED:
-				tStart = GUI_GetTime();
-				break;
-
-				/* ICON控件释放消息 */
-			case WM_NOTIFICATION_RELEASED:
-				tEnd = GUI_GetTime() - tStart;
-				if (tEnd > 800)
-				{
-					WM_SetFocus(WM_HBKWIN);
-					break;
-				}
-				_apModules0[ICONVIEW_GetSel(pMsg->hWinSrc)](WM_HBKWIN);
-				break;
-			}
-
+		case WM_PRE_PAINT:
+			GUI_MULTIBUF_Begin();
 			break;
-
-	
-		}
 		
+		case WM_POST_PAINT:
+			GUI_MULTIBUF_End();
+			break;
 		
-		break;
+		case WM_NOTIFY_PARENT:
+			Id    = WM_GetId(pMsg->hWinSrc);     
+			NCode = pMsg->Data.v;                 
+			switch (Id) 
+			{
+				/* 第一个界面上的图标 */
+				case GUI_ID_ICONVIEW0:
+					switch (NCode) 
+					{
+						/* ICON控件点击消息 */
+						case WM_NOTIFICATION_CLICKED:
+							tStart = GUI_GetTime();
+							break;
 
+						/* ICON控件释放消息 */
+						case WM_NOTIFICATION_RELEASED: 
+							tEnd = GUI_GetTime() - tStart;
+							if(tEnd > 800)
+							{
+								WM_SetFocus(WM_HBKWIN);
+								break;							
+							}
+							_apModules0[ICONVIEW_GetSel(pMsg->hWinSrc)](WM_HBKWIN);
+							break;
+					}
+					break;
+					
+				/* 第二个界面上的图标 */
+				case GUI_ID_ICONVIEW1:
+					switch (NCode) 
+					{
+						/* ICON控件点击消息 */
+						case WM_NOTIFICATION_CLICKED:
+							tStart = GUI_GetTime();
+							break;
+
+						/* ICON控件释放消息 */
+						case WM_NOTIFICATION_RELEASED: 
+							tEnd = GUI_GetTime() - tStart;
+							if(tEnd > 800)
+							{
+								WM_SetFocus(WM_HBKWIN);
+								break;							
+							}
+							_apModules1[ICONVIEW_GetSel(pMsg->hWinSrc)](WM_HBKWIN);
+							break;
+					}
+					break;
+					
+					
+				/* 第三个界面上的图标，仅用于演示目的 */
+				case GUI_ID_ICONVIEW2:
+					switch (NCode) 
+					{
+						/* ICON控件点击消息 */
+						case WM_NOTIFICATION_CLICKED:
+							tStart = GUI_GetTime();
+							break;
+
+						/* ICON控件释放消息 */
+						case WM_NOTIFICATION_RELEASED: 
+							tEnd = GUI_GetTime() - tStart;
+							if(tEnd > 800)
+							{
+								WM_SetFocus(WM_HBKWIN);
+								break;							
+							}
+							_apModules2[ICONVIEW_GetSel(pMsg->hWinSrc)](WM_HBKWIN);
+							break;
+					}
+					break;
+			}
+			break;
+				
 	case WM_MOTION:
 		WM_GetUserData(hWin, &pPara, sizeof(pPara));
 		pInfo = (WM_MOTION_INFO *)pMsg->Data.p;
-		switch (pInfo->Cmd)
+		switch (pInfo->Cmd) 
 		{
-
-		case WM_MOTION_INIT:
-
-			break;
-
-		case WM_MOTION_MOVE:
-
-			break;
-
-		case WM_MOTION_GETPOS:
-			pInfo->xPos = pPara->Pos;
-			break;
-		}
-		break;
-	}
+			
+			
+			#if 1   /* F429板子采用的实现方式 ********************************
+			           WM_MOTION_SetDefaultPeriod(20);周期设置小点，快速返回
+			        */
+				case WM_MOTION_INIT:
+					pInfo->Flags =  WM_CF_MOTION_X | WM_MOTION_MANAGE_BY_WINDOW;
+					pInfo->SnapX = 1;
+					break;
+		
+				case WM_MOTION_MOVE:
+					pPara->FinalMove = pInfo->FinalMove;
+					pPara->Pos += pInfo->dx;
+					printf_main("pData->xPos = %d %d\r\n", pPara->Pos, pInfo->dx);
+				
+					/* 滑动有加速度，停止后，减速度*/
+					if(pPara->FinalMove)
+					{
+						printf_main("pData->FinalMove = %d\r\n", pPara->Pos);
+						/* 桌面图标移动到此范围内就将其固定在第3个图标显示 */
+						if(pPara->Pos <= -(LCD_GetXSize() + LCD_GetXSize()/2)) 
+						{
+							s_ucIconSwitch = 2;
+							pPara->Pos = -(2 * LCD_GetXSize());
+						}
+						/* 桌面图标移动到此范围内就将其固定在第2个图标显示 */
+						else if((pPara->Pos > -(LCD_GetXSize() + LCD_GetXSize()/2))&&(pPara->Pos <= -LCD_GetXSize()/2)) 
+						{
+							s_ucIconSwitch = 1;
+							pPara->Pos = -(LCD_GetXSize());
+						}
+						/* 桌面图标移动到此范围内就将其固定在第1个图标显示 */
+						else if(pPara->Pos > -LCD_GetXSize()/2) 
+						{
+							s_ucIconSwitch = 0;
+							pPara->Pos = 0;
+						}
+					}
+					
+					/* WM_MOTION_SetDefaultPeriod设置的周期30ms及其以下时dx跳动较大
+					   建议取值35-50即可。
+					*/
+					if((pInfo->dx < -4) || (pInfo->dx > 4) || (pPara->FinalMove))
+					/* 移动桌面图标 */
+					WM_MoveTo(hWin, pPara->Pos, 0);
+					
+			  /* emWin默认的Motion使用方案 ********************************
+					 WM_MOTION_SetDefaultPeriod(100);设置的时间长点可以看出效果
+					*/
+					#else
+				case WM_MOTION_INIT:
+					pInfo->Flags =  WM_CF_MOTION_X | WM_MOTION_MANAGE_BY_WINDOW;
+					pInfo->SnapX = 800; /* 设置栅格大小 */
+					break;
+		
+				case WM_MOTION_MOVE:
+					pPara->FinalMove = pInfo->FinalMove;
+					pPara->Pos += pInfo->dx;
+					printf_main("pData->xPos = %d %d\r\n", pPara->Pos, pInfo->dx);
+				
+					
+					/* 设置滑动到最左侧时的处理办法，超过一半就不可以再滑动了，否则会滑动进行下一个栅格*/
+					if(pPara->Pos >= LCD_GetXSize()/2)  
+					   pPara->Pos = LCD_GetXSize()/2 - 1;
+				
+					/* 设置滑动到最右侧时的处理办法，超过一半就不可以再滑动了，否则会滑动进行下一个栅格*/
+					if(pPara->Pos <= -(LCD_GetXSize()*2 + LCD_GetXSize()/2))  
+						pPara->Pos = -(LCD_GetXSize()*2 + LCD_GetXSize()/2 - 1);
+				
+					/* 滑动松手后，会按照WM_MOTION_SetDefaultPeriod设置的时间减速并停止到最近的栅格 */
+					if(pPara->FinalMove)
+					{
+						printf_main("pData->FinalMove = %d\r\n", pPara->Pos);
+						/* 桌面图标移动到此范围内就将其固定在第3个图标显示 */
+						if(pPara->Pos <= -(LCD_GetXSize() + LCD_GetXSize()/2)) 
+						{
+							s_ucIconSwitch = 2;
+						}
+						/* 桌面图标移动到此范围内就将其固定在第2个图标显示 */
+						else if((pPara->Pos > -(LCD_GetXSize() + LCD_GetXSize()/2))&&(pPara->Pos <= -LCD_GetXSize()/2)) 
+						{
+							s_ucIconSwitch = 1;
+						}
+						/* 桌面图标移动到此范围内就将其固定在第1个图标显示 */
+						else if(pPara->Pos > -LCD_GetXSize()/2) 
+						{
+							s_ucIconSwitch = 0;
+						}
+					}
+					
+					/* 移动桌面图标 */
+					WM_MoveTo(hWin, pPara->Pos, 0);
+					
+					/* 下面这个三个未使用，当设置滑动窗口的大小是800*480时，可以仅拖动ICONVIEW控件即可 
+					    当前是采用800*3宽度的界面大小，是拖动的ICONVIEW控件的父窗口。
+					*/
+					//WM_MoveTo(hIcon1, pPara->Pos + ICONVIEW_LBorder , ICONVIEW_TBorder);
+					//WM_MoveTo(hIcon2, pPara->Pos + 800 + ICONVIEW_LBorder, ICONVIEW_TBorder);
+					//WM_MoveTo(hIcon3, pPara->Pos + 1600 + ICONVIEW_LBorder, ICONVIEW_TBorder);
+				#endif
+				break;
+		
+			case WM_MOTION_GETPOS:
+				pInfo->xPos = pPara->Pos;
+				break;
+    }
+    break;
+  }
 }
-
-
-
 
 /*
 *********************************************************************************************************
@@ -305,71 +520,62 @@ static void _cbMotion(WM_MESSAGE * pMsg)
 *	功能说明: 创建ICONVIEW
 *	形    参：hParent   父窗口
 *             pBm       ICONVIEW上的位图
-*             BitmapNum ICONVIEW上图标个数
+*             BitmapNum ICONVIEW上图标个数       
 *             x         x轴坐标
 *             y         y轴坐标
 *             w         ICONVIEW宽
-*             h         ICONVIEW高
+*             h         ICONVIEW高   
 *	返 回 值: 无
 *********************************************************************************************************
 */
-static WM_HWIN _CreateICONVIEW(WM_HWIN hParent, const BITMAP_ITEM *pBm, int BitmapNum, int Id, int x, int y, int w, int h)
+static WM_HWIN _CreateICONVIEW(WM_HWIN hParent, const BITMAP_ITEM *pBm, int BitmapNum, int Id, int x, int y, int w, int h) 
 {
 	WM_HWIN hIcon;
 	int i;
-
+	
 	/*在指定位置创建指定尺寸的ICONVIEW 小工具*/
 	hIcon = ICONVIEW_CreateEx(x, 					/* 小工具的最左像素（在父坐标中）*/
-		y, 					/* 小工具的最上像素（在父坐标中）*/
-		w,                     /* 小工具的水平尺寸（单位：像素）*/
-		h, 	                /* 小工具的垂直尺寸（单位：像素）*/
-		hParent, 				            /* 父窗口的句柄。如果为0 ，则新小工具将成为桌面（顶级窗口）的子窗口 */
-		WM_CF_SHOW | WM_CF_HASTRANS,       /* 窗口创建标记。为使小工具立即可见，通常使用 WM_CF_SHOW */
-		0,//ICONVIEW_CF_AUTOSCROLLBAR_V, 	/* 默认是0，如果不够现实可设置增减垂直滚动条 */
-		Id, 			                    /* 小工具的窗口ID */
-		ICON_Width, 				        /* 图标的水平尺寸 */
-		ICON_Height);						/* 图标的垂直尺寸,图标和文件都包含在里面，不要大于ICONVIEW的高度，导致Text显示不完整*/
-
-
-											/* 向ICONVIEW 小工具添加新图标 */
-	for (i = 0; i < BitmapNum; i++)
+						     y, 					/* 小工具的最上像素（在父坐标中）*/
+							 w,                     /* 小工具的水平尺寸（单位：像素）*/
+							 h, 	                /* 小工具的垂直尺寸（单位：像素）*/
+	                         hParent, 				            /* 父窗口的句柄。如果为0 ，则新小工具将成为桌面（顶级窗口）的子窗口 */
+							 WM_CF_SHOW | WM_CF_HASTRANS,       /* 窗口创建标记。为使小工具立即可见，通常使用 WM_CF_SHOW */ 
+	                         0,//ICONVIEW_CF_AUTOSCROLLBAR_V, 	/* 默认是0，如果不够现实可设置增减垂直滚动条 */
+							 Id, 			                    /* 小工具的窗口ID */
+							 ICON_Width, 				        /* 图标的水平尺寸 */
+							 ICON_Height);						/* 图标的垂直尺寸,图标和文件都包含在里面，不要大于ICONVIEW的高度，导致Text显示不完整*/
+	
+	
+	/* 向ICONVIEW 小工具添加新图标 */
+	for (i = 0; i < BitmapNum; i++) 
 	{
 		ICONVIEW_AddBitmapItem(hIcon, pBm[i].pBitmap, pBm[i].pTextCn);
 	}
-
-	//ICONVIEW_SetFont(hIcon, &GUI_SysFontHZ16);
 	
-	/* 设置初始选择的图标，-1表示不选中任何图标 */
-	ICONVIEW_SetSel(hIcon, -1);
+	
 	/* 设置小工具的背景色 32 位颜色值的前8 位可用于alpha混合处理效果*/
 	ICONVIEW_SetBkColor(hIcon, ICONVIEW_CI_SEL, GUI_WHITE | 0x80000000);
-
+	
 	/* 设置X方向的边界值为0，默认不是0, Y方向默认是0，这里我们也进行一下设置，方便以后修改 */
 	ICONVIEW_SetFrame(hIcon, GUI_COORD_X, 0);
 	ICONVIEW_SetFrame(hIcon, GUI_COORD_Y, 0);
-
+	
 	/* 设置图标在x 或y 方向上的间距。*/
 	ICONVIEW_SetSpace(hIcon, GUI_COORD_X, ICONVIEW_XSpace);
 	ICONVIEW_SetSpace(hIcon, GUI_COORD_Y, ICONVIEW_YSpace);
-
+	
 	/* 设置对齐方式 在5.22版本中最新加入的 */
-	ICONVIEW_SetIconAlign(hIcon, ICONVIEW_IA_HCENTER | ICONVIEW_IA_TOP);
-
+	ICONVIEW_SetIconAlign(hIcon, ICONVIEW_IA_HCENTER|ICONVIEW_IA_TOP);
+	
 	//ICONVIEW_SetTextColor(hIcon, ICONVIEW_CI_UNSEL, 0xF020A0);
 	return hIcon;
 }
 
 
-/* 用于第一屏桌面上ICONVIEW图标的创建 */
-static const BITMAP_ITEM _aBitmapItem1[] =
-{
 
-	{ &bmButtonController_1,      "ButtonController",       "JDQ_1" },
-	{ &bmApp_Settem,      				"SetTem",       					"SET" },
-	{ &bmADC,    									"ADC",                    "ADC"},
-	{ &bmSHOWTASK,     						"TASK_Controller",             	"TASK" },
 
-};
+
+
 
 
 
@@ -393,13 +599,13 @@ void MainTask(void)
 	
 
 
-//	WM_MOTION_Enable(1);    /* 使能滑动 */
+	WM_MOTION_Enable(1);    /* 使能滑动 */
 
 							/* 默认是500ms，这里将其修改为50ms，这个参数一定程度上决定的灵敏度，能决定灵敏度，主要还是
 							因为F429的性能有限。
 							*/
 							//WM_MOTION_SetDefaultPeriod(50);
-//	WM_MOTION_SetDefaultPeriod(50);
+	WM_MOTION_SetDefaultPeriod(20);
 /******************
 如果需要使用存储设备，宏定义WM_Set_MEMDEV
 *******************/
@@ -441,7 +647,7 @@ void MainTask(void)
 		_cbMotion,
 		sizeof(pPara));
 
-	//WM_SetUserData(hMotion, &pPara, sizeof(pPara));
+	WM_SetUserData(hMotion, &pPara, sizeof(pPara));
 
 
 	/* 第4步：绘制桌面窗口的背景图片 ------------------------------------------*/
@@ -455,6 +661,26 @@ void MainTask(void)
 		ICONVIEW_Width,
 		ICONVIEW_Height * 2);
 		
+		
+			/* 第2个界面图标 */
+	hIcon2 =_CreateICONVIEW(hMotion, 
+	                _aBitmapItem2, 
+					GUI_COUNTOF(_aBitmapItem2), 
+					GUI_ID_ICONVIEW1, 
+					SCREEN_Width+ICONVIEW_LBorder, 
+					ICONVIEW_TBorder, 
+					ICONVIEW_Width, 
+					ICONVIEW_Height);
+	
+	/* 第3个界面图标 */
+	hIcon3 =_CreateICONVIEW(hMotion, 
+	                _aBitmapItem3, 
+					GUI_COUNTOF(_aBitmapItem3), 
+					GUI_ID_ICONVIEW2, 
+					SCREEN_Width*2+ICONVIEW_LBorder, 
+					ICONVIEW_TBorder, 
+					ICONVIEW_Width, 
+					ICONVIEW_Height);
 		/*测试存储设备创建
 	if(hMempic==0){
 	GUI_DispStringHCenterAt("is 0 ", 300, 300);
