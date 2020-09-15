@@ -52,7 +52,7 @@ void PWM_task(void *pvParameters)
 	u16 led0pwmval;
 	/***消息队列参数定义***/
 	//温度设置消息队列参数
-	float settemdisplay;
+	//float settemdisplay;
 	float Settem;
 	//ADC消息队列参数
 	float adc1;
@@ -106,8 +106,8 @@ void PWM_task(void *pvParameters)
 		/*****************PWM改变*****************/
 		led0pwmval=pid_realize(Settem);
 		
-		settemdisplay=Settem;
-		printf("PWM寄存器=%d \r\n,ADC1_tem=%f \r\n,kp=%f\r\n,ki=%f \r\n,kd=%f\r\n,settem=%f \r\n",led0pwmval,adc1,pid.Kp,pid.Ki,pid.Kd,settemdisplay);
+		//settemdisplay=Settem;
+		//printf("PWM寄存器=%d \r\n,ADC1_tem=%f \r\n,kp=%f\r\n,ki=%f \r\n,kd=%f\r\n,settem=%f \r\n",led0pwmval,adc1,pid.Kp,pid.Ki,pid.Kd,settemdisplay);
 
 		TIM_SetCompare2(TIM3,led0pwmval);//PWM输出
 

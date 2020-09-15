@@ -119,15 +119,15 @@ TaskHandle_t WatchDog_task_Handler;				// WATCHDOG任务
 #define START_STK_SIZE 			256  	//Start任务
 #define TOUCH_STK_SIZE			128		//TOUCH任务
 #define USERIF_STK_SIZE			512		//UserIf空闲任务
-#define EMWINDEMO_STK_SIZE		512		//emwin任务
+#define EMWINDEMO_STK_SIZE		1024		//emwin任务
 #define LED_STK_SIZE		128	//LED任务
 #define ADC_STK_SIZE		512	//ADC任务
-#define PWM_STK_SIZE		128	//PWM任务
-#define MQTT_Connect_STK_SIZE		128	// MQTTconnect任务
+#define PWM_STK_SIZE		256	//PWM任务
+#define MQTT_Connect_STK_SIZE		256	// MQTTconnect任务
 #define MQTT_Rec_STK_SIZE		512	// MQTT接收任务
 #define MQTT_PINGREQ_STK_SIZE		256	// MQTTPINGREQ任务
-#define MQTT_SUBSCRIBE_STK_SIZE		128		// MQTTSUBSCRIBE任务
-#define MQTT_Publish_STK_SIZE			256// MQTTPUBLISH任务
+#define MQTT_SUBSCRIBE_STK_SIZE		256		// MQTTSUBSCRIBE任务
+#define MQTT_Publish_STK_SIZE			512// MQTTPUBLISH任务
 #define WATCHDOG_STK_SIZE			128// WATCHDOG任务
 /***********************************************************
 						 任务优先级(数值越小优先级越低)
@@ -144,7 +144,7 @@ TaskHandle_t WatchDog_task_Handler;				// WATCHDOG任务
 #define MQTT_PINGREQ_TASK_PRIO		2		// MQTTPINGREQ任务
 #define MQTT_SUBSCRIBE_TASK_PRIO		3		// MQTTSUBSCRIBE任务
 #define MQTT_Publish_TASK_PRIO			2	// MQTTPUBLISH任务
-#define WATCHDOG_TASK_PRIO			5	// MQTTPUBLISH任务
+#define WATCHDOG_TASK_PRIO			5	// WATCHDOG任务
 /***********************************************************
 						 主函数入口
 ************************************************************/

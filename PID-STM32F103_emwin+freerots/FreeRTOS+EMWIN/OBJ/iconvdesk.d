@@ -51,6 +51,7 @@
 ..\obj\iconvdesk.o: ..\EMWIN\EMWIN_APP\ButtonController.h
 ..\obj\iconvdesk.o: ..\EMWIN\EMWIN_APP\setdialog.h
 ..\obj\iconvdesk.o: ..\EMWIN\EMWIN_APP\adcgui.h
+..\obj\iconvdesk.o: ..\EMWIN\EMWIN_APP\showtask.h
 ..\obj\iconvdesk.o: ..\FreeRTOS\include\freertos.h
 ..\obj\iconvdesk.o: ..\FreeRTOS\include\FreeRTOSConfig.h
 ..\obj\iconvdesk.o: ..\SYSTEM\sys\sys.h

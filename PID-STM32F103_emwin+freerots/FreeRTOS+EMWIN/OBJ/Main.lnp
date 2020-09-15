@@ -75,6 +75,7 @@
 "..\obj\iconvdesk.o"
 "..\obj\buttoncontroller.o"
 "..\obj\adcgui.o"
+"..\obj\showtask.o"
 "..\obj\bkjpeg.o"
 "..\obj\setbmp.o"
 "..\obj\returnbmp.o"

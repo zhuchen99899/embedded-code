@@ -859,6 +859,11 @@
               <FilePath>..\EMWIN\EMWIN_APP\adcgui.c</FilePath>
             </File>
             <File>
+              <FileName>showtask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\EMWIN\EMWIN_APP\showtask.c</FilePath>
+            </File>
+            <File>
               <FileName>bkjpeg.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\EMWIN\EMWIN_APP\bkjpeg.c</FilePath>

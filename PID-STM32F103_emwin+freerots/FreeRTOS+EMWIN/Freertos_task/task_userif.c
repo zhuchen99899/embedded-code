@@ -10,7 +10,7 @@
 void UserIf_task(void *p_arg)
 {
 	uint8_t ucKeyCode;
-	uint8_t pcWriteBuffer[500];
+	uint8_t pcWriteBuffer[600];
 	
 	
 

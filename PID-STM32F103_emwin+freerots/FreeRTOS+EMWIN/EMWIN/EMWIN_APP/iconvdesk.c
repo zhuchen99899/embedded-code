@@ -12,6 +12,7 @@
 #include <ButtonController.h>
 #include <setdialog.h>
 #include <adcgui.h>
+#include <showtask.h>
 #include <freertos.h>
 #include "event_groups.h"
 #include <EventGroupCreat.h>
@@ -83,7 +84,7 @@ WM_HWIN hMotion;
 extern GUI_CONST_STORAGE GUI_BITMAP bmButtonController_1;
 extern GUI_CONST_STORAGE GUI_BITMAP bmApp_Settem;
 extern GUI_CONST_STORAGE GUI_BITMAP bmADC;
-	
+extern GUI_CONST_STORAGE GUI_BITMAP bmSHOWTASK;
 GUI_CONST_STORAGE GUI_BITMAP bmButtonController_1 = {
 	72, // xSize
 	72, // ySize
@@ -104,6 +105,7 @@ GUI_CONST_STORAGE GUI_BITMAP bmApp_Settem = {
 	GUI_DRAW_BMP8888
 };
 
+
 GUI_CONST_STORAGE GUI_BITMAP bmADC = {
   72, // xSize
   72, // ySize
@@ -114,6 +116,16 @@ GUI_CONST_STORAGE GUI_BITMAP bmADC = {
   GUI_DRAW_BMP8888
 };
 
+
+GUI_CONST_STORAGE GUI_BITMAP bmSHOWTASK = {
+	72, // xSize
+	72, // ySize
+	288, // BytesPerLine
+	32, // BitsPerPixel
+	(unsigned char *)_SHOWTASK_1,  // Pointer to picture data
+	NULL,  // Pointer to palette
+	GUI_DRAW_BMP8888
+};
 
 /*
 *********************************************************************************************************
@@ -166,7 +178,7 @@ static void(*_apModules0[])(WM_HWIN hWin) =
 	App_Button_Controller_1,
 	App_Settem,
 	App_ADC,
-	//App_PID_TEM,
+	App_showtask,
 
 };
 
@@ -355,7 +367,7 @@ static const BITMAP_ITEM _aBitmapItem1[] =
 	{ &bmButtonController_1,      "ButtonController",       "JDQ_1" },
 	{ &bmApp_Settem,      				"SetTem",       					"SET" },
 	{ &bmADC,    									"ADC",                    "ADC"},
-	//{ &bmusr1,     "framewin2", "ÎÂ¶È¿ØÖÆ" },
+	{ &bmSHOWTASK,     						"TASK_Controller",             	"TASK" },
 
 };
 
