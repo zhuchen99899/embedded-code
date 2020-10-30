@@ -32,8 +32,8 @@ Will 配设 代码版本ID = "MQTW"
 #define will_retained				 0		 //保存启用标志
 #define will_topicName      "lwt"		//遗嘱主题：设立遗嘱标志后必须有
 #define will_message				"dMQTTClient657 died" //遗嘱消息：设立遗嘱标志后必须有
-#define MQTT_username   		"admin"								//用户名：若为空则无用户名
-#define MQTT_password				"oksn_123456"					//密码：若为空则无密码
+#define MQTT_username   		"test"								//用户名：若为空则无用户名
+#define MQTT_password				"test"					//密码：若为空则无密码
 
 
 /********************

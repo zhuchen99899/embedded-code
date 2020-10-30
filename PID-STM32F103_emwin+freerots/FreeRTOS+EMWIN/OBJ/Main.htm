@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\Main.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\Main.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Wed Sep 16 03:15:27 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Fri Oct 30 20:56:43 2020
 <BR><P>
 <H3>Maximum Stack Usage =       1680 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -11295,7 +11295,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[6a]"></a>USART2_IRQHandler</STRONG> (Thumb, 220 bytes, Stack size 40 bytes, wifi.o(i.USART2_IRQHandler))
+<P><STRONG><a name="[6a]"></a>USART2_IRQHandler</STRONG> (Thumb, 224 bytes, Stack size 40 bytes, wifi.o(i.USART2_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 288 + Unknown Stack Size
 <LI>Call Chain = USART2_IRQHandler &rArr; xQueueGenericSendFromISR &rArr; prvNotifyQueueSetContainer &rArr; prvCopyDataToQueue &rArr; xTaskPriorityDisinherit &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -13941,8 +13941,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[61c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_RoundHalfUp
 </UL>
 
-<P><STRONG><a name="[4de]"></a>conncect_init</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, mqtt_init.o(i.conncect_init))
-<BR><BR>[Called By]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MQTT_Connect_task
+<P><STRONG><a name="[4de]"></a>conncect_init</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, mqtt_init.o(i.conncect_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = conncect_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MQTT_Connect_task
 </UL>
 
 <P><STRONG><a name="[69d]"></a>delay_init</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, delay.o(i.delay_init))

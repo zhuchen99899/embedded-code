@@ -348,8 +348,8 @@ void USART2_IRQHandler(void)
 		 //	printf("标记10");
 	
 	//清除空闲标志 【注】除了库函数清除标志一定要有上面步骤 读取SR DR寄存器值
-	USART_ClearITPendingBit(USART1, USART_IT_TC);
-	USART_ClearITPendingBit(USART1, USART_IT_IDLE);
+	USART_ClearITPendingBit(USART2, USART_IT_TC);
+	USART_ClearITPendingBit(USART2, USART_IT_IDLE);
 				// printf("标记11");
 			
 }
