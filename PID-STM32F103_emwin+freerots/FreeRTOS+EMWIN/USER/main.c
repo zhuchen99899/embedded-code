@@ -247,7 +247,7 @@ EventGroupCreat();
 		xQueueOverwrite(PWM_Algorithm_Queue,&PWM_Algorithm_flag);
 
 //发送MQTT任务信号量
-	xSemaphoreGive(BinarySemaphore_MQTTconnect);//发送MQTT Connack报文信号
+	xSemaphoreGive(BinarySemaphore_MQTTconnect);//发送MQTT Connect报文信号
 	
 	CJSON_init();
 	/**********************************任务创建******************************/

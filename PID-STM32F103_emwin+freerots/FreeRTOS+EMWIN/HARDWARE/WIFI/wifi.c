@@ -389,11 +389,10 @@ void DMA1_Channel6_IRQHandler(void)
 
 
 /*****************
-发送接口函数
+发送接口函数·
 发送后任务函数需要做延时
 vTaskDelay(time);
 预计time=(len/40)+2
-
 ******************/
 void WIFI_send(u8 * buffer,u32 len)
 {

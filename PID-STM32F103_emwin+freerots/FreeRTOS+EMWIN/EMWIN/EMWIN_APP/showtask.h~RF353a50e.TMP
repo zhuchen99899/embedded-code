@@ -299,6 +299,10 @@ static GUI_CONST_STORAGE unsigned long _SHOWTASK_1[] = {
 
 
 
+
+
+
+
 void App_showtask(WM_HWIN hWin);
 
 

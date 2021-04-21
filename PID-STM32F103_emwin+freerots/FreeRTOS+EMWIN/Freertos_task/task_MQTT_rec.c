@@ -560,7 +560,7 @@ xQueueOverwrite(REC_ShowHeap_Queue,&ShowRecHeap);
 	//事件标志组喂狗
 		xEventGroupSetBits(EventGroupHandler,EVENTBIT_5);
 	
-   vTaskDelay(30);                           //延时3000ms
+   vTaskDelay(30);                           //延时3000ms 高优先级任务需要做较长时间延时.
 	}
 
 }
